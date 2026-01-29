@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Consulta los resultados oficiales de las convocatorias de becas.">
+    <title>Resultados de Convocatorias | Sistema de Gestión de Becas</title>
+    <link rel="stylesheet" href="../estilos/main.css">
+    <style>
+        .results-container {
+            max-width: 900px;
+            margin: 40px auto;
+        }
+
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .results-table th,
+        .results-table td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .results-table th {
+            background-color: var(--primary-color);
+            color: white;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .status-granted {
+            color: #27ae60;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .search-results {
+            margin-bottom: 30px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .search-results input {
+            flex: 1;
+            padding: 12px 20px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="../assets/img/imglogo.png" alt="logoInsa">
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Inicio</a></li>
+                    <li><a href="postulante.html" class="nav-link">Mi Panel</a></li>
+                    <li><a href="login.html" class="nav-link logout">Cerrar Sesión</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container py-large">
+        <div class="text-center">
+            <h1 class="section-title">Resultados de Becas 2026</h1>
+            <p class="section-subtitle">Consulta la lista oficial de beneficiarios seleccionados por el comité
+                académico.</p>
+        </div>
+
+        <div class="results-container">
+            <div class="search-results">
+                <input type="text" placeholder="Buscar por folio o nombre de beca..." id="result-search">
+                <button class="btn-primary" style="padding: 10px 25px;">Filtrar</button>
+            </div>
+
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <th>Folio</th>
+                        <th>Convocatoria</th>
+                        <th>Estado de Selección</th>
+                    </tr>
+                </thead>
+                <tbody id="results-body">
+                    <!-- Estos datos vienen del sistema de evaluación -->
+                    <tr>
+                        <td><strong>B-88392</strong></td>
+                        <td>Beca Excelencia Global</td>
+                        <td><span class="status-granted">✅ Seleccionado</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>B-12740</strong></td>
+                        <td>Apoyo Talento Regional</td>
+                        <td><span class="status-granted">✅ Seleccionado</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>B-44910</strong></td>
+                        <td>Beca de Movilidad Nacional</td>
+                        <td><span class="status-granted">✅ Seleccionado</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; 2026 Sistema de Gestión de Becas - Listado Oficial de Resultados</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const logoutLink = document.querySelector('.logout');
+
+            // Si no hay usuario y trata de ver resultados, lo mandamos a login
+            if (!currentUser) {
+                window.location.href = "login.html";
+                return;
+            }
+
+            // Manejar cierre de sesión
+            if (logoutLink) {
+                logoutLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    localStorage.removeItem('currentUser');
+                    window.location.href = "index.html";
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

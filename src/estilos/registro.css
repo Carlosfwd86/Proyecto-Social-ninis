@@ -1,0 +1,115 @@
+/* Estilos para la página de Registro */
+.registration-main {
+    background-color: var(--bg-light);
+}
+
+.registration-card {
+    background-color: var(--bg-white);
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.registration-header {
+    margin-bottom: 40px;
+}
+
+.form-section {
+    border: none;
+    margin-bottom: 35px;
+    padding: 0;
+}
+
+.form-section legend {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--secondary-color);
+    width: 100%;
+    padding-bottom: 8px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(11, 61, 145, 0.1);
+}
+
+.terms-text {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin-bottom: 20px;
+}
+
+.btn-primary {
+    cursor: pointer;
+    border: none;
+}
+
+.footer-nav-simple {
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+.footer-nav-simple a {
+    color: #999;
+    text-decoration: none;
+}
+
+/* Área de mensajes */
+#message-area {
+    margin-bottom: 25px;
+    padding: 15px;
+    border-radius: 8px;
+    display: none;
+    text-align: center;
+    font-weight: 500;
+}
+
+.success-message {
+    display: block !important;
+    background-color: #dcfce7;
+    color: #15803d;
+    border: 1px solid #bbf7d0;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .registration-card {
+        padding: 30px 20px;
+    }
+}

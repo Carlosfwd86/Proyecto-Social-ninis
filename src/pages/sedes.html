@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Conoce nuestras sedes e instalaciones del Sistema de Gestión de Becas.">
+    <title>Nuestras Sedes | Sistema de Gestión de Becas</title>
+    <!-- Enlace a estilos personalizados -->
+    <link rel="stylesheet" href="../estilos/main.css">
+    <style>
+        .sedes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .sede-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            border: 1px solid #eee;
+        }
+
+        .sede-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .sede-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background-color: #f0f0f0;
+        }
+
+        .sede-info {
+            padding: 25px;
+        }
+
+        .sede-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        .sede-details {
+            list-style: none;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .sede-details li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icono {
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        .map-container {
+            margin-top: 20px;
+            height: 150px;
+            background: #e5e7eb;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header (Copiado de index para consistencia) -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="../assets/img/imglogo.png" alt="logoInsa" id="site-logo">
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Inicio</a></li>
+                    <li><a href="index.html#convocatorias" class="nav-link">Becas</a></li>
+                    <li><a href="sedes.html" class="nav-link active">Sedes</a></li>
+                    <li><a href="index.html#resultados" class="nav-link">Resultados</a></li>
+                    <li><a href="index.html#ayuda" class="nav-link">Ayuda</a></li>
+                    <li><a href="index.html#contacto" class="nav-link">Contacto</a></li>
+                    <li><a href="index.html#mapa-sitio" class="nav-link">Mapa Sitio</a></li>
+                    <li><a href="login.html" class="nav-link btn-login">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container py-large">
+        <header class="text-center">
+            <h1 class="section-title">Nuestras Sedes</h1>
+            <p class="section-subtitle">Encuentra la oficina de atención más cercana a tu ubicación</p>
+        </header>
+
+        <div class="sedes-grid">
+            <!-- Sede Central -->
+            <article class="sede-card">
+                <img src="https://via.placeholder.com/400x250?text=Sede+Central" alt="Sede Central" class="sede-img">
+                <div class="sede-info">
+                    <h3>Sede Central - Ciudad de México</h3>
+                    <ul class="sede-details">
+                        <li><span class="icono">📍</span> Av. Universidad 123, Col. Centro</li>
+                        <li><span class="icono">📞</span> (55) 1234-5678</li>
+                        <li><span class="icono">⏰</span> Lun - Vie: 9:00 AM - 6:00 PM</li>
+                    </ul>
+                    <div class="map-container">
+                        Mapa Interactivo [Simulado]
+                    </div>
+                </div>
+            </article>
+
+            <!-- Sede Norte -->
+            <article class="sede-card">
+                <img src="https://via.placeholder.com/400x250?text=Sede+Norte" alt="Sede Norte" class="sede-img">
+                <div class="sede-info">
+                    <h3>Sede Norte - Monterrey</h3>
+                    <ul class="sede-details">
+                        <li><span class="icono">📍</span> Tecnológico 456, Monterrey N.L.</li>
+                        <li><span class="icono">📞</span> (81) 8765-4321</li>
+                        <li><span class="icono">⏰</span> Lun - Vie: 9:00 AM - 5:00 PM</li>
+                    </ul>
+                    <div class="map-container">
+                        Mapa Interactivo [Simulado]
+                    </div>
+                </div>
+            </article>
+
+            <!-- Sede Sur -->
+            <article class="sede-card">
+                <img src="https://via.placeholder.com/400x250?text=Sede+Sur" alt="Sede Sur" class="sede-img">
+                <div class="sede-info">
+                    <h3>Sede Sur - Mérida</h3>
+                    <ul class="sede-details">
+                        <li><span class="icono">📍</span> Paseo de Montejo 789, Mérida Yuc.</li>
+                        <li><span class="icono">📞</span> (999) 112-2334</li>
+                        <li><span class="icono">⏰</span> Lun - Vie: 8:00 AM - 4:00 PM</li>
+                    </ul>
+                    <div class="map-container">
+                        Mapa Interactivo [Simulado]
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <section class="mt-large text-center">
+            <a href="index.html" class="btn-primary">Volver al Inicio</a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; 2026 Sistema de Gestión de Becas - Red de Atención Nacional</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

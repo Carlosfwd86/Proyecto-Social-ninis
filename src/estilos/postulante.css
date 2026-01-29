@@ -1,0 +1,185 @@
+/* Estilos para el Panel del Postulante */
+.postulante-body {
+    background-color: #f4f7f6;
+    color: #333;
+}
+
+.postulante-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem 0;
+}
+
+.header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-area img {
+    max-height: 45px;
+    width: auto;
+    display: block;
+}
+
+.badge-user {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.nav-link {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.nav-link.active,
+.nav-link:hover {
+    color: white;
+}
+
+.logout {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 5px 12px;
+    border-radius: 4px;
+}
+
+/* Secciones */
+.user-section {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+}
+
+.section-header {
+    margin-bottom: 25px;
+    border-bottom: 1px solid #efefef;
+    padding-bottom: 15px;
+    position: relative;
+}
+
+.btn-close-section {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Tablas */
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.user-table th {
+    text-align: left;
+    background: #f8f9fa;
+    padding: 15px;
+    color: #555;
+}
+
+.user-table td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.status-tag {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.status-tag.process {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.status-tag.approved {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+/* Grid de Becas */
+.becas-disponibles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.beca-card-mini {
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    border-radius: 10px;
+    transition: transform 0.2s;
+}
+
+.beca-card-mini:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary-small {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Formulario Postulación */
+.form-grid-post {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.check-container {
+    display: block;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+.form-actions-post {
+    margin-top: 30px;
+    display: flex;
+    gap: 15px;
+}
+
+.user-footer {
+    padding: 40px 0;
+    color: #777;
+}
+
+@media (max-width: 600px) {
+    .nav-links {
+        display: none;
+    }
+}

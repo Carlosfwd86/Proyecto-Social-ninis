@@ -1,0 +1,216 @@
+/* Estilos para el Panel del Evaluador */
+.eval-body {
+    background-color: #f0f4f8;
+}
+
+.eval-header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 1rem 0;
+}
+
+.eval-nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.eval-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.eval-logo img {
+    max-height: 45px;
+    width: auto;
+    display: block;
+}
+
+.badge-role-eval {
+    background-color: #3498db;
+    color: white;
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.eval-nav-list {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.eval-nav-link {
+    color: #bdc3c7;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.eval-nav-link:hover,
+.eval-nav-link.active {
+    color: #3498db;
+}
+
+.logout-eval {
+    border: 1px solid #34495e;
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+
+/* Secciones */
+.eval-section {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+}
+
+.hidden {
+    display: none;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+.btn-close {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* Tabla */
+.eval-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.eval-table th {
+    text-align: left;
+    padding: 15px;
+    background: #f8fafc;
+    border-bottom: 2px solid #edf2f7;
+}
+
+.eval-table td {
+    padding: 15px;
+    border-bottom: 1px solid #edf2f7;
+}
+
+.btn-eval-action {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Grid de Evaluación */
+.eval-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+}
+
+.postulante-info-card {
+    background: #f8fafc;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid #3498db;
+}
+
+.info-list {
+    list-style: none;
+    margin-top: 15px;
+}
+
+.info-list li {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+.link-file {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Formulario */
+.eval-form fieldset {
+    border: none;
+    padding: 0;
+}
+
+.eval-form legend {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.criteria-item {
+    margin-bottom: 20px;
+}
+
+.criteria-item label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.criteria-item input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 5px;
+}
+
+.form-actions-eval {
+    margin-top: 30px;
+    display: flex;
+    gap: 15px;
+}
+
+.btn-approve {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    flex: 1;
+}
+
+.btn-reject {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    flex: 1;
+}
+
+.eval-footer {
+    padding: 20px;
+    color: #95a5a6;
+}
+
+@media (max-width: 768px) {
+    .eval-grid {
+        grid-template-columns: 1fr;
+    }
+}
