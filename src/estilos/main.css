@@ -1,6 +1,6 @@
 /* Estilos Globales e Institucionales */
 :root {
-    --primary-color: #0b3d91;
+    --primary-color: #1a365d;
     /* Azul institucional */
     --secondary-color: #d4af37;
     /* Dorado institucional */
@@ -46,11 +46,10 @@ body {
 
 /* Header */
 .header {
-    background-color: var(--bg-white);
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    background-color: var(--primary-color);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
     position: relative;
     padding: 10px 0;
-    /* Espaciado reducido */
 }
 
 .header-container {
@@ -79,7 +78,7 @@ body {
 
 .nav-link {
     text-decoration: none;
-    color: var(--text-dark);
+    color: rgba(255, 255, 255, 0.85);
     font-weight: 600;
     font-size: 0.9rem;
     text-transform: uppercase;
@@ -89,7 +88,7 @@ body {
 
 .nav-link:hover,
 .nav-link.active {
-    color: var(--primary-color);
+    color: var(--secondary-color);
 }
 
 .btn-login {
@@ -131,7 +130,7 @@ body {
     padding: 15px 35px;
     border: none;
     border-radius: 30px;
-    background-color: var(--secondary-color);
+    background-color: #ffffff;
     color: var(--primary-color);
     font-weight: bold;
     cursor: pointer;
@@ -139,13 +138,42 @@ body {
 }
 
 .btn-search:hover {
-    background-color: #c49b2f;
+    background-color: #f0f0f0;
 }
 
-/* Hero Section */
+/* Etiquetas de Estado Universales */
+.status-tag {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.status-approved {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.status-rejected {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.status-pending {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.process {
+    background-color: #e0f2fe;
+    color: #075985;
+}
+
 .hero {
     height: 70vh;
-    background: linear-gradient(rgba(11, 61, 145, 0.7), rgba(11, 61, 145, 0.7)), url('../assets/img/hero-bg.png');
+    background: linear-gradient(rgba(11, 61, 145, 0.7), rgba(11, 61, 145, 0.7)),
+        url('../assets/img/hero-bg.png');
     background-size: cover;
     background-position: center;
     display: flex;

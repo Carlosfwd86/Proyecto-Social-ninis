@@ -4,8 +4,7 @@
 }
 
 .admin-header {
-    background-color: #1e293b;
-    /* Azul muy oscuro para denotar entorno de admin */
+    background-color: var(--primary-color);
     color: white;
     padding: 10px 0;
     /* Aseguramos un padding constante */
@@ -227,18 +226,45 @@
     border-top: 1px solid #e2e8f0;
 }
 
+/* Estadísticas Admin */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.stat-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    border-top: 4px solid var(--primary-color);
+}
+
+.stat-card h3 {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin-bottom: 5px;
+}
+
+.stat-card p {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1e293b;
+}
+
+.stat-card span {
+    font-size: 0.75rem;
+    color: #94a3b8;
+}
+
 @media (max-width: 768px) {
-    .admin-form .form-grid {
+    .stats-grid {
         grid-template-columns: 1fr;
     }
 
-    .full-width {
-        grid-column: span 1;
+    .admin-form .form-grid {
+        grid-template-columns: 1fr;
     }
-
-    .admin-nav-list {
-        display: none;
-    }
-
-    /* En producción esto sería un menú burguer */
 }

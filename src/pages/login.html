@@ -15,6 +15,15 @@
 
 <body>
 
+    <a href="index.html" class="back-to-home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Volver al Inicio
+    </a>
+
     <main class="login-main">
         <div class="login-split-container">
             <!-- Columna Izquierda: Branding Estilo Facebook -->
@@ -22,8 +31,6 @@
                 <div class="brand-logo">
                     <img src="../assets/img/imglogo.png" alt="logoInsa">
                 </div>
-                <h2 class="brand-tagline">El Sistema de Gestión de Becas te ayuda a conectar con mejores oportunidades
-                    educativas y profesionales.</h2>
             </div>
 
             <!-- Columna Derecha: Formulario de Login -->
@@ -33,28 +40,29 @@
                     <div id="message-area"></div>
 
                     <!-- Formulario de Login -->
-                    <form id="login-form" action="#" method="POST">
+                    <form id="login-form">
                         <div class="form-group">
-                            <input type="text" id="username" name="username" required
-                                placeholder="Usuario o Correo Electrónico">
+                            <input type="text" id="username" placeholder="Correo electrónico o nombre de usuario"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="password" placeholder="Contraseña" required>
+                        </div>
+                        <button type="submit" class="btn-submit">Iniciar sesión</button>
+
+                        <div style="text-align: center; margin-top: 15px;">
+                            <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
                         </div>
 
-                        <div class="form-group">
-                            <input type="password" id="password" name="password" required placeholder="Contraseña">
-                        </div>
+                        <div class="login-divider"></div>
 
-                        <button type="submit" class="btn-submit">Entrar</button>
+                        <div style="text-align: center; margin-top: 20px; font-size: 15px;">
+                            <span>¿Aún no estás registrado? </span>
+                            <a href="registro.html"
+                                style="color: #1877f2; text-decoration: none; font-weight: 600;">Regístrate aquí</a>
+                        </div>
                     </form>
-
-                    <div class="login-divider"></div>
-
-                    <footer class="login-footer-links">
-                        <a href="registro.html" class="btn-create-account">Crear cuenta nueva</a>
-                        <p><a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a></p>
-                    </footer>
                 </section>
-                <p class="login-extra-text"><strong>Crea una cuenta</strong> para postularte a las convocatorias
-                    vigentes.</p>
             </div>
         </div>
     </main>

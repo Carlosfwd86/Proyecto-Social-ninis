@@ -25,16 +25,33 @@ document.addEventListener('DOMContentLoaded', () => {
                     window.location.href = "admin.html";
                 }, 1500);
             }
+            // 3.1 Caso especial: Evaluador hardcoded
+            else if (usernameInput === "evaluador" && passwordInput === "1234") {
+                showMessage("Sesión de Evaluador iniciada. Preparando expedientes...", "success");
+                localStorage.setItem('currentUser', JSON.stringify({ fullname: "Evaluador Académico", role: "evaluador", email: "eval@sistema.com" }));
+                setTimeout(() => {
+                    window.location.href = "evaluador.html";
+                }, 1500);
+            }
             // 4. Verificar usuario de la base de datos (localStorage)
             else if (user) {
-                showMessage(`Bienvenido de nuevo, ${user.fullname}. Accediendo a resultados...`, "success");
+                showMessage(`¡Bienvenido de nuevo, ${user.fullname}! Volviendo al inicio...`, "success");
 
                 // Guardar usuario actual en sesión (localStorage)
                 localStorage.setItem('currentUser', JSON.stringify(user));
 
+                // Verificar si hay una redirección pendiente (ej. si venía de intentar entrar a solicitud.html)
+                const pendingRedirect = localStorage.getItem('redirectAfterLogin');
+
                 setTimeout(() => {
-                    // Redirigimos a la página de resultados como solicitaste
-                    window.location.href = "resultados.html";
+                    if (pendingRedirect) {
+                        // Si hay redirección pendiente, la consumimos y limpiamos
+                        localStorage.removeItem('redirectAfterLogin');
+                        window.location.href = pendingRedirect;
+                    } else {
+                        // Por defecto, ahora volvemos al inicio (index.html) como solicitaste
+                        window.location.href = "index.html";
+                    }
                 }, 1500);
             }
             else {

@@ -21,14 +21,14 @@
 /* Columna Izquierda: Branding */
 .login-branding {
     flex: 1.2;
-    padding-bottom: 100px;
+    padding-bottom: 0;
 }
 
 .brand-logo img {
-    max-width: 320px;
+    max-width: 500px;
     height: auto;
-    margin-left: -20px;
-    /* Ajuste visual */
+    margin: 0;
+    display: block;
 }
 
 .brand-tagline {
@@ -159,6 +159,37 @@
 
 .footer-links-bottom a:hover {
     text-decoration: underline;
+}
+
+/* Botón de Volver al Inicio */
+.back-to-home {
+    position: absolute;
+    top: 30px;
+    left: 40px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #1877f2;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 10px 18px;
+    border-radius: 50px;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+.back-to-home:hover {
+    transform: translateX(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+    background-color: #f0f7ff;
+}
+
+.back-to-home svg {
+    width: 18px;
+    height: 18px;
 }
 
 /* Responsividad */

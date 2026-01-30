@@ -24,9 +24,8 @@
             </div>
             <nav class="eval-nav" aria-label="Navegación del evaluador">
                 <ul class="eval-nav-list">
-                    <li><a href="#asignaciones" class="eval-nav-link active">Asignaciones</a></li>
-                    <li><a href="#historial" class="eval-nav-link">Historial</a></li>
-                    <li><a href="login.html" class="eval-nav-link logout-eval">Cerrar Sesión</a></li>
+                    <li><a href="#" class="eval-nav-link active">Asignaciones</a></li>
+                    <li><a href="#" class="eval-nav-link logout-eval" id="btn-logout-eval">Cerrar Sesión</a></li>
                 </ul>
             </nav>
         </div>
@@ -38,81 +37,102 @@
         <section id="asignaciones" class="eval-section">
             <header class="section-header">
                 <h2>Postulaciones por Evaluar</h2>
-                <p>Lista de expedientes asignados para tu revisión técnica.</p>
+                <p>Lista de expedientes recibidos para revisión dictaminación.</p>
             </header>
 
             <div class="table-container">
                 <table class="eval-table">
                     <thead>
                         <tr>
-                            <th>ID Postulante</th>
-                            <th>Nombre Completo</th>
-                            <th>Beca Solicitada</th>
-                            <th>Fecha Envío</th>
+                            <th>Folio</th>
+                            <th>Postulante</th>
+                            <th>Beca</th>
+                            <th>Fecha</th>
+                            <th>Estado</th>
                             <th>Acción</th>
                         </tr>
                     </thead>
-                    <tbody id="lista-postulaciones">
-                        <tr>
-                            <td>#USR-882</td>
-                            <td>Ana García López</td>
-                            <td>Beca Excelencia Global</td>
-                            <td>20-Ene-2026</td>
-                            <td>
-                                <button class="btn-eval-action" onclick="toggleDetalles()">Revisar</button>
-                            </td>
-                        </tr>
+                    <tbody id="assignments-table-body">
+                        <!-- Generado por JS -->
                     </tbody>
                 </table>
             </div>
         </section>
 
-        <!-- Sección 2: Detalles del Postulante y Formulario de Evaluación (Móvil/Desplegable) -->
-        <section id="evaluacion-detalle" class="eval-section hidden">
+        <!-- Sección 2: Formulario de Evaluación -->
+        <section id="evaluation-details" class="eval-section hidden">
             <header class="section-header">
-                <h2>Evaluación de Expediente: <span id="postulante-nombre-header">Ana García López</span></h2>
-                <button class="btn-close" onclick="toggleDetalles()">×</button>
+                <h2 id="eval-title">Evaluando Expediente</h2>
+                <button class="btn-close" id="btn-cerrar-eval">×</button>
             </header>
 
             <div class="eval-grid">
                 <!-- Información del Postulante -->
                 <aside class="postulante-info-card">
-                    <h3>Perfil del Postulante</h3>
+                    <h3>Expediente del Postulante</h3>
                     <ul class="info-list">
-                        <li><strong>Nivel Educativo:</strong> Pregrado</li>
-                        <li><strong>Promedio Académico:</strong> 9.5</li>
-                        <li><strong>Documentación:</strong> <a href="#" class="link-file">CV.pdf</a>, <a href="#"
-                                class="link-file">Titulo.pdf</a></li>
+                        <li><strong>Folio:</strong> <span id="info-folio">-</span></li>
+                        <li><strong>Nombre:</strong> <span id="info-nombre">-</span></li>
+                        <hr style="margin: 10px 0; border: 0; border-top: 1px solid #e2e8f0;">
+
+                        <li><strong>📞 Teléfono:</strong> <span id="info-telefono">-</span></li>
+
+                        <li style="margin-top: 10px; color: var(--primary-color); font-weight: bold;">Datos Académicos
+                        </li>
+                        <li><strong>🎓 Institución:</strong> <span id="info-institucion">-</span></li>
+                        <li><strong>📚 Carrera/Grado:</strong> <span id="info-carrera">-</span></li>
+                        <li><strong>📊 Promedio:</strong> <span id="info-promedio">-</span></li>
+
+                        <li style="margin-top: 10px; color: var(--primary-color); font-weight: bold;">Datos
+                            Socioeconómicos</li>
+                        <li><strong>💰 Ingresos:</strong> <span id="info-ingresos">-</span></li>
+                        <li><strong>🏠 Vivienda:</strong> <span id="info-vivienda">-</span></li>
+
+                        <hr style="margin: 10px 0; border: 0; border-top: 1px solid #e2e8f0;">
+                        <li><strong>📄 Motivos:</strong>
+                            <p id="info-motivos"
+                                style="font-size: 0.85rem; color: #666; background: #fff; padding: 10px; border-radius: 5px; border: 1px solid #eee; margin-top: 5px;">
+                            </p>
+                        </li>
+
+                        <li style="margin-top: 10px; color: var(--primary-color); font-weight: bold;">Documentación
+                            Cargada</li>
+                        <li><a href="#" class="link-file">📎 Identificación Oficial</a></li>
+                        <li><a href="#" class="link-file">📎 Historial Académico (Kardex)</a></li>
                     </ul>
                 </aside>
 
-                <!-- Formulario de Evaluación -->
-                <form id="form-evaluacion" class="eval-form">
+                <!-- Formulario de Dictamen -->
+                <form id="evaluation-form" class="eval-form">
                     <fieldset>
-                        <legend>Criterios de Evaluación</legend>
+                        <legend>Dictamen Técnico</legend>
 
                         <div class="criteria-item">
-                            <label for="puntaje-academico">Excelencia Académica (1-100)</label>
-                            <input type="number" id="puntaje-academico" name="academico" min="0" max="100" required>
+                            <label for="score">Puntaje Asignado (0-100)</label>
+                            <input type="number" id="score" name="score" min="0" max="100" required>
                         </div>
 
                         <div class="criteria-item">
-                            <label for="puntaje-socio">Perfil Socioeconómico (1-100)</label>
-                            <input type="number" id="puntaje-socio" name="socio" min="0" max="100" required>
+                            <label for="outcome">Resolución Final</label>
+                            <select id="outcome" name="outcome" required
+                                style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 5px;">
+                                <option value="" disabled selected>Selecciona un resultado</option>
+                                <option value="Aprobado">Aprobar Solicitud</option>
+                                <option value="Rechazado">Rechazar Solicitud</option>
+                                <option value="Pendiente">Pendiente (Requiere Información)</option>
+                            </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="observaciones">Observaciones Técnicas</label>
-                            <textarea id="observaciones" name="observaciones" rows="4"
-                                placeholder="Escribe el dictamen o comentarios adicionales..."></textarea>
+                            <label for="observations">Observaciones del Evaluador</label>
+                            <textarea id="observations" name="observations" rows="4"
+                                style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 5px;"
+                                placeholder="Justifica tu decisión técnica..."></textarea>
                         </div>
                     </fieldset>
 
                     <div class="form-actions-eval">
-                        <button type="submit" name="estado" value="aprobado" class="btn-approve">Aprobar
-                            Candidato</button>
-                        <button type="submit" name="estado" value="rechazado" class="btn-reject">Rechazar
-                            Candidato</button>
+                        <button type="submit" class="btn-approve">Guardar Dictamen</button>
                     </div>
                 </form>
             </div>
@@ -128,6 +148,7 @@
     </footer>
 
     <!-- Scripts -->
+    <script src="../js/session.js"></script>
     <script src="../js/evaluador.js"></script>
 </body>
 

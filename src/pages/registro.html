@@ -9,101 +9,89 @@
     <title>Registro de Postulantes | Sistema de Gestión de Becas</title>
     <!-- Enlaces a estilos del sistema -->
     <link rel="stylesheet" href="../estilos/main.css">
-    <link rel="stylesheet" href="../estilos/registro.css">
+    <!-- Reutilizamos los estilos de login para consistencia visual -->
+    <link rel="stylesheet" href="../estilos/login.css">
 </head>
 
 <body>
 
-    <!-- Reducción de Header para Registro -->
-    <header class="header">
-        <div class="container header-container">
-            <div class="logo">
-                <a href="index.html">
+    <a href="index.html" class="back-to-home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Volver al Inicio
+    </a>
+
+    <main class="login-main">
+        <div class="login-split-container">
+            <!-- Columna Izquierda: Branding -->
+            <div class="login-branding">
+                <div class="brand-logo">
                     <img src="../assets/img/imglogo.png" alt="logoInsa">
-                </a>
+                </div>
+                <h2 class="brand-tagline">Únete a nuestra comunidad y comienza tu futuro ahora.</h2>
             </div>
-            <nav>
-                <a href="login.html" class="nav-link">Ya tengo cuenta</a>
-            </nav>
-        </div>
-    </header>
 
-    <main class="registration-main py-large">
-        <div class="container">
-            <div class="registration-card">
-                <header class="registration-header text-center">
-                    <h1 class="section-title">Formulario de Registro</h1>
-                    <p class="section-subtitle">Completa tus datos para crear tu perfil de postulante</p>
-                </header>
+            <!-- Columna Derecha: Formulario de Registro -->
+            <div class="login-card-wrapper">
+                <section class="login-container" style="max-width: 450px;">
+                    <div id="message-area"></div>
 
-                <div id="message-area"></div>
-
-                <form id="registration-form" action="#" method="POST">
-                    <!-- Sección 1: Datos Personales -->
-                    <fieldset class="form-section">
-                        <legend>Datos Personales</legend>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label for="fullname">Nombre Completo</label>
-                                <input type="text" id="fullname" name="fullname" required placeholder="Ej: Juan Pérez">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="email">Correo Electrónico</label>
-                                <input type="email" id="email" name="email" required placeholder="correo@ejemplo.com">
-                            </div>
-                        </div>
-                    </fieldset>
-
-                    <!-- Sección 2: Cuenta de Usuario -->
-                    <fieldset class="form-section">
-                        <legend>Cuenta de Acceso</legend>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label for="username">Nombre de Usuario</label>
-                                <input type="text" id="username" name="username" required placeholder="usuario123">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="password">Contraseña</label>
-                                <input type="password" id="password" name="password" required
-                                    placeholder="Mínimo 8 caracteres">
-                            </div>
-                        </div>
-                    </fieldset>
-
-                    <!-- Sección 3: Académica -->
-                    <fieldset class="form-section">
-                        <legend>Información Académica</legend>
+                    <form id="registration-form">
                         <div class="form-group">
-                            <label for="education-level">Nivel Educativo Actual</label>
-                            <select id="education-level" name="education-level" required>
-                                <option value="" disabled selected>Selecciona tu nivel</option>
+                            <input type="text" id="fullname" name="fullname" placeholder="Nombre completo" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Correo electrónico" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="username" name="username" placeholder="Nombre de usuario" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="password" name="password" placeholder="Contraseña nueva"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <select id="education-level" name="education-level" required
+                                style="width: 100%; padding: 14px 16px; border: 1px solid #dddfe2; border-radius: 6px; font-size: 17px; background-color: white;">
+                                <option value="" disabled selected>Nivel Educativo</option>
                                 <option value="secundaria">Educación Secundaria</option>
                                 <option value="pregrado">Pregrado / Universidad</option>
                                 <option value="posgrado">Posgrado / Maestría</option>
                                 <option value="doctorado">Doctorado</option>
                             </select>
                         </div>
-                    </fieldset>
 
-                    <div class="form-actions text-center">
-                        <p class="terms-text">
-                            Al registrarte, aceptas nuestros <a href="#">Términos y Condiciones</a>.
+                        <p style="font-size: 11px; color: #777; margin: 10px 0;">
+                            Al hacer clic en Registrarse, aceptas nuestras Condiciones, la Política de privacidad y la
+                            Política de cookies.
                         </p>
-                        <button type="submit" class="btn-primary">Guardar Registro</button>
-                    </div>
-                </form>
+
+                        <button type="submit" class="btn-submit" style="background-color: #42b72a;">Registrarte</button>
+
+                        <div class="login-divider"></div>
+
+                        <div style="text-align: center; margin-top: 10px;">
+                            <a href="login.html"
+                                style="color: #1877f2; text-decoration: none; font-weight: 600; font-size: 17px;">¿Ya
+                                tienes una cuenta?</a>
+                        </div>
+                    </form>
+                </section>
             </div>
         </div>
     </main>
 
-    <!-- Footer Institucional -->
-    <footer class="footer">
+    <!-- Footer Institucional Simplificado -->
+    <footer class="footer-login-simple">
         <div class="container text-center">
-            <p>&copy; 2026 Sistema de Gestión de Becas - Transparencia y Excelencia Educativa</p>
-            <nav class="footer-nav-simple">
-                <a href="#">Ayuda</a> | <a href="#">Privacidad</a> | <a href="#">Contacto</a>
+            <p>&copy; 2026 Sistema de Gestión de Becas - Transparencia y Oportunidad</p>
+            <nav class="footer-links-bottom">
+                <a href="index.html">Inicio</a>
+                <a href="sedes.html">Sedes</a>
+                <a href="ayuda.html">Ayuda</a>
             </nav>
         </div>
     </footer>

@@ -9,45 +9,123 @@
     <title>Sistema de Gestión de Becas | Inicio</title>
     <!-- Enlace a estilos personalizados -->
     <link rel="stylesheet" href="../estilos/main.css">
+    <link rel="stylesheet" href="../estilos/carousel.css">
+    <link rel="stylesheet" href="../estilos/header-ina.css">
 </head>
 
 <body>
 
-    <!-- Encabezado Institucional -->
-    <header id="main-header" class="header">
-        <div class="container header-container">
-            <div class="logo">
-                <a href="index.html">
-                    <img src="/src/assets/img/imglogo.png" alt="logoInsa" id="site-logo">
-                </a>
-            </div>
 
-            <nav class="main-nav" aria-label="Navegación principal">
-                <ul class="nav-list">
-                    <li><a href="index.html" class="nav-link active">Inicio</a></li>
-                    <li><a href="#convocatorias" class="nav-link">Becas</a></li>
-                    <li><a href="sedes.html" class="nav-link">Sedes</a></li>
-                    <li><a href="login.html" class="nav-link">Resultados</a></li>
-                    <li><a href="#ayuda" class="nav-link">Ayuda</a></li>
-                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
-                    <li><a href="#mapa-sitio" class="nav-link">Mapa Sitio</a></li>
-                    <li><a href="login.html" class="nav-link btn-login">Login</a></li>
-                </ul>
-            </nav>
+    <header class="institutional-header">
+        <!-- Barra Superior de Utilidades -->
+        <div class="top-bar">
+            <div class="container top-bar-content">
+                <div class="contact-info">
+                    <span class="phone-number">📞 (55) 1234-5678</span>
+                </div>
+                <div class="utility-links">
+                    <a href="#" class="utility-link">Accesibilidad</a>
+                    <a href="login.html" class="utility-link login-link">Iniciar Sesión</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Barra Principal con Logo y Navegación -->
+        <div class="main-header">
+            <div class="container header-flex">
+                <!-- Logo Institucional -->
+                <div class="header-logo">
+                    <a href="index.html">
+                        <img src="../assets/img/imglogo.png" alt="Sistema de Gestión de Becas">
+                    </a>
+                </div>
+
+                <!-- Navegación Principal con Dropdowns -->
+                <nav class="primary-nav" aria-label="Navegación principal">
+                    <ul class="nav-menu">
+                        <li class="nav-item">
+                            <a href="index.html" class="nav-link active">Inicio</a>
+                        </li>
+                        <li class="nav-item has-dropdown">
+                            <a href="#" class="nav-link">Información de Interés <span
+                                    class="dropdown-arrow">▼</span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="index.html#convocatorias">Convocatorias Abiertas</a></li>
+                                <li><a href="ayuda.html">Preguntas Frecuentes</a></li>
+                                <li><a href="sedes.html">Sedes de Atención</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-dropdown">
+                            <a href="#" class="nav-link">Servicios <span class="dropdown-arrow">▼</span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="solicitud.html">Solicitud de Beca</a></li>
+                                <li><a href="#">Consultar Estado</a></li>
+                                <li><a href="#">Renovación de Beca</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="contacto.html" class="nav-link">Contacto</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="mapasitio.html" class="nav-link">Mapa del Sitio</a>
+                        </li>
+                        <li class="nav-item cta-item">
+                            <a href="login.html" class="btn-register">Registrarse</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </header>
 
-    <main>
-        <!-- Buscador Global -->
-        <section class="search-section">
-            <div class="container">
-                <form action="#" method="GET" class="search-form">
-                    <input type="text" placeholder="Buscar becas por nombre, carrera o institución..."
-                        aria-label="Buscar becas">
-                    <button type="submit" class="btn-search">Buscar</button>
-                </form>
+    <!-- Carrusel de Imágenes -->
+    <section class="carousel-container">
+        <div class="carousel-wrapper">
+            <div class="carousel-slides" id="carousel-slides">
+                <div class="carousel-slide active">
+                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1920&q=80"
+                        alt="Estudiantes universitarios">
+                    <div class="carousel-caption">
+                        <h2>Becas que transforman vidas</h2>
+                        <p>Más de 10,000 estudiantes beneficiados en 2025</p>
+                        <a href="#" class="carousel-btn">Conocer más</a>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=1920&q=80"
+                        alt="Graduación universitaria">
+                    <div class="carousel-caption">
+                        <h2>Tu futuro comienza aquí</h2>
+                        <p>Programas de apoyo académico integral</p>
+                        <a href="#" class="carousel-btn">Ver convocatorias</a>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1920&q=80"
+                        alt="Biblioteca universitaria">
+                    <div class="carousel-caption">
+                        <h2>Excelencia académica garantizada</h2>
+                        <p>Acceso a las mejores instituciones educativas</p>
+                        <a href="#" class="carousel-btn">Postular ahora</a>
+                    </div>
+                </div>
             </div>
-        </section>
+
+            <!-- Controles del carrusel -->
+            <button class="carousel-control prev" id="carousel-prev" aria-label="Anterior">‹</button>
+            <button class="carousel-control next" id="carousel-next" aria-label="Siguiente">›</button>
+
+            <!-- Indicadores -->
+            <div class="carousel-indicators" id="carousel-indicators">
+                <button class="indicator active" data-slide="0"></button>
+                <button class="indicator" data-slide="1"></button>
+                <button class="indicator" data-slide="2"></button>
+            </div>
+        </div>
+    </section>
+
+    <main>
+
 
         <!-- Sección Hero -->
         <section id="inicio" class="hero">
@@ -214,13 +292,15 @@
                 <!-- El contenido se cargará dinámicamente -->
             </div>
             <div class="modal-actions">
-                <a href="login.html" class="btn-primary">Postularme ahora</a>
+                <a href="login.html" class="btn-primary" id="btn-modal-postular">Postularme ahora</a>
                 <button class="btn-secondary" id="btn-close-text">Cerrar</button>
             </div>
         </div>
     </div>
 
     <!-- Scripts -->
+    <script src="../js/session.js"></script>
+    <script src="../js/carousel.js"></script>
     <script src="../js/main.js"></script>
 </body>
 

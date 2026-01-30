@@ -4,30 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Panel del Postulante - Gestiona tus solicitudes de becas.">
-    <title>Mi Panel de Postulante | Sistema de Gestión de Becas</title>
-    <!-- Estilos base y del panel postulante -->
+    <meta name="description" content="Consulta los resultados oficiales de las convocatorias de becas.">
+    <title>Solicitudes y Resultados | Sistema de Gestión de Becas</title>
     <link rel="stylesheet" href="../estilos/main.css">
+    <link rel="stylesheet" href="../estilos/solicitud.css">
     <link rel="stylesheet" href="../estilos/postulante.css">
 </head>
 
-<body class="postulante-body">
+<body>
 
-    <!-- Header del Postulante -->
-    <header class="postulante-header">
-        <div class="container header-flex">
-            <div class="logo-area">
+    <!-- Header Unificado -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
                 <a href="index.html">
-                    <img src="../assets/img/imglogo.png" alt="logoInsa">
+                    <img src="../assets/img/imglogo.png" alt="logoInsa" id="site-logo">
                 </a>
-                <span class="badge-user">Postulante</span>
             </div>
-            <nav class="user-nav">
-                <ul class="nav-links">
-                    <li><a href="index.html" class="nav-link">Regresar a Inicio</a></li>
-                    <li><a href="#mis-solicitudes" class="nav-link active">Mis Solicitudes</a></li>
-                    <li><a href="index.html#convocatorias" class="nav-link">Buscar Becas</a></li>
-                    <li><a href="#" class="nav-link logout" id="btn-logout-panel">Salir</a></li>
+            <nav class="main-nav" aria-label="Navegación principal">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Inicio</a></li>
+                    <li><a href="index.html#convocatorias" class="nav-link">Becas</a></li>
+                    <li><a href="sedes.html" class="nav-link">Sedes</a></li>
+                    <li><a href="solicitud.html" class="nav-link active">Solicitud</a></li>
+                    <li><a href="ayuda.html" class="nav-link">Ayuda</a></li>
+                    <li><a href="contacto.html" class="nav-link">Contacto</a></li>
+                    <li><a href="mapasitio.html" class="nav-link">Mapa Sitio</a></li>
+                    <li><a href="login.html" class="nav-link btn-login">Login</a></li>
                 </ul>
             </nav>
         </div>
@@ -35,18 +38,21 @@
 
     <main class="container py-large">
 
-        <!-- Dashboard de Resumen / Estado -->
-        <section id="mis-solicitudes" class="user-section">
-            <header class="section-header" style="display: flex; justify-content: space-between; align-items: center;">
+        <!-- SECCIÓN 1: Mi Historial Personal (Ahora Primero) -->
+        <section id="mis-solicitudes" class="user-section" style="margin-bottom: 50px;">
+            <header class="section-header"
+                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
                 <div>
-                    <h2 class="section-title">Historial de Solicitudes</h2>
-                    <p>Consulta el avance y estado actual de tus postulaciones.</p>
+                    <h1 class="section-title" style="text-align: left; margin: 0; font-size: 2.2rem;">Mi Historial de
+                        Solicitudes</h1>
+                    <p>Gestiona tus postulaciones y consulta tus estados particulares.</p>
                 </div>
-                <button class="btn-primary" id="btn-nueva-solicitud" style="padding: 10px 20px;">Nueva
-                    Solicitud</button>
+                <button class="btn-primary" id="btn-nueva-solicitud" style="padding: 10px 25px; border-radius: 30px;">
+                    + Nueva Solicitud
+                </button>
             </header>
 
-            <div class="table-container">
+            <div class="table-container shadow-sm p-medium rounded bg-white">
                 <table class="user-table">
                     <thead>
                         <tr>
@@ -54,8 +60,7 @@
                             <th>Beca</th>
                             <th>Fecha</th>
                             <th>Estado</th>
-                            <th>Observaciones</th>
-                            <th>Acciones</th>
+                            <th>Respuesta del Evaluador</th>
                         </tr>
                     </thead>
                     <tbody id="application-table-body">
@@ -65,12 +70,51 @@
             </div>
         </section>
 
+        <hr class="my-large" style="border: 0; border-top: 2px dashed #eee; margin: 40px 0;">
 
-        <!-- Formulario de Postulación (Modal o sección oculta) -->
-        <section id="application-module" class="user-section mt-large hidden">
-            <header class="section-header">
-                <h3>Nueva Postulación</h3>
-                <button class="btn-close-section" id="btn-cerrar-form">×</button>
+        <!-- SECCIÓN 2: Resultados Públicos (Ahora Segundo) -->
+        <div class="text-center" style="margin-bottom: 30px;">
+            <h2 class="section-title">Estatus Global de Solicitudes 2026</h2>
+            <p class="section-subtitle">Consulta el estado oficial de las solicitudes procesadas por el comité.</p>
+        </div>
+
+        <div class="results-container">
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <th>Folio</th>
+                        <th>Convocatoria</th>
+                        <th>Estado de Selección</th>
+                    </tr>
+                </thead>
+                <tbody id="results-body">
+                    <tr>
+                        <td><strong>B-88392</strong></td>
+                        <td>Beca Excelencia Global</td>
+                        <td><span class="status-granted">✅ Seleccionado</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>B-12740</strong></td>
+                        <td>Apoyo Talento Regional</td>
+                        <td><span class="status-granted">✅ Seleccionado</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>B-44910</strong></td>
+                        <td>Beca de Movilidad Nacional</td>
+                        <td><span class="status-granted">✅ Seleccionado</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Formulario de Postulación (Módulo Integrado) -->
+        <section id="application-module" class="user-section mt-large hidden"
+            style="background: #fdfdfd; border: 1px solid #eee; padding: 40px; border-radius: 15px;">
+            <header class="section-header"
+                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h3 style="margin: 0;">Formulario de Nueva Postulación</h3>
+                <button class="btn-close-section" id="btn-cerrar-form"
+                    style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">×</button>
             </header>
 
             <form id="apply-form" class="postulacion-form">
@@ -82,7 +126,6 @@
                             <label for="scholarship-select">Seleccionar Beca</label>
                             <select id="scholarship-select" name="scholarship" required>
                                 <option value="" disabled selected>Elige una beca...</option>
-                                <!-- Opciones cargadas dinámicamente -->
                             </select>
                         </div>
                         <div class="form-group">
@@ -162,24 +205,26 @@
                     </div>
                 </div>
 
-                <div class="form-actions-post">
-                    <button type="submit" class="btn-primary">Enviar Solicitud Completa</button>
-                    <button type="button" class="btn-secondary" id="btn-cancelar-postulacion">Cancelar</button>
+                <div class="form-actions-post" style="margin-top: 30px; display: flex; gap: 15px;">
+                    <button type="submit" class="btn-primary" style="padding: 12px 30px;">Enviar Solicitud
+                        Completa</button>
+                    <button type="button" class="btn-secondary" id="btn-cancelar-postulacion"
+                        style="padding: 12px 30px; border-radius: 6px;">Cancelar</button>
                 </div>
             </form>
         </section>
 
     </main>
 
-    <!-- Footer Simple -->
-    <footer class="user-footer text-center">
-        <div class="container">
-            <p>&copy; 2026 Mi Portal de Becas - Sistema de Gestión de Becas.</p>
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; 2026 Sistema de Gestión de Becas - Listado Oficial de Resultados</p>
         </div>
     </footer>
 
     <!-- Scripts -->
     <script src="../js/session.js"></script>
+    <script src="../js/solicitud.js"></script>
     <script src="../js/postulante.js"></script>
 </body>
 

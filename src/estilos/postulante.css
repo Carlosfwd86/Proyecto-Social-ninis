@@ -154,23 +154,69 @@
     display: none;
 }
 
-/* Formulario Postulación */
+/* Formulario Postulación Detallado */
+.form-section-title {
+    grid-column: span 2;
+    font-weight: bold;
+    color: var(--primary-color);
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 5px;
+    margin-top: 15px;
+    font-size: 1.1rem;
+}
+
 .form-grid-post {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 20px;
 }
 
-.check-container {
-    display: block;
-    font-size: 0.9rem;
-    margin-top: 10px;
+.form-grid-2-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    grid-column: span 2;
 }
 
-.form-actions-post {
-    margin-top: 30px;
-    display: flex;
-    gap: 15px;
+.form-grid-3-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    grid-column: span 2;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-family: inherit;
+}
+
+.full-width {
+    grid-column: span 2;
+}
+
+@media (max-width: 768px) {
+
+    .form-grid-2-col,
+    .form-grid-3-col {
+        grid-template-columns: 1fr;
+    }
+
+    .form-section-title,
+    .full-width {
+        grid-column: span 1;
+    }
 }
 
 .user-footer {

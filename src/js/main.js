@@ -7,41 +7,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const navList = document.querySelector('.nav-list');
 
     // 0. Gestión de Sesión en el Header
-    function updateNavForSession() {
+    // 0. Gestión de Sesión para el Modal (El header se maneja con session.js)
+    function updateModalForSession() {
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        if (currentUser && navList) {
-            // Si hay usuario, modificamos los enlaces de Resultados y Login
-            const navItems = navList.querySelectorAll('li');
-            navItems.forEach(item => {
-                const link = item.querySelector('a');
-                if (link) {
-                    // Cambiar link de Resultados para que vaya directo si ya está logueado
-                    if (link.textContent === 'Resultados') {
-                        link.setAttribute('href', 'resultados.html');
-                    }
-                    // Reemplazar Login por Mi Panel y añadir Cerrar Sesión
-                    if (link.classList.contains('btn-login')) {
-                        item.innerHTML = `<a href="postulante.html" class="nav-link">Mi Panel</a>`;
-                        const logoutLi = document.createElement('li');
-                        logoutLi.innerHTML = `<a href="#" class="nav-link btn-login" id="btn-logout">Salir</a>`;
-                        navList.appendChild(logoutLi);
-                    }
-                }
-            });
-
-            // Lógica de Cerrar Sesión
-            const logoutBtn = document.getElementById('btn-logout');
-            if (logoutBtn) {
-                logoutBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    localStorage.removeItem('currentUser');
-                    window.location.reload();
-                });
+        if (currentUser) {
+            const modalPostularBtn = document.getElementById('btn-modal-postular');
+            if (modalPostularBtn) {
+                modalPostularBtn.setAttribute('href', 'postulante.html');
+                modalPostularBtn.textContent = 'Ir a mi panel';
             }
         }
     }
 
-    updateNavForSession();
+    updateModalForSession();
 
     // 1. Semilla de datos (Solo si no hay becas creadas)
     const seedScholarships = [

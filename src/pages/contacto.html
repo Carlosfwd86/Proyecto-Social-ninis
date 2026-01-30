@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Sistema de Gestión de Becas</title>
+    <meta name="description"
+        content="Página de contacto oficial del Sistema de Gestión de Becas. Soporte técnico y atención al beneficiario.">
+    <link rel="stylesheet" href="../estilos/main.css">
+    <link rel="stylesheet" href="../estilos/header-ina.css">
+    <link rel="stylesheet" href="../estilos/contacto.css">
+</head>
+
+<body>
+
+    <header class="institutional-header">
+        <div class="top-bar">
+            <div class="container top-bar-content">
+                <div class="contact-info"><span class="phone-number">📞 (55) 1234-5678</span></div>
+                <div class="utility-links"><a href="#" class="utility-link">Accesibilidad</a><a href="login.html"
+                        class="utility-link login-link">Iniciar Sesión</a></div>
+            </div>
+        </div>
+        <div class="main-header">
+            <div class="container header-flex">
+                <div class="header-logo"><a href="index.html"><img src="../assets/img/imglogo.png"
+                            alt="Sistema de Gestión de Becas"></a></div>
+                <nav class="primary-nav" aria-label="Navegación principal">
+                    <ul class="nav-menu">
+                        <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+                        <li class="nav-item has-dropdown"><a href="#" class="nav-link">Información de Interés <span
+                                    class="dropdown-arrow">▼</span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="index.html#convocatorias">Convocatorias Abiertas</a></li>
+                                <li><a href="ayuda.html">Preguntas Frecuentes</a></li>
+                                <li><a href="sedes.html">Sedes de Atención</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-dropdown"><a href="#" class="nav-link">Servicios <span
+                                    class="dropdown-arrow">▼</span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="solicitud.html">Solicitud de Beca</a></li>
+                                <li><a href="#">Consultar Estado</a></li>
+                                <li><a href="#">Renovación de Beca</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a href="contacto.html" class="nav-link">Contacto</a></li>
+                        <li class="nav-item"><a href="mapasitio.html" class="nav-link">Mapa del Sitio</a></li>
+                        <li class="nav-item cta-item"><a href="login.html" class="btn-register">Registrarse</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Sección de introducción -->
+        <section class="intro full-width">
+            <h2>Ponte en contacto con nosotros</h2>
+            <p>
+                Si tienes dudas sobre el proceso de becas, problemas técnicos con la plataforma o requieres información
+                adicional,
+                nuestro equipo de atención está listo para ayudarte. Utiliza cualquiera de nuestros canales oficiales.
+            </p>
+        </section>
+
+        <!-- Bloque de Información de contacto institucional -->
+        <section class="institutional-info">
+            <h2>Información Institucional</h2>
+
+            <div class="info-box">
+                <h3>Entidad Responsable</h3>
+                <p>Dirección General de Becas y Apoyos Sociales</p>
+            </div>
+
+            <div class="info-box">
+                <h3>Correo Electrónico</h3>
+                <p>atencion.becas@institucion.edu.mx</p>
+            </div>
+
+            <div class="info-box">
+                <h3>Teléfono de Atención</h3>
+                <p>(55) 1234-5678 - Ext. 9901</p>
+            </div>
+
+            <div class="info-box">
+                <h3>Horario de Atención</h3>
+                <p>Lunes a Viernes: 09:00 a 17:00 hrs.</p>
+            </div>
+
+            <div class="info-box">
+                <h3>Dirección Física</h3>
+                <p>Av. Universidad No. 456, Edificio B, Planta Baja. Ciudad de México, C.P. 04510.</p>
+            </div>
+        </section>
+
+        <!-- Sección de Formulario de contacto -->
+        <section id="contacto-form" class="form-section">
+            <h2>Formulario de Soporte</h2>
+            <form class="contact-form" action="#" method="POST">
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo</label>
+                    <input type="text" id="nombre" name="nombre" required placeholder="Ingresa tu nombre">
+                </div>
+
+                <div class="form-group">
+                    <label for="correo">Correo Electrónico Institucional</label>
+                    <input type="email" id="correo" name="correo" required placeholder="tu.nombre@institucion.edu.mx">
+                </div>
+
+                <div class="form-group">
+                    <label for="asunto">Asunto</label>
+                    <select id="asunto" name="asunto" required>
+                        <option value="" disabled selected>Selecciona una opción</option>
+                        <option value="registro">Problemas con el registro</option>
+                        <option value="documentacion">Dudas sobre documentación</option>
+                        <option value="evaluacion">Estado de evaluación</option>
+                        <option value="tecnico">Falla técnica en el sistema</option>
+                        <option value="otro">Otro asunto</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="mensaje">Mensaje</label>
+                    <textarea id="mensaje" name="mensaje" required
+                        placeholder="Describe tu consulta detalladamente..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn" disabled>Enviar Solicitud</button>
+                <p style="font-size: 0.8rem; color: var(--light-text); margin-top: 10px;">
+                    * Este formulario es demostrativo. La función de envío no está activa.
+                </p>
+            </form>
+        </section>
+
+        <!-- Sección de Canales alternativos -->
+        <section class="alternatives full-width">
+            <h2>Canales Alternativos y Redes Sociales</h2>
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+                <div class="channel-item">
+                    <strong>Oficina Central</strong>
+                    <p>Atención presencial solo con cita previa gestionada por este portal.</p>
+                </div>
+                <div class="channel-item">
+                    <strong>Correo de Emergencias Técnicas</strong>
+                    <p>soporte.tecnico@institucion.edu.mx (Solo para fallas del sistema).</p>
+                </div>
+                <div class="channel-item">
+                    <strong>Redes Sociales Oficiales</strong>
+                    <div class="social-links">
+                        <a href="#">Facebook</a>
+                        <a href="#">Twitter/X</a>
+                        <a href="#">Instagram</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer institucional -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Sistema de Gestión de Becas - Todos los derechos reservados.</p>
+            <p>Transparencia | Aviso de Privacidad | Términos y Condiciones</p>
+        </div>
+    </footer>
+
+    <script src="../js/session.js"></script>
+</body>
+
+</html>
