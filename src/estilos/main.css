@@ -57,11 +57,11 @@ body {
     flex-direction: column;
     /* Centrado vertical para que el logo sea el eje central */
     align-items: center;
-    gap: 10px;
+    gap: 20px;
 }
 
 .logo img {
-    max-height: 250px;
+    max-height: 400px;
     /* Tamaño estándar de logo para web */
     width: auto;
     display: block;
@@ -495,4 +495,54 @@ body {
     border-top: 1px solid #eee;
     display: flex;
     gap: 15px;
+}
+
+/* Sección Informativa: About & Vision */
+.about-vision {
+    background: var(--bg-light);
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.info-card {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.info-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.info-card .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.info-card p {
+    color: var(--text-light);
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+    .grid-2 {
+        grid-template-columns: 1fr;
+    }
 }
