@@ -7,32 +7,50 @@
     <meta name="description" content="Consulta los resultados oficiales de las convocatorias de becas.">
     <title>Solicitudes y Resultados | Sistema de Gestión de Becas</title>
     <link rel="stylesheet" href="../estilos/main.css">
+    <link rel="stylesheet" href="../estilos/header-ina.css">
     <link rel="stylesheet" href="../estilos/solicitud.css">
     <link rel="stylesheet" href="../estilos/postulante.css">
 </head>
 
 <body>
 
-    <!-- Header Unificado -->
-    <header class="header">
-        <div class="container header-container">
-            <div class="logo">
-                <a href="index.html">
-                    <img src="../assets/img/imglogo.png" alt="logoInsa" id="site-logo">
-                </a>
+    <header class="institutional-header">
+        <div class="top-bar">
+            <div class="container top-bar-content">
+                <div class="contact-info"><span class="phone-number">📞 (55) 1234-5678</span></div>
+                <div class="utility-links"><a href="#" class="utility-link">Accesibilidad</a><a href="login.html"
+                        class="utility-link login-link">Iniciar Sesión</a></div>
             </div>
-            <nav class="main-nav" aria-label="Navegación principal">
-                <ul class="nav-list">
-                    <li><a href="index.html" class="nav-link">Inicio</a></li>
-                    <li><a href="index.html#convocatorias" class="nav-link">Becas</a></li>
-                    <li><a href="sedes.html" class="nav-link">Sedes</a></li>
-                    <li><a href="solicitud.html" class="nav-link active">Solicitud</a></li>
-                    <li><a href="ayuda.html" class="nav-link">Ayuda</a></li>
-                    <li><a href="contacto.html" class="nav-link">Contacto</a></li>
-                    <li><a href="mapasitio.html" class="nav-link">Mapa Sitio</a></li>
-                    <li><a href="login.html" class="nav-link btn-login">Login</a></li>
-                </ul>
-            </nav>
+        </div>
+        <div class="main-header">
+            <div class="container header-flex">
+                <div class="header-logo"><a href="index.html"><img src="../assets/img/imglogo.png"
+                            alt="Sistema de Gestión de Becas"></a></div>
+                <nav class="primary-nav" aria-label="Navegación principal">
+                    <ul class="nav-menu">
+                        <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+                        <li class="nav-item has-dropdown"><a href="#" class="nav-link">Información de Interés <span
+                                    class="dropdown-arrow">▼</span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="index.html#convocatorias">Convocatorias Abiertas</a></li>
+                                <li><a href="ayuda.html">Preguntas Frecuentes</a></li>
+                                <li><a href="sedes.html">Sedes de Atención</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-dropdown"><a href="#" class="nav-link">Servicios <span
+                                    class="dropdown-arrow">▼</span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="solicitud.html">Solicitud de Beca</a></li>
+                                <li><a href="#">Consultar Estado</a></li>
+                                <li><a href="#">Renovación de Beca</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a href="contacto.html" class="nav-link">Contacto</a></li>
+                        <li class="nav-item"><a href="mapasitio.html" class="nav-link">Mapa del Sitio</a></li>
+                        <li class="nav-item cta-item"><a href="login.html" class="btn-register">Registrarse</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </header>
 
