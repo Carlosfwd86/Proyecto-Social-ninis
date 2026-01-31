@@ -17,7 +17,7 @@
     <header class="institutional-header">
         <div class="top-bar">
             <div class="container top-bar-content">
-                <div class="contact-info"><span class="phone-number">📞 (55) 1234-5678</span></div>
+                <div class="contact-info"><span class="phone-number"><i class="fa-solid fa-phone"></i> (55) 1234-5678</span></div>
                  <div class="social-media-links">
                     <a href="https://www.facebook.com" target="_blank">
                         <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"
@@ -127,17 +127,17 @@
                     <tr>
                         <td><strong>B-88392</strong></td>
                         <td>Beca Excelencia Global</td>
-                        <td><span class="status-granted">✅ Seleccionado</span></td>
+                        <td><span class="status-granted"><i class="fa-solid fa-check"></i> Seleccionado</span></td>
                     </tr>
                     <tr>
                         <td><strong>B-12740</strong></td>
                         <td>Apoyo Talento Regional</td>
-                        <td><span class="status-granted">✅ Seleccionado</span></td>
+                        <td><span class="status-granted"><i class="fa-solid fa-check"></i> Seleccionado</span></td>
                     </tr>
                     <tr>
                         <td><strong>B-44910</strong></td>
                         <td>Beca de Movilidad Nacional</td>
-                        <td><span class="status-granted">✅ Seleccionado</span></td>
+                        <td><span class="status-granted"><i class="fa-solid fa-check"></i> Seleccionado</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -154,14 +154,40 @@
             </header>
 
             <form id="apply-form" class="postulacion-form">
+                <!-- TIPO DE SOLICITUD -->
+            <div class="form-section-title">Tipo de Solicitud</div>
+
+            <div class="form-grid-2-col">
+            <div class="form-group">
+                <label class="radio-container">
+                <input type="radio" name="tipoSolicitud" value="beca" checked>
+                Solicitar Beca
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label class="radio-container">
+                <input type="radio" name="tipoSolicitud" value="ayuda">
+                Solicitar Ayuda
+                </label>
+            </div>
+            </div>
                 <div class="form-grid-post">
                     
                     <div class="form-section-title">Información de la Convocatoria</div>
                     <div class="form-grid-2-col">
                         <div class="form-group">
                             <label for="scholarship-select">Seleccionar Beca</label>
-                            <select id="scholarship-select" name="scholarship" required>
+                           <select id="beca-select" name="beca">
                                 <option value="" disabled selected>Elige una beca...</option>
+                                <option value="academica">Beca Académica</option>
+                                <option value="socioeconomica">Beca Socioeconómica</option>
+                            </select>
+
+                            <select id="ayuda-select" name="ayuda" style="display:none;">
+                                <option value="" disabled selected>Elige una ayuda...</option>
+                                <option value="transporte">Ayuda de Transporte</option>
+                                <option value="alimentaria">Ayuda Alimentaria</option>
                             </select>
                         </div>
                         <div class="form-group">
