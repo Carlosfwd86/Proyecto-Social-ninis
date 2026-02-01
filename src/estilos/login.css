@@ -75,21 +75,21 @@
 
 .btn-submit {
     width: 100%;
-    background-color: #1877f2;
+    background-color: #29a35e;
     /* Azul Facebook */
     border: none;
     border-radius: 6px;
     font-size: 20px;
     line-height: 48px;
     padding: 0 16px;
-    color: #fff;
+    color: hsl(180, 8%, 97%);
     font-weight: bold;
     cursor: pointer;
     margin-top: 6px;
 }
 
 .btn-submit:hover {
-    background-color: #166fe5;
+    background-color: #11a950;
 }
 
 .login-divider {
@@ -121,7 +121,7 @@
 }
 
 .forgot-password {
-    color: #1877f2;
+    color: #e1b72e;
     font-size: 14px;
     text-decoration: none;
 }
@@ -170,12 +170,12 @@
     align-items: center;
     gap: 8px;
     text-decoration: none;
-    color: #1877f2;
+    color: #f9faf9;
     font-weight: 600;
     font-size: 15px;
     padding: 10px 18px;
     border-radius: 50px;
-    background-color: white;
+    background-color: rgb(68, 123, 2);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease;
     z-index: 100;
@@ -184,7 +184,7 @@
 .back-to-home:hover {
     transform: translateX(-5px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
-    background-color: #f0f7ff;
+    background-color: #c8e608;
 }
 
 .back-to-home svg {

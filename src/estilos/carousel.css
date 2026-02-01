@@ -3,7 +3,7 @@
     width: 100%;
     overflow: hidden;
     position: relative;
-    background: #000;
+    background: #f0f2f0;
 }
 
 .carousel-wrapper {
@@ -32,7 +32,7 @@
 
 .carousel-slide.active {
     opacity: 1;
-    z-index: 1;
+    z-index: 20;
 }
 
 .carousel-slide img {
@@ -48,24 +48,24 @@
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
-    color: white;
-    z-index: 2;
+    color: rgba(132, 136, 111, 0.544);
+    z-index: 210;
     background: rgba(0, 0, 0, 0.3);
     /* Más sutil */
     padding: 40px 60px;
-    border-radius: 24px;
+    border-radius: 100px;
     backdrop-filter: blur(16px);
     max-width: 800px;
     width: 90%;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(4, 1, 1, 0.2);
+    box-shadow: 0 80px 40px rgba(205, 188, 127, 0.2);
 }
 
 .carousel-caption h2 {
     font-size: 3rem;
     margin-bottom: 15px;
     font-weight: 700;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 4px rgba(224, 212, 212, 0.3);
 }
 
 .carousel-caption p {
