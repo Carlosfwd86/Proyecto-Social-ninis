@@ -1,16 +1,20 @@
 
-const loginForm = document.getElementById('login-form');
-const messageArea = document.getElementById('message-area');
-const usernameInput = document.getElementById('username').value;
-const passwordInput = document.getElementById('password').value;
+
+
 // Lógica para la página de Inicio de Sesión
 document.addEventListener('DOMContentLoaded', () => {
-  
+
+
+    const loginForm = document.getElementById('login-form');
+    const messageArea = document.getElementById('message-area');
     if (loginForm) {
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            
+            const usernameInput = document.getElementById('username').value;
+            const passwordInput = document.getElementById('password').value;
+
+
 
             // 1. Obtener usuarios de localStorage
             const storedUsers = JSON.parse(localStorage.getItem('scholarship_users')) || [];
@@ -21,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             );
 
             // 3. Caso especial: Administrador hardcoded
-            if (usernameInput === "admin" && passwordInput === "1234") {
+            if (usernameInput === "aditmin" && passwordInput === "1234") {
                 showMessage("Sesión de administrador iniciada. Redirigiendo...", "success");
                 setTimeout(() => {
                     window.location.href = "admin.html";
