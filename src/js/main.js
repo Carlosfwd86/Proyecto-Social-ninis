@@ -1,17 +1,18 @@
-// Lógica principal del Sistema de Gestión de Becas (Index)
-document.addEventListener('DOMContentLoaded', () => {
     const cardsGrid = document.querySelector('.cards-grid');
     const modal = document.getElementById('beca-modal');
     const modalBody = document.getElementById('modal-body-content');
     const closeModalBtns = [document.getElementById('close-modal'), document.getElementById('btn-close-text')];
     const navList = document.querySelector('.nav-list');
+    const modalPostularBtn = document.getElementById('btn-modal-postular');
+// Lógica principal del Sistema de Gestión de Becas (Index)
+document.addEventListener('DOMContentLoaded', () => {
+
 
     // 0. Gestión de Sesión en el Header
     // 0. Gestión de Sesión para el Modal (El header se maneja con session.js)
     function updateModalForSession() {
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (currentUser) {
-            const modalPostularBtn = document.getElementById('btn-modal-postular');
             if (modalPostularBtn) {
                 modalPostularBtn.setAttribute('href', 'postulante.html');
                 modalPostularBtn.textContent = 'Ir a mi panel';

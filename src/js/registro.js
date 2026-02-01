@@ -1,6 +1,7 @@
+    const registrationForm = document.getElementById('registration-form');
 // Lógica para la página de Registro
 document.addEventListener('DOMContentLoaded', () => {
-    const registrationForm = document.getElementById('registration-form');
+
     const messageArea = document.getElementById('message-area');
 
     if (registrationForm) {

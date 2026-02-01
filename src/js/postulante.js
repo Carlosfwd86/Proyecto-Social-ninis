@@ -1,5 +1,3 @@
-// Lógica para el Panel del Postulante
-document.addEventListener('DOMContentLoaded', () => {
     const applyForm = document.getElementById('apply-form');
     const applicationTable = document.getElementById('application-table-body');
     const scholarshipSelect = document.getElementById('scholarship-select');
@@ -8,6 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnCerrarForm = document.getElementById('btn-cerrar-form');
     const btnCancelarForm = document.getElementById('btn-cancelar-postulacion');
     const btnLogout = document.getElementById('btn-logout-panel');
+// Lógica para el Panel del Postulante
+document.addEventListener('DOMContentLoaded', () => {
 
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
