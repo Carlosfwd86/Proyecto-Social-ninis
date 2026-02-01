@@ -5,19 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Sistema de Gestión de Becas - Encuentra y postula a las mejores oportunidades educativas.">
+        content="Sistema de Gestión de Becas - Aplicá ahora">
     <title>Sistema de Gestión de Becas | Inicio</title>
-    <!-- Enlace a estilos personalizados -->
+    
     <link rel="stylesheet" href="../estilos/main.css">
     <link rel="stylesheet" href="../estilos/carousel.css">
     <link rel="stylesheet" href="../estilos/header-ina.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css">
 </head>
 
 <body>
 
 
     <header class="institutional-header">
-        <!-- Barra Superior de Utilidades -->
+
+        
         <div class="top-bar">
             <div class="container top-bar-content">
                 <div class="contact-info">
@@ -48,17 +51,16 @@
             </div>
         </div>
 
-        <!-- Barra Principal con Logo y Navegación -->
+        
         <div class="main-header">
             <div class="container header-flex">
-                <!-- Logo Institucional -->
+                
                 <div class="header-logo">
                     <a href="index.html">
-                        <img src="../assets/img/imglogo.png" alt="Sistema de Gestión de Becas">
+                        <img src="../assets/img/logo_png_act.png" alt="Sistema de Gestión de Becas">
                     </a>
                 </div>
 
-                <!-- Navegación Principal con Dropdowns -->
                 <nav class="primary-nav" aria-label="Navegación principal">
                     <ul class="nav-menu">
                         <li class="nav-item">
@@ -77,9 +79,7 @@
                         <li class="nav-item has-dropdown">
                             <a href="#" class="nav-link">Servicios <span class="dropdown-arrow">▼</span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="solicitud.html">Solicitud de Beca</a></li>
-                                <li><a href="#">Consultar Estado</a></li>
-                                <li><a href="#">Renovación de Beca</a></li>
+                                <li><a href="becas.html">Becas</a></li>
                                 <li><a href="ayudas.html">Ayudas</a></li>
                             </ul>
                         </li>
@@ -92,7 +92,7 @@
         </div>
     </header>
 
-    <!-- Carrusel de Imágenes -->
+    
     <section class="carousel-container">
         <div class="carousel-wrapper">
             <div class="carousel-slides" id="carousel-slides">
@@ -124,12 +124,11 @@
                     </div>
                 </div>
             </div>
+            
+            <button class="carousel-control prev" id="carousel-prev" aria-label="Anterior"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="carousel-control next" id="carousel-next" aria-label="Siguiente"><i class="fa-solid fa-chevron-right"></i></button>
 
-            <!-- Controles del carrusel -->
-            <button class="carousel-control prev" id="carousel-prev" aria-label="Anterior">‹</button>
-            <button class="carousel-control next" id="carousel-next" aria-label="Siguiente">›</button>
-
-            <!-- Indicadores -->
+            
             <div class="carousel-indicators" id="carousel-indicators">
                 <button class="indicator active" data-slide="0"></button>
                 <button class="indicator" data-slide="1"></button>
@@ -138,18 +137,18 @@
         </div>
     </section>
 
-    <!-- Nueva Sección Informativa: Quiénes Somos y Visión -->
+    
     <section class="about-vision py-large">
         <div class="container grid-2">
             <div class="info-card">
-                <div class="info-icon">👥</div>
+                <div class="info-icon"><i class="fa-solid fa-users"></i></div>
                 <h2 class="section-title">Quiénes Somos</h2>
                 <p>Somos una institución dedicada a facilitar el acceso a la educación superior a través de un sistema
                     integral de gestión de becas. Nuestro compromiso es identificar y apoyar el talento académico,
                     eliminando las barreras económicas que limitan el desarrollo de los estudiantes.</p>
             </div>
             <div class="info-card">
-                <div class="info-icon">👁️</div>
+                <div class="info-icon"><i class="fa-solid fa-eye"></i></div>
                 <h2 class="section-title">Nuestra Visión</h2>
                 <p>Ser el referente nacional en la democratización de las oportunidades educativas, creando una red
                     sólida de apoyo que permita que ningún estudiante con potencial se quede sin estudiar por falta de
@@ -161,7 +160,7 @@
     <main>
 
 
-        <!-- Sección Hero -->
+        
         <section id="inicio" class="hero">
             <div class="hero-content container">
                 <h1 class="hero-title">Impulsamos tu futuro con oportunidades académicas</h1>
@@ -173,52 +172,48 @@
             </div>
         </section>
 
-        <!-- Sección de Convocatorias (Cards) -->
         <section id="convocatorias" class="scholarships-section py-large">
             <div class="container text-center">
                 <h2 class="section-title">Convocatorias Abiertas</h2>
                 <p class="section-subtitle">Explora nuestras becas disponibles actualmente</p>
 
                 <div class="cards-grid">
-                    <!-- Card 1 -->
-                    <article class="card">
-                        <div class="card-header">
-                            <span class="badge">Internacional</span>
-                        </div>
-                        <div class="card-body">
-                            <h3>Beca Excelencia Global</h3>
-                            <p>Dirigida a estudiantes de posgrado con alto rendimiento académico en áreas de tecnología.
-                            </p>
-                            <ul class="card-details">
-                                <li><strong>Financiamiento:</strong> 100%</li>
-                                <li><strong>Cierre:</strong> 15 de Marzo</li>
-                            </ul>
-                        </div>
-                        <div class="card-footer">
-                            <a href="#" class="btn-secondary">Más detalles</a>
-                        </div>
-                    </article>
+                    
+     
+                    <section id="becas-recientes" class="scholarships-section py-large">
+                        <div class="container text-center">
+                            <h2 class="section-title">Becas Recientes</h2>
+                            <p class="section-subtitle">Últimas becas publicadas</p>
 
-                    <!-- Card 2 -->
-                    <article class="card">
-                        <div class="card-header">
-                            <span class="badge bg-green">Nacional</span>
-                        </div>
-                        <div class="card-body">
-                            <h3>Apoyo Talento Regional</h3>
-                            <p>Programa destinado a jóvenes de regiones rurales para estudios de pregrado en ciencias
-                                exactas.</p>
-                            <ul class="card-details">
-                                <li><strong>Financiamiento:</strong> Parcial</li>
-                                <li><strong>Cierre:</strong> 30 de Abril</li>
-                            </ul>
-                        </div>
-                        <div class="card-footer">
-                            <a href="#" class="btn-secondary">Más detalles</a>
-                        </div>
-                    </article>
+                            <div class="cards-grid" id="becas-container">
+                                <!-- JS inserta 3 becas -->
+                            </div>
 
-                    <!-- Card 3 -->
+                            <div class="section-actions">
+                                <a href="becas.html" class="btn-primary">Ver más becas</a>
+                            </div>
+                        </div>
+                    </section>
+
+
+                    <section id="ayudas-recientes" class="scholarships-section py-large">
+                        <div class="container text-center">
+                            <h2 class="section-title">Ayudas Recientes</h2>
+                            <p class="section-subtitle">Últimas ayudas publicadas</p>
+
+                            <div class="cards-grid" id="ayudas-container">
+                                <!-- JS inserta 3 ayudas -->
+                            </div>
+
+                            <div class="section-actions">
+                                <a href="ayudas.html" class="btn-primary">Ver más ayudas</a>
+                            </div>
+                        </div>
+                    </section>
+
+                    
+                  
+                    
                     <article class="card">
                         <div class="card-header">
                             <span class="badge bg-purple">Investigación</span>
@@ -237,7 +232,7 @@
                         </div>
                     </article>
 
-                    <!-- Card 4 -->
+                    
                     <article class="card">
                         <div class="card-header">
                             <span class="badge bg-green">Nacional</span>
@@ -259,7 +254,7 @@
             </div>
         </section>
 
-        <!-- Sección de Beneficios Informativa -->
+        
         <section class="benefits-section bg-light py-large">
             <div class="container grid-2">
                 <div class="benefits-image">
@@ -289,7 +284,7 @@
         </section>
     </main>
 
-    <!-- Footer Institucional -->
+
     <footer id="footer" class="footer">
         <div class="container footer-grid">
             <div class="footer-info">
@@ -309,7 +304,7 @@
                 <p>Email: contacto@becas.gob.edu</p>
                 <p>Teléfono: +52 (55) 1234-5678</p>
                 <div class="social-links">
-                    <!-- Placeholder para redes sociales -->
+                    
                 </div>
             </div>
         </div>
@@ -318,12 +313,12 @@
         </div>
     </footer>
 
-    <!-- Modal de Detalles de Beca -->
+    
     <div id="beca-modal" class="modal-overlay">
         <div class="modal-content">
             <span class="close-modal" id="close-modal">&times;</span>
             <div id="modal-body-content" class="modal-body">
-                <!-- El contenido se cargará dinámicamente -->
+                
             </div>
             <div class="modal-actions">
                 <a href="login.html" class="btn-primary" id="btn-modal-postular">Postularme ahora</a>
@@ -332,7 +327,7 @@
         </div>
     </div>
 
-    <!-- Scripts -->
+    
     <script src="../js/session.js"></script>
     <script src="../js/carousel.js"></script>
     <script src="../js/main.js"></script>

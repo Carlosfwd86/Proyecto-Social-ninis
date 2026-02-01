@@ -744,4 +744,177 @@ h6 {
     .grid-2 {
         grid-template-columns: 1fr;
     }
+}/* ================================
+   GENERALES
+================================ */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.py-large {
+  padding: 80px 0;
+}
+
+/* ================================
+   ACCIONES SUPERIORES
+================================ */
+.acciones-ayuda {
+  background: #f4f6fb;
+  padding: 20px 0;
+}
+
+.acciones-flex {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-solicitud {
+  background: #2563eb;
+  color: #fff;
+  padding: 12px 26px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn-solicitud:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+}
+
+/* ================================
+   SECCIONES
+================================ */
+.scholarships-section {
+  background: #fff;
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.section-subtitle {
+  color: #666;
+  margin-bottom: 40px;
+}
+
+/* ================================
+   GRID
+================================ */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+/* ================================
+   CARD
+================================ */
+.card {
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: .3s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+}
+
+.card-body {
+  padding: 25px;
+}
+
+.card-body h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.card-body p {
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.card-details {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.card-details li {
+  font-size: .9rem;
+  margin-bottom: 6px;
+}
+
+/* ================================
+   FOOTER CARD
+================================ */
+.card-footer {
+  margin-top: auto;
+  padding: 20px;
+  text-align: center;
+}
+
+/* ================================
+   BOTONES
+================================ */
+.btn-secondary {
+  background: #0f172a;
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: .9rem;
+  transition: .3s;
+}
+
+.btn-secondary:hover {
+  background: #1e293b;
+}
+
+.btn-primary {
+  display: inline-block;
+  margin-top: 35px;
+  background: #2563eb;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: .3s;
+}
+
+.btn-primary:hover {
+  background: #1d4ed8;
+}
+
+/* ================================
+   ACCIONES SECCIÓN
+================================ */
+.section-actions {
+  margin-top: 30px;
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+@media(max-width:768px){
+  .acciones-flex {
+    justify-content: center;
+  }
+
+  .section-title {
+    font-size: 1.6rem;
+  }
 }
