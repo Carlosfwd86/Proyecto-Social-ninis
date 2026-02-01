@@ -3,9 +3,20 @@
    ============================================ */
 
 /* Barra Superior de Utilidades */
+.institutional-header {
+    position: sticky;
+    top: 0;
+    z-index: 1100;
+    /* Mayor al del carrusel (max 10) y otros modales (1000) */
+    background: rgb(206, 232, 223);
+    /* Asegura que el contenido no se transparente al hacer scroll */
+    box-shadow: 0 1px 105px rgba(195, 161, 161, 0.1);
+    width: 100%;
+}
+
 .top-bar {
-    background: #f0fdf4;
-    border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+    background: #d9e1db;
+    border-bottom: 5px solid rgba(16, 185, 129, 0.2);
     padding: 8px 0;
     font-size: 0.85rem;
 }
@@ -23,11 +34,11 @@
 }
 
 .social-icon {
-    height: 18px;
+    height: 25px;
     width: auto;
-    filter: grayscale(100%);
-    opacity: 0.7;
-    transition: all 0.3s ease;
+    filter: grayscale(50%);
+    opacity: 0.5;
+    transition: all 0.1s ease;
 }
 
 .social-icon:hover {
@@ -41,12 +52,12 @@
 .contact-info {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
 }
 
 .phone-number {
     color: var(--primary-color);
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .utility-links {
@@ -56,10 +67,10 @@
 }
 
 .utility-link {
-    color: #6b7280;
+    color: #4f524e;
     text-decoration: none;
     transition: color 0.3s ease;
-    font-size: 0.9rem;
+    font-size: 1.2rem;
 }
 
 .utility-link:hover {
@@ -69,7 +80,7 @@
 .login-link {
     color: var(--primary-color);
     font-weight: 600;
-    background-color: rgba(16, 185, 129, 0.1);
+    background-color: rgba(10, 158, 109, 0.368);
     padding: 4px 12px;
     border-radius: 20px;
     transition: all 0.3s ease;
@@ -77,26 +88,32 @@
 
 .login-link:hover {
     background-color: var(--primary-color);
-    color: white;
+    color: rgb(7, 180, 111);
 }
 
 /* Barra Principal del Header */
 .main-header {
     background: transparent;
-    box-shadow: none;
-    padding: 15px 0;
+    box-shadow: 0 1px 105px rgba(83, 17, 17, 0.1);
+    padding: 0px 0;
+    max-height: 180px;
+    display: flex;
+    align-items: center;
 }
 
 .header-flex {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
 }
 
 .header-logo img {
-    height: 100px;
-    /* Reducido ligeramente para modernidad */
+    height: 250px;
     width: auto;
+    margin-left: 10px;
+    object-fit: contain;
+    display: block;
     transition: var(--transition);
 }
 
@@ -122,7 +139,7 @@
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
     border-radius: var(--radius-full);
-    border: 1px solid rgba(16, 185, 129, 0.2);
+    border: 5px solid rgba(5, 113, 77, 0.293);
     box-shadow: 0 4px 15px rgba(6, 78, 59, 0.05);
 }
 
