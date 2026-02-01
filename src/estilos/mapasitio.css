@@ -1,25 +1,67 @@
 /* CSS para Mapa del Sitio - Sistema de Gestión de Becas */
 
 .sitemap-main {
-    padding: 60px 0;
-    background-color: #f8fafc;
-    min-height: 80vh;
+    padding: 100px 0;
+    min-height: 90vh;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-light);
+}
+
+/* Burbujas de fondo específicas para Mapa del Sitio */
+.sitemap-main::before,
+.sitemap-main::after {
+    content: "";
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    filter: blur(100px);
+    z-index: 0;
+    opacity: 0.3;
+    animation: float 15s infinite alternate ease-in-out;
+}
+
+.sitemap-main::before {
+    background: var(--secondary-color);
+    top: -10%;
+    left: -10%;
+}
+
+.sitemap-main::after {
+    background: var(--accent-green);
+    bottom: -10%;
+    right: -10%;
+    animation-delay: -7s;
+}
+
+@keyframes float {
+    from {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    to {
+        transform: translate(50px, 50px) rotate(15deg);
+    }
 }
 
 .sitemap-container {
-    max-width: 900px;
+    max-width: 1100px;
     margin: 0 auto;
-    background: white;
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 1;
 }
 
 .sitemap-title {
-    color: var(--primary-color);
-    margin-bottom: 30px;
-    border-bottom: 2px solid var(--bg-light);
-    padding-bottom: 15px;
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 60px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeInDown 0.8s ease-out;
+    border-bottom: none;
+    padding-bottom: 0;
 }
 
 .sitemap-list {
@@ -27,65 +69,94 @@
     padding: 0;
 }
 
+.sitemap-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
 .sitemap-category {
-    margin-bottom: 30px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 40px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition);
+    margin-bottom: 0;
+}
+
+.sitemap-category:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-premium);
+    background: rgba(255, 255, 255, 0.9);
+    border-color: var(--secondary-color);
 }
 
 .category-title {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     color: var(--primary-color);
-    font-weight: 700;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.category-title::before {
+    content: "📁";
+    font-size: 1.2rem;
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    border-radius: 0;
+}
+
+.category-links {
+    list-style: none;
+    padding: 0;
+    grid-template-columns: 1fr;
+}
+
+.category-links li {
     margin-bottom: 15px;
+}
+
+.category-links li a {
+    text-decoration: none;
+    color: var(--text-light);
+    font-weight: 500;
+    transition: var(--transition);
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.category-title::before {
+.category-links li a::before {
     content: "";
-    width: 4px;
-    height: 20px;
+    width: 6px;
+    height: 6px;
     background-color: var(--secondary-color);
-    display: inline-block;
-    border-radius: 2px;
-}
-
-.category-links {
-    list-style: none;
-    padding-left: 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 12px;
-}
-
-.category-links li a {
-    text-decoration: none;
-    color: var(--text-dark);
-    font-size: 1rem;
+    border-radius: 50%;
     transition: var(--transition);
-    display: flex;
-    align-items: center;
-    gap: 8px;
 }
 
 .category-links li a:hover {
-    color: var(--primary-color);
-    padding-left: 5px;
+    color: var(--secondary-color);
+    font-weight: 600;
 }
 
-.category-links li a::before {
-    content: "→";
-    color: var(--secondary-color);
-    font-weight: bold;
+.category-links li a:hover::before {
+    transform: scale(2);
+    box-shadow: 0 0 10px var(--secondary-color);
 }
 
 .sitemap-footer {
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px dashed #ddd;
-    color: var(--text-light);
-    font-size: 0.9rem;
+    margin-top: 80px;
     text-align: center;
+    color: var(--text-light);
+    font-size: 1rem;
+    opacity: 0.7;
+    border-top: none;
 }
 
 @media (max-width: 600px) {
