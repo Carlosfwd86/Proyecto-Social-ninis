@@ -108,17 +108,33 @@
     width: 100%;
 }
 
-.header-logo img {
-    height: 250px;
-    width: auto;
+.header-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border: 5px solid rgba(5, 113, 77, 0.293);
+    border-radius: var(--radius-lg);
+    /* Forma que armoniza con el navbar */
+    padding: 10px 20px;
+    box-shadow: 0 4px 15px rgba(6, 78, 59, 0.05);
     margin-left: 10px;
-    object-fit: contain;
-    display: block;
     transition: var(--transition);
 }
 
-.header-logo img:hover {
-    transform: scale(1.05);
+.header-logo:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(6, 78, 59, 0.1);
+}
+
+.header-logo img {
+    height: 150px;
+    /* Ajustado para que el logo y su contorno queden bien en el header */
+    width: auto;
+    object-fit: contain;
+    display: block;
+    transition: var(--transition);
 }
 
 /* Navegación Principal */

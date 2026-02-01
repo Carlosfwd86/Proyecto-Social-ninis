@@ -169,7 +169,7 @@
 
 .btn-icon.edit:hover {
     background: #e0f2fe;
-    color: #0369a1;
+    color: #03a128;
 }
 
 .btn-icon.delete:hover {
@@ -195,7 +195,7 @@
 
 .badge-eval {
     display: inline-block;
-    color: #6366f1;
+    color: #0b8911;
     background: #eef2ff;
     padding: 2px 8px;
     font-size: 0.8rem;
