@@ -134,7 +134,13 @@
     width: auto;
     object-fit: contain;
     display: block;
-    transition: var(--transition);
+    transform: translateY(20px); /* sobresale arriba y abajo */
+    transition: transform .3s ease, scale .3s ease;
+}
+
+/* Hover suave */
+.header-logo img:hover {
+    transform: translateY(20px) scale(1.05);
 }
 
 /* Navegación Principal */
