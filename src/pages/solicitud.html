@@ -17,7 +17,7 @@
     <header class="institutional-header">
         <div class="top-bar">
             <div class="container top-bar-content">
-                <div class="contact-info"><span class="phone-number">📞 (55) 1234-5678</span></div>
+                <div class="contact-info"><span class="phone-number"><i class="fa-solid fa-phone"></i> (55) 1234-5678</span></div>
                  <div class="social-media-links">
                     <a href="https://www.facebook.com" target="_blank">
                         <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"
@@ -59,9 +59,7 @@
                         <li class="nav-item has-dropdown"><a href="#" class="nav-link">Servicios <span
                                     class="dropdown-arrow">▼</span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="solicitud.html">Solicitud de Beca</a></li>
-                                <li><a href="#">Consultar Estado</a></li>
-                                <li><a href="#">Renovación de Beca</a></li>
+                                <li><a href="becas.html">Becas</a></li>
                                 <li><a href="ayudas.html">Ayudas</a></li>   
                             </ul>
                         </li>
@@ -74,7 +72,7 @@
 
     <main class="container py-large">
 
-        <!-- SECCIÓN 1: Mi Historial Personal (Ahora Primero) -->
+        
         <section id="mis-solicitudes" class="user-section" style="margin-bottom: 50px;">
             <header class="section-header"
                 style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
@@ -108,7 +106,7 @@
 
         <hr class="my-large" style="border: 0; border-top: 2px dashed #eee; margin: 40px 0;">
 
-        <!-- SECCIÓN 2: Resultados Públicos (Ahora Segundo) -->
+        
         <div class="text-center" style="margin-bottom: 30px;">
             <h2 class="section-title">Estatus Global de Solicitudes 2026</h2>
             <p class="section-subtitle">Consulta el estado oficial de las solicitudes procesadas por el comité.</p>
@@ -127,23 +125,23 @@
                     <tr>
                         <td><strong>B-88392</strong></td>
                         <td>Beca Excelencia Global</td>
-                        <td><span class="status-granted">✅ Seleccionado</span></td>
+                        <td><span class="status-granted"><i class="fa-solid fa-check"></i> Seleccionado</span></td>
                     </tr>
                     <tr>
                         <td><strong>B-12740</strong></td>
                         <td>Apoyo Talento Regional</td>
-                        <td><span class="status-granted">✅ Seleccionado</span></td>
+                        <td><span class="status-granted"><i class="fa-solid fa-check"></i> Seleccionado</span></td>
                     </tr>
                     <tr>
                         <td><strong>B-44910</strong></td>
                         <td>Beca de Movilidad Nacional</td>
-                        <td><span class="status-granted">✅ Seleccionado</span></td>
+                        <td><span class="status-granted"><i class="fa-solid fa-check"></i> Seleccionado</span></td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <!-- Formulario de Postulación (Módulo Integrado) -->
+        
         <section id="application-module" class="user-section mt-large hidden"
             style="background: #fdfdfd; border: 1px solid #eee; padding: 40px; border-radius: 15px;">
             <header class="section-header"
@@ -154,14 +152,40 @@
             </header>
 
             <form id="apply-form" class="postulacion-form">
+                <!-- TIPO DE SOLICITUD -->
+            <div class="form-section-title">Tipo de Solicitud</div>
+
+            <div class="form-grid-2-col">
+            <div class="form-group">
+                <label class="radio-container">
+                <input type="radio" name="tipoSolicitud" value="beca" checked>
+                Solicitar Beca
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label class="radio-container">
+                <input type="radio" name="tipoSolicitud" value="ayuda">
+                Solicitar Ayuda
+                </label>
+            </div>
+            </div>
                 <div class="form-grid-post">
-                    <!-- Sección: Datos de la Beca -->
+                    
                     <div class="form-section-title">Información de la Convocatoria</div>
                     <div class="form-grid-2-col">
                         <div class="form-group">
                             <label for="scholarship-select">Seleccionar Beca</label>
-                            <select id="scholarship-select" name="scholarship" required>
+                           <select id="beca-select" name="beca">
                                 <option value="" disabled selected>Elige una beca...</option>
+                                <option value="academica">Beca Académica</option>
+                                <option value="socioeconomica">Beca Socioeconómica</option>
+                            </select>
+
+                            <select id="ayuda-select" name="ayuda" style="display:none;">
+                                <option value="" disabled selected>Elige una ayuda...</option>
+                                <option value="transporte">Ayuda de Transporte</option>
+                                <option value="alimentaria">Ayuda Alimentaria</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -170,7 +194,7 @@
                         </div>
                     </div>
 
-                    <!-- Sección: Datos Académicos -->
+                    
                     <div class="form-section-title">Datos Académicos Actuales</div>
                     <div class="form-grid-3-col">
                         <div class="form-group">
@@ -189,7 +213,7 @@
                         </div>
                     </div>
 
-                    <!-- Sección: Información Socioeconómica -->
+                    
                     <div class="form-section-title">Información Socioeconómica</div>
                     <div class="form-grid-2-col">
                         <div class="form-group">
@@ -213,7 +237,7 @@
                         </div>
                     </div>
 
-                    <!-- Sección: Documentación -->
+
                     <div class="form-section-title">Documentación Requerida (PDF/JPG)</div>
                     <div class="form-grid-2-col">
                         <div class="form-group">
@@ -253,12 +277,13 @@
     </main>
 
     <footer class="footer">
-        <div class="container text-center">
-            <p>&copy; 2026 Sistema de Gestión de Becas - Listado Oficial de Resultados</p>
+         <div class="footer-content">
+            <p>&copy; 2026 Sistema de Gestión de Becas - Todos los derechos reservados.</p>
+            <p>Transparencia | Aviso de Privacidad | Términos y Condiciones</p>
         </div>
     </footer>
 
-    <!-- Scripts -->
+    
     <script src="../js/session.js"></script>
     <script src="../js/solicitud.js"></script>
     <script src="../js/postulante.js"></script>

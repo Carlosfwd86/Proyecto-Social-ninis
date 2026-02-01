@@ -6,14 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Panel del Postulante - Gestiona tus solicitudes de becas.">
     <title>Mi Panel de Postulante | Sistema de Gestión de Becas</title>
-    <!-- Estilos base y del panel postulante -->
     <link rel="stylesheet" href="../estilos/main.css">
     <link rel="stylesheet" href="../estilos/postulante.css">
 </head>
 
 <body class="postulante-body">
 
-    <!-- Header del Postulante -->
     <header class="postulante-header">
         <div class="container header-flex">
             <div class="logo-area">
@@ -27,7 +25,6 @@
                     <li><a href="index.html" class="nav-link">Regresar a Inicio</a></li>
                     <li><a href="#mis-solicitudes" class="nav-link active">Mis Solicitudes</a></li>
                     <li><a href="index.html#convocatorias" class="nav-link">Buscar Becas</a></li>
-                    <li><a href="#" class="nav-link logout" id="btn-logout-panel">Salir</a></li>
                 </ul>
             </nav>
         </div>
@@ -35,7 +32,6 @@
 
     <main class="container py-large">
 
-        <!-- Dashboard de Resumen / Estado -->
         <section id="mis-solicitudes" class="user-section">
             <header class="section-header" style="display: flex; justify-content: space-between; align-items: center;">
                 <div>
@@ -66,7 +62,6 @@
         </section>
 
 
-        <!-- Formulario de Postulación (Modal o sección oculta) -->
         <section id="application-module" class="user-section mt-large hidden">
             <header class="section-header">
                 <h3>Nueva Postulación</h3>
@@ -75,7 +70,6 @@
 
             <form id="apply-form" class="postulacion-form">
                 <div class="form-grid-post">
-                    <!-- Sección: Datos de la Beca -->
                     <div class="form-section-title">Información de la Convocatoria</div>
                     <div class="form-grid-2-col">
                         <div class="form-group">
@@ -91,7 +85,6 @@
                         </div>
                     </div>
 
-                    <!-- Sección: Datos Académicos -->
                     <div class="form-section-title">Datos Académicos Actuales</div>
                     <div class="form-grid-3-col">
                         <div class="form-group">
@@ -110,7 +103,6 @@
                         </div>
                     </div>
 
-                    <!-- Sección: Información Socioeconómica -->
                     <div class="form-section-title">Información Socioeconómica</div>
                     <div class="form-grid-2-col">
                         <div class="form-group">
@@ -134,7 +126,6 @@
                         </div>
                     </div>
 
-                    <!-- Sección: Documentación -->
                     <div class="form-section-title">Documentación Requerida (PDF/JPG)</div>
                     <div class="form-grid-2-col">
                         <div class="form-group">
@@ -171,14 +162,12 @@
 
     </main>
 
-    <!-- Footer Simple -->
     <footer class="user-footer text-center">
         <div class="container">
             <p>&copy; 2026 Mi Portal de Becas - Sistema de Gestión de Becas.</p>
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="../js/session.js"></script>
     <script src="../js/postulante.js"></script>
 </body>

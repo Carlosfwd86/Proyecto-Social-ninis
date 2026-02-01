@@ -7,9 +7,7 @@
     <meta name="description"
         content="Regístrate en el Sistema de Gestión de Becas para comenzar tu proceso de postulación.">
     <title>Registro de Postulantes | Sistema de Gestión de Becas</title>
-    <!-- Enlaces a estilos del sistema -->
     <link rel="stylesheet" href="../estilos/main.css">
-    <!-- Reutilizamos los estilos de login para consistencia visual -->
     <link rel="stylesheet" href="../estilos/login.css">
 </head>
 
@@ -26,7 +24,6 @@
 
     <main class="login-main">
         <div class="login-split-container">
-            <!-- Columna Izquierda: Branding -->
             <div class="login-branding">
                 <div class="brand-logo">
                     <img src="../assets/img/imglogo.png" alt="logoInsa">
@@ -34,7 +31,6 @@
                 <h2 class="brand-tagline">Únete a nuestra comunidad y comienza tu futuro ahora.</h2>
             </div>
 
-            <!-- Columna Derecha: Formulario de Registro -->
             <div class="login-card-wrapper">
                 <section class="login-container" style="max-width: 450px;">
                     <div id="message-area"></div>
@@ -47,21 +43,8 @@
                             <input type="email" id="email" name="email" placeholder="Correo electrónico" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" id="username" name="username" placeholder="Nombre de usuario" required>
-                        </div>
-                        <div class="form-group">
                             <input type="password" id="password" name="password" placeholder="Contraseña nueva"
                                 required>
-                        </div>
-                        <div class="form-group">
-                            <select id="education-level" name="education-level" required
-                                style="width: 100%; padding: 14px 16px; border: 1px solid #dddfe2; border-radius: 6px; font-size: 17px; background-color: white;">
-                                <option value="" disabled selected>Nivel Educativo</option>
-                                <option value="secundaria">Educación Secundaria</option>
-                                <option value="pregrado">Pregrado / Universidad</option>
-                                <option value="posgrado">Posgrado / Maestría</option>
-                                <option value="doctorado">Doctorado</option>
-                            </select>
                         </div>
 
                         <p style="font-size: 11px; color: #777; margin: 10px 0;">
@@ -84,7 +67,6 @@
         </div>
     </main>
 
-    <!-- Footer Institucional Simplificado -->
     <footer class="footer-login-simple">
         <div class="container text-center">
             <p>&copy; 2026 Sistema de Gestión de Becas - Transparencia y Oportunidad</p>
@@ -96,7 +78,6 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="../js/registro.js"></script>
 </body>
 

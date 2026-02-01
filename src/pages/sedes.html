@@ -7,21 +7,22 @@
     <meta name="description"
         content="Conoce nuestras sedes e instalaciones del Sistema de Gestión de Becas. Red de atención nacional.">
     <title>Sedes de Atención | Sistema de Gestión de Becas</title>
-    <!-- Estilos base y específicos -->
     <link rel="stylesheet" href="../estilos/main.css">
     <link rel="stylesheet" href="../estilos/header-ina.css">
     <link rel="stylesheet" href="../estilos/sedes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css">
 </head>
 
 <body class="sedes-page">
 
     <header class="institutional-header">
-        <!-- Barra Superior de Utilidades -->
         <div class="top-bar">
             <div class="container top-bar-content">
                 <div class="contact-info">
-                    <span class="phone-number">📞 (55) 1234-5678</span>
+                    <span class="phone-number"><i class="fa-solid fa-phone"></i> (55) 1234-5678</span>
                 </div>
+               
                 <div class="social-media-links">
                     <a href="https://www.facebook.com" target="_blank">
                         <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"
@@ -47,17 +48,14 @@
             </div>
         </div>
 
-        <!-- Barra Principal con Logo y Navegación -->
         <div class="main-header">
             <div class="container header-flex">
-                <!-- Logo Institucional -->
                 <div class="header-logo">
                     <a href="index.html">
                         <img src="../assets/img/imglogo.png" alt="Sistema de Gestión de Becas">
                     </a>
                 </div>
 
-                <!-- Navegación Principal con Dropdowns -->
                 <nav class="primary-nav" aria-label="Navegación principal">
                     <ul class="nav-menu">
                         <li class="nav-item">
@@ -76,9 +74,7 @@
                         <li class="nav-item has-dropdown">
                             <a href="#" class="nav-link">Servicios <span class="dropdown-arrow">▼</span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="solicitud.html">Solicitud de Beca</a></li>
-                                <li><a href="#">Consultar Estado</a></li>
-                                <li><a href="#">Renovación de Beca</a></li>
+                                <li><a href="becas.html">Becas</a></li>
                                 <li><a href="ayudas.html">Ayudas</a></li>
                             </ul>
                         </li>
@@ -98,45 +94,41 @@
             <p class="section-subtitle">Encuentra la oficina más cercana para recibir asesoría personalizada.</p>
         </header>
 
-        <!-- Filtros Rápidos (Opcional visual) -->
         <div class="text-center mb-large">
             <span class="badge" style="background-color: var(--secondary-color); color: var(--primary-color);">Red de
                 Atención Nacional 2026</span>
         </div>
 
         <div class="sedes-grid" id="sedes-container">
-            <!-- Contenido dinámico cargado por sedes.js -->
-
-            <!-- Sede Central (Respaldo Estético) -->
+            
             <article class="sede-card">
                 <div class="sede-img-wrapper">
                     <span class="sede-badge">Principal</span>
-                    <img src="../assets/img/sede-central.jpg" alt="Sede Central" class="sede-img"
-                        onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80'">
+                    <img src="../assets/img/sede-central.jpg" alt="Sede Central" class="sede-img">
                 </div>
                 <div class="sede-info">
                     <h3>Sede Central CDMX</h3>
                     <ul class="sede-details">
                         <li>
-                            <div class="icono-box">📍</div>
+                            <div class="icono-box"><i class="fa-solid fa-location-dot"></i></div>
                             <span>Av. Universidad 123, Col. Del Valle Centro, Benito Juárez, CDMX.</span>
                         </li>
                         <li>
-                            <div class="icono-box">📞</div>
+                            <div class="icono-box"><i class="fa-solid fa-phone"></i></div>
                             <span>(55) 1234-5678 - Línea de Atención</span>
                         </li>
                         <li>
-                            <div class="icono-box">⏰</div>
+                            <div class="icono-box"><i class="fa-solid fa-clock"></i></div>
                             <span>Lunes a Viernes: 08:30 AM - 06:30 PM</span>
                         </li>
                     </ul>
                     <button class="map-btn">
-                        <span>🗺️ Ver Mapa Interactivo</span>
+                        <span><i class="fa-solid fa-map-location-dot"></i> Ver Mapa Interactivo</span>
                     </button>
                 </div>
             </article>
 
-            <!-- Sede Norte (Respaldo) -->
+            
             <article class="sede-card">
                 <div class="sede-img-wrapper">
                     <span class="sede-badge">Norte</span>
@@ -147,20 +139,20 @@
                     <h3>Sede Monterrey</h3>
                     <ul class="sede-details">
                         <li>
-                            <div class="icono-box">📍</div>
+                            <div class="icono-box"><i class="fa-solid fa-location-dot"></i></div>
                             <span>Av. Constitución 456, Monterrey, Nuevo León.</span>
                         </li>
                         <li>
-                            <div class="icono-box">📞</div>
+                            <div class="icono-box"><i class="fa-solid fa-phone"></i></div>
                             <span>(81) 8765-4321</span>
                         </li>
                         <li>
-                            <div class="icono-box">⏰</div>
+                            <div class="icono-box"><i class="fa-solid fa-clock"></i></div>
                             <span>Lunes a Viernes: 09:00 AM - 05:00 PM</span>
                         </li>
                     </ul>
                     <button class="map-btn">
-                        <span>🗺️ Ver Mapa Interactivo</span>
+                        <span><i class="fa-solid fa-map-location-dot"></i> Ver Mapa Interactivo</span>
                     </button>
                 </div>
             </article>
@@ -168,16 +160,15 @@
 
     </main>
 
-    <!-- Footer Institucional -->
-    <footer class="footer">
-        <div class="container text-center">
-            <h4 style="color: var(--secondary-color); margin-bottom: 20px;">Red de Atención Ciudadana</h4>
-            <p style="opacity: 0.7; font-size: 0.9rem;">&copy; 2026 Sistema Nacional de Becas. Todos los derechos
-                reservados.</p>
+    
+    <footer >
+         <div class="footer-content">
+            <p>&copy; 2026 Sistema de Gestión de Becas - Todos los derechos reservados.</p>
+            <p>Transparencia | Aviso de Privacidad | Términos y Condiciones</p>
         </div>
     </footer>
 
-    <!-- Scripts -->
+    
     <script src="../js/session.js"></script>
     <script src="../js/sedes.js"></script>
 </body>

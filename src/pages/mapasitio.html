@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="../estilos/main.css">
     <link rel="stylesheet" href="../estilos/header-ina.css">
     <link rel="stylesheet" href="../estilos/mapasitio.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css">
 </head>
 
 <body>
@@ -18,8 +20,11 @@
     <header class="institutional-header">
         <div class="top-bar">
             <div class="container top-bar-content">
-                <div class="contact-info"><span class="phone-number">📞 (55) 1234-5678</span></div>
-                 <div class="social-media-links">
+                <div class="contact-info">
+                    <span class="phone-number"><i class="fa-solid fa-phone"></i> (55) 1234-5678</span>
+                </div>
+
+                <div class="social-media-links">
                     <a href="https://www.facebook.com" target="_blank">
                         <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"
                             class="social-icon">
@@ -60,9 +65,7 @@
                         <li class="nav-item has-dropdown"><a href="#" class="nav-link">Servicios <span
                                     class="dropdown-arrow">▼</span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="solicitud.html">Solicitud de Beca</a></li>
-                                <li><a href="#">Consultar Estado</a></li>
-                                <li><a href="#">Renovación de Beca</a></li>
+                                <li><a href="becas.html">Becas</a></li>
                                 <li><a href="ayudas.html">Ayudas</a></li>
                             </ul>
                         </li>
@@ -79,20 +82,18 @@
                 <h1 class="sitemap-title">Mapa del Sitio</h1>
 
                 <nav class="sitemap-content">
-                    <!-- Sección: Portal Público -->
                     <div class="sitemap-category">
                         <h2 class="category-title">Portal Público</h2>
                         <ul class="category-links">
                             <li><a href="index.html">Página de Inicio</a></li>
                             <li><a href="index.html#convocatorias">Convocatorias de Becas</a></li>
                             <li><a href="sedes.html">Sedes e Instalaciones</a></li>
-                            <li><a href="solicitud.html">Resultados Oficiales</a></li>
+                            <li><a href="becas.html">Becas</a></li>
                             <li><a href="ayuda.html">Centro de Ayuda y FAQ</a></li>
                             <li><a href="contacto.html">Contacto y Soporte</a></li>
                         </ul>
                     </div>
 
-                    <!-- Sección: Acceso de Usuarios -->
                     <div class="sitemap-category">
                         <h2 class="category-title">Acceso y Gestión</h2>
                         <ul class="category-links">
@@ -102,7 +103,6 @@
                         </ul>
                     </div>
 
-                    <!-- Sección: Paneles Privados (Simulados) -->
                     <div class="sitemap-category">
                         <h2 class="category-title">Áreas Privadas</h2>
                         <ul class="category-links">
@@ -112,7 +112,6 @@
                         </ul>
                     </div>
 
-                    <!-- Sección: Información Legal -->
                     <div class="sitemap-category">
                         <h2 class="category-title">Legal y Transparencia</h2>
                         <ul class="category-links">
@@ -131,14 +130,13 @@
         </div>
     </main>
 
-    <!-- Footer Institucional -->
     <footer class="footer">
-        <div class="container text-center">
-            <p>&copy; 2026 Sistema de Gestión de Becas - Navegación Estructural</p>
+         <div class="footer-content">
+            <p>&copy; 2026 Sistema de Gestión de Becas - Todos los derechos reservados.</p>
+            <p>Transparencia | Aviso de Privacidad | Términos y Condiciones</p>
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="../js/session.js"></script>
     <script src="../js/mapasitio.js"></script>
 </body>

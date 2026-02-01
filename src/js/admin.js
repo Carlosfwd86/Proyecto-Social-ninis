@@ -1,31 +1,27 @@
-// Lógica Integral para el Panel de Administración
-document.addEventListener('DOMContentLoaded', () => {
-    // Referencias de Becas
     const scholarshipForm = document.getElementById('scholarship-form');
     const scholarshipTable = document.getElementById('scholarship-table-body');
     const formTitle = document.getElementById('form-title');
     const btnSubmit = document.getElementById('btn-submit-form');
     const btnCancelEdit = document.getElementById('btn-cancel-edit');
     const hiddenId = document.getElementById('scholarship-id');
-
-    // Referencias de Evaluadores
     const evaluatorForm = document.getElementById('evaluator-form');
     const evaluadoresContainer = document.getElementById('evaluadores-container');
-
-    // Referencias de Sedes (NUEVO)
     const sedeForm = document.getElementById('sede-form');
     const sedeTableBody = document.getElementById('sede-table-body');
     const hiddenSedeId = document.getElementById('sede-id');
     const btnCancelSede = document.getElementById('btn-cancel-sede');
     const btnSaveSede = document.getElementById('btn-save-sede');
-
-    // Referencias de Estadísticas
     const statBecas = document.getElementById('stat-becas');
     const statSolicitudes = document.getElementById('stat-solicitudes');
     const statAprobados = document.getElementById('stat-aprobados');
-
     const btnLogout = document.getElementById('btn-logout-admin');
+    
+    
 
+
+// Lógica Integral para el Panel de Administración
+document.addEventListener('DOMContentLoaded', () => {
+ 
     // --- 1. GESTIÓN DE BECAS ---
 
     function renderScholarships() {

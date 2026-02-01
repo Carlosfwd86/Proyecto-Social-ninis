@@ -1,11 +1,14 @@
+const assignmentsTable = document.getElementById('assignments-table-body');
+const evaluationSection = document.getElementById('evaluation-details');
+const evaluationForm = document.getElementById('evaluation-form');
+const btnCerrarEval = document.getElementById('btn-cerrar-eval');
+const btnLogout = document.getElementById('btn-logout-eval');
+const score = document.getElementById('score').value;
+const status = document.getElementById('outcome').value;
+const observations = document.getElementById('observations').value;
+
 // Lógica para el Panel del Evaluador
 document.addEventListener('DOMContentLoaded', () => {
-    const assignmentsTable = document.getElementById('assignments-table-body');
-    const evaluationSection = document.getElementById('evaluation-details');
-    const evaluationForm = document.getElementById('evaluation-form');
-    const btnCerrarEval = document.getElementById('btn-cerrar-eval');
-    const btnLogout = document.getElementById('btn-logout-eval');
-
     let currentFolio = null;
 
     // 1. Cargar solicitudes reales
@@ -77,10 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (evaluationForm) {
         evaluationForm.addEventListener('submit', (e) => {
             e.preventDefault();
-
-            const score = document.getElementById('score').value;
-            const status = document.getElementById('outcome').value;
-            const observations = document.getElementById('observations').value;
 
             let applications = JSON.parse(localStorage.getItem('scholarship_applications')) || [];
             const index = applications.findIndex(app => app.folio === currentFolio);
