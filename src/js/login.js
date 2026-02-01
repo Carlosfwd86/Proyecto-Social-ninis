@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             );
 
             // 3. Caso especial: Administrador hardcoded
-            if (usernameInput === "aditmin" && passwordInput === "1234") {
+            if (usernameInput === "admin" && passwordInput === "1234") {
                 showMessage("Sesión de administrador iniciada. Redirigiendo...", "success");
                 setTimeout(() => {
                     window.location.href = "admin.html";
