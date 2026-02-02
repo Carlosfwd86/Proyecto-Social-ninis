@@ -792,7 +792,7 @@ body.no-scroll {
 }
 
 .btn-solicitud {
-  background: #195b06;
+  background: #2563eb;
   color: #fff;
   padding: 12px 26px;
   border-radius: 8px;
@@ -802,7 +802,7 @@ body.no-scroll {
 }
 
 .btn-solicitud:hover {
-  background: #1dd88a;
+  background: #1d4ed8;
   transform: translateY(-2px);
 }
 
@@ -887,7 +887,7 @@ body.no-scroll {
    BOTONES
 ================================ */
 .btn-secondary {
-  background: #068d1c;
+  background: #0f172a;
   color: #fff;
   padding: 10px 22px;
   border-radius: 6px;
@@ -897,13 +897,13 @@ body.no-scroll {
 }
 
 .btn-secondary:hover {
-  background: #0e7a58;
+  background: #1e293b;
 }
 
 .btn-primary {
   display: inline-block;
   margin-top: 35px;
-  background: #0dad43;
+  background: #2563eb;
   color: white;
   padding: 12px 30px;
   border-radius: 8px;
@@ -913,7 +913,7 @@ body.no-scroll {
 }
 
 .btn-primary:hover {
-  background: #cece08bf;
+  background: #1d4ed8;
 }
 
 /* ================================
