@@ -9,6 +9,14 @@
 
     <link rel="stylesheet" href="../estilos/main.css">
     <link rel="stylesheet" href="../estilos/admin.css">
+    <script src="../js/session.js"></script>
+    <script>
+        // Verificación inmediata antes de renderizar el resto del DOM
+        if (!checkAuth('admin')) {
+            // La redirección ocurre dentro de checkAuth si falla
+            document.documentElement.style.display = 'none';
+        }
+    </script>
 </head>
 
 <body class="admin-body">

@@ -8,6 +8,12 @@
     <title>Mi Panel de Postulante | Sistema de Gestión de Becas</title>
     <link rel="stylesheet" href="../estilos/main.css">
     <link rel="stylesheet" href="../estilos/postulante.css">
+    <script src="../js/session.js"></script>
+    <script>
+        if (!checkAuth('postulante')) {
+            document.documentElement.style.display = 'none';
+        }
+    </script>
 </head>
 
 <body class="postulante-body">
