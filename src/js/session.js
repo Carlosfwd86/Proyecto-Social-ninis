@@ -5,31 +5,43 @@
 
 // Función global para verificar permisos (puede llamarse antes de que cargue el DOM)
 function checkAuth(requiredRole) {
-    const user = JSON.parse(localStorage.getItem('currentUser'));
+    let user = null;
+    try {
+        const stored = localStorage.getItem('currentUser');
+        if (stored) user = JSON.parse(stored);
+    } catch (err) {
+        console.error("Error al leer la sesión del localStorage:", err);
+    }
+
     if (!user) {
         window.location.href = 'login.html?redirect=' + encodeURIComponent(window.location.pathname) + '&msg=session_required';
         return false;
     }
 
-    // Normalizar roles (si falta, se asume postulante)
-    const userRole = (user.role || 'postulante').toLowerCase();
-    const reqRole = (requiredRole || '').toLowerCase();
+    // Normalizar roles
+    const userRole = (user.role || 'postulante').toString().trim().toLowerCase();
+    const reqRole = (requiredRole || '').toString().trim().toLowerCase();
 
-    // Un administrador puede entrar a cualquier área para supervisión
+    // Diagnóstico en consola (Ayuda a depurar sin ver el código)
+    console.log(`[Auth Check] Usuario: ${user.fullname} | Rol: ${userRole} | Requerido: ${reqRole}`);
+
+    // Un administrador tiene acceso total
     if (userRole === 'admin') return true;
 
-    // Un evaluador puede entrar a su área y al panel de postulante (vista base)
-    if (userRole === 'evaluador' && (reqRole === 'evaluador' || reqRole === 'postulante')) return true;
-
-    // Caso base: el rol coincide exactamente
-    if (userRole === reqRole) return true;
-
-    // En cualquier otro caso de desajuste, redirigir al login
-    if (reqRole && userRole !== reqRole) {
-        window.location.href = 'login.html?msg=access_denied&redirect=' + encodeURIComponent(window.location.pathname);
-        return false;
+    // Un evaluador tiene acceso a su panel y a la vista básica de postulante
+    if (userRole === 'evaluador' && (reqRole === 'evaluador' || reqRole === 'postulante' || !reqRole)) {
+        return true;
     }
-    return true;
+
+    // Un postulante (o cualquier otro) solo tiene acceso si coincide el rol exacto o no hay requisito
+    if (userRole === reqRole || !reqRole) {
+        return true;
+    }
+
+    // Si llegamos aquí, el acceso es denegado
+    console.warn(`ACCESO DENEGADO: Rol "${userRole}" insuficiente para "${reqRole}"`);
+    window.location.href = 'login.html?msg=access_denied&redirect=' + encodeURIComponent(window.location.pathname);
+    return false;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
