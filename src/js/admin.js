@@ -1,27 +1,27 @@
-    const scholarshipForm = document.getElementById('scholarship-form');
-    const scholarshipTable = document.getElementById('scholarship-table-body');
-    const formTitle = document.getElementById('form-title');
-    const btnSubmit = document.getElementById('btn-submit-form');
-    const btnCancelEdit = document.getElementById('btn-cancel-edit');
-    const hiddenId = document.getElementById('scholarship-id');
-    const evaluatorForm = document.getElementById('evaluator-form');
-    const evaluadoresContainer = document.getElementById('evaluadores-container');
-    const sedeForm = document.getElementById('sede-form');
-    const sedeTableBody = document.getElementById('sede-table-body');
-    const hiddenSedeId = document.getElementById('sede-id');
-    const btnCancelSede = document.getElementById('btn-cancel-sede');
-    const btnSaveSede = document.getElementById('btn-save-sede');
-    const statBecas = document.getElementById('stat-becas');
-    const statSolicitudes = document.getElementById('stat-solicitudes');
-    const statAprobados = document.getElementById('stat-aprobados');
-    const btnLogout = document.getElementById('btn-logout-admin');
-    
-    
+const scholarshipForm = document.getElementById('scholarship-form');
+const scholarshipTable = document.getElementById('scholarship-table-body');
+const formTitle = document.getElementById('form-title');
+const btnSubmit = document.getElementById('btn-submit-form');
+const btnCancelEdit = document.getElementById('btn-cancel-edit');
+const hiddenId = document.getElementById('scholarship-id');
+const evaluatorForm = document.getElementById('evaluator-form');
+const evaluadoresContainer = document.getElementById('evaluadores-container');
+const sedeForm = document.getElementById('sede-form');
+const sedeTableBody = document.getElementById('sede-table-body');
+const hiddenSedeId = document.getElementById('sede-id');
+const btnCancelSede = document.getElementById('btn-cancel-sede');
+const btnSaveSede = document.getElementById('btn-save-sede');
+const statBecas = document.getElementById('stat-becas');
+const statSolicitudes = document.getElementById('stat-solicitudes');
+const statAprobados = document.getElementById('stat-aprobados');
+const btnLogout = document.getElementById('btn-logout-admin');
+
+
 
 
 // Lógica Integral para el Panel de Administración
 document.addEventListener('DOMContentLoaded', () => {
- 
+
     // --- 1. GESTIÓN DE BECAS ---
 
     function renderScholarships() {
@@ -273,6 +273,73 @@ document.addEventListener('DOMContentLoaded', () => {
         if (statAprobados) statAprobados.innerText = aprobados.length;
     }
 
+    // --- 5. GESTIÓN DE SOPORTE (NUEVO) ---
+
+    function renderSupportRequests() {
+        const supportTable = document.getElementById('support-table-body');
+        if (!supportTable) return;
+
+        const requests = JSON.parse(localStorage.getItem('support_requests')) || [];
+        supportTable.innerHTML = '';
+
+        requests.forEach(req => {
+            const row = document.createElement('tr');
+            const statusClass = req.status === 'Aceptada' ? 'status-active' : (req.status === 'Denegada' ? 'bg-red' : 'bg-yellow');
+
+            row.innerHTML = `
+                <td><small>${req.fecha}</small></td>
+                <td>
+                    <strong>${req.nombre}</strong><br>
+                    <small style="color: #64748b">${req.email}</small>
+                </td>
+                <td style="max-width: 250px;"><div style="font-size: 0.85rem; overflow: hidden; text-overflow: ellipsis;">${req.mensaje}</div></td>
+                <td><span class="status-tag ${statusClass}" style="padding: 2px 8px; border-radius: 4px; font-size: 0.75rem;">${req.status}</span></td>
+                <td>
+                    ${req.status === 'Pendiente' ? `
+                        <button class="btn-icon edit" onclick="updateSupportStatus(${req.id}, 'Aceptada')" title="Aceptar">✅</button>
+                        <button class="btn-icon delete" onclick="updateSupportStatus(${req.id}, 'Denegada')" title="Denegar">❌</button>
+                    ` : `
+                        <button class="btn-text-danger" onclick="deleteSupportRequest(${req.id})">Eliminar</button>
+                    `}
+                </td>
+            `;
+            supportTable.appendChild(row);
+        });
+    }
+
+    window.updateSupportStatus = function (id, newStatus) {
+        let requests = JSON.parse(localStorage.getItem('support_requests')) || [];
+        const index = requests.findIndex(r => r.id === id);
+        if (index !== -1) {
+            requests[index].status = newStatus;
+            localStorage.setItem('support_requests', JSON.stringify(requests));
+            renderSupportRequests();
+            alert(`Solicitud ${newStatus.toLowerCase()} correctamente.`);
+        }
+    };
+
+    window.deleteSupportRequest = function (id) {
+        if (confirm('¿Eliminar este registro de soporte?')) {
+            let requests = JSON.parse(localStorage.getItem('support_requests')) || [];
+            requests = requests.filter(r => r.id !== id);
+            localStorage.setItem('support_requests', JSON.stringify(requests));
+            renderSupportRequests();
+        }
+    };
+
+    // Agregar estilos CSS para los estados faltantes si no existen
+    if (!document.getElementById('admin-dynamic-styles')) {
+        const style = document.createElement('style');
+        style.id = 'admin-dynamic-styles';
+        style.textContent = `
+            .bg-yellow { background-color: #fef3c7; color: #92400e; }
+            .bg-red { background-color: #fee2e2; color: #b91c1c; }
+            .bg-green { background-color: #dcfce7; color: #166534; }
+            .status-tag { display: inline-block; font-weight: bold; }
+        `;
+        document.head.appendChild(style);
+    }
+
     // --- LOGOUT ---
     if (btnLogout) {
         btnLogout.addEventListener('click', (e) => {
@@ -285,5 +352,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Inicialización Global
     renderScholarships();
     renderEvaluators();
-    renderSedes(); // NUEVO
+    renderSedes();
+    renderSupportRequests(); // NUEVO
 });
