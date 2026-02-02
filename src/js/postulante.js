@@ -1,3 +1,5 @@
+// Lógica para el Panel del Postulante
+document.addEventListener('DOMContentLoaded', () => {
     const applyForm = document.getElementById('apply-form');
     const applicationTable = document.getElementById('application-table-body');
     const scholarshipSelect = document.getElementById('scholarship-select');
@@ -6,19 +8,23 @@
     const btnCerrarForm = document.getElementById('btn-cerrar-form');
     const btnCancelarForm = document.getElementById('btn-cancelar-postulacion');
     const btnLogout = document.getElementById('btn-logout-panel');
-// Lógica para el Panel del Postulante
-document.addEventListener('DOMContentLoaded', () => {
 
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
-    // 0. Redirigir si no hay sesión (Ahora se maneja centralizado o no es necesario si la página es compartida)
     if (!currentUser) return;
 
     // 1. Cargar Becas en el Select
     function loadScholarships() {
         const scholarships = JSON.parse(localStorage.getItem('scholarships')) || [];
         if (scholarshipSelect) {
-            scholarshipSelect.innerHTML = '<option value="" disabled selected>Elige una beca...</option>';
+            scholarshipSelect.innerHTML = '';
+            const defaultOpt = document.createElement('option');
+            defaultOpt.value = '';
+            defaultOpt.disabled = true;
+            defaultOpt.selected = true;
+            defaultOpt.textContent = 'Elige una beca...';
+            scholarshipSelect.appendChild(defaultOpt);
+
             scholarships.forEach(beca => {
                 const option = document.createElement('option');
                 option.value = beca.name;
@@ -28,48 +34,85 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 2. Renderizar historial
-    function renderApplications() {
-        if (!applicationTable) return;
-
-        const allApplications = JSON.parse(localStorage.getItem('scholarship_applications')) || [];
-        // Filtrar solo las del usuario actual
-        const myApps = allApplications.filter(app => app.applicantEmail === currentUser.email);
-
-        applicationTable.innerHTML = '';
-
-        if (myApps.length === 0) {
-            applicationTable.innerHTML = '<tr><td colspan="4" class="text-center">No tienes solicitudes enviadas aún.</td></tr>';
-            return;
-        }
-
-        myApps.forEach(app => {
-            const row = document.createElement('tr');
-            const observations = app.evalInfo && app.evalInfo.observations ?
-                `<div style="font-size: 0.85rem; color: #666; max-width: 250px;">"${app.evalInfo.observations}"</div>` :
-                '<span style="color: #999; font-style: italic;">Sin observaciones</span>';
-
-            row.innerHTML = `
-                <td><strong>${app.folio}</strong></td>
-                <td>${app.scholarship}</td>
-                <td>${app.date}</td>
-                <td><span class="status-tag ${getStatusClass(app.status)}">${app.status}</span></td>
-                <td>${observations}</td>
-                <td>
-                    <button class="btn-icon edit" title="Editar Solicitud">✏️</button>
-                </td>
-            `;
-            applicationTable.appendChild(row);
-        });
-    }
-
+    // Helper para estados
     function getStatusClass(status) {
         switch (status) {
             case 'Aprobado': return 'status-approved';
             case 'Rechazado': return 'status-rejected';
             case 'Pendiente': return 'status-pending';
-            default: return 'process'; // 'En Revisión' o similar
+            default: return 'process';
         }
+    }
+
+    // 2. Renderizar historial
+    function renderApplications() {
+        if (!applicationTable) return;
+
+        const allApplications = JSON.parse(localStorage.getItem('scholarship_applications')) || [];
+        const myApps = allApplications.filter(app => app.applicantEmail === currentUser.email);
+
+        applicationTable.innerHTML = '';
+
+        if (myApps.length === 0) {
+            const row = document.createElement('tr');
+            const td = document.createElement('td');
+            td.setAttribute('colspan', '6');
+            td.classList.add('text-center');
+            td.textContent = 'No tienes solicitudes enviadas aún.';
+            row.appendChild(td);
+            applicationTable.appendChild(row);
+            return;
+        }
+
+        myApps.forEach(app => {
+            const row = document.createElement('tr');
+
+            const tdFolio = document.createElement('td');
+            const strongFolio = document.createElement('strong');
+            strongFolio.textContent = app.folio;
+            tdFolio.appendChild(strongFolio);
+
+            const tdScho = document.createElement('td');
+            tdScho.textContent = app.scholarship;
+
+            const tdDate = document.createElement('td');
+            tdDate.textContent = app.date;
+
+            const tdStatus = document.createElement('td');
+            const spanStatus = document.createElement('span');
+            spanStatus.classList.add('status-tag', getStatusClass(app.status));
+            spanStatus.textContent = app.status;
+            tdStatus.appendChild(spanStatus);
+
+            const tdObs = document.createElement('td');
+            if (app.evalInfo && app.evalInfo.observations) {
+                const divObs = document.createElement('div');
+                divObs.classList.add('obs-text'); // Nueva clase en CSS
+                divObs.textContent = `"${app.evalInfo.observations}"`;
+                tdObs.appendChild(divObs);
+            } else {
+                const spanNone = document.createElement('span');
+                spanNone.classList.add('text-muted-italic'); // Nueva clase
+                spanNone.textContent = 'Sin observaciones';
+                tdObs.appendChild(spanNone);
+            }
+
+            const tdActions = document.createElement('td');
+            const btnEdit = document.createElement('button');
+            btnEdit.classList.add('btn-icon', 'edit');
+            btnEdit.title = 'Editar Solicitud';
+            btnEdit.textContent = '✏️';
+            tdActions.appendChild(btnEdit);
+
+            row.appendChild(tdFolio);
+            row.appendChild(tdScho);
+            row.appendChild(tdDate);
+            row.appendChild(tdStatus);
+            row.appendChild(tdObs);
+            row.appendChild(tdActions);
+
+            applicationTable.appendChild(row);
+        });
     }
 
     // 3. Eventos de UI

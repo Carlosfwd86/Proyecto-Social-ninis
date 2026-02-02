@@ -5,12 +5,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.querySelector('.contact-form');
-    const submitBtn = contactForm.querySelector('.submit-btn');
-
-    // Habilitar el botón de envío
-    if (submitBtn) {
-        submitBtn.disabled = false;
-    }
+    const submitBtn = contactForm ? contactForm.querySelector('.submit-btn') : null;
 
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
@@ -30,143 +25,118 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * Crea y muestra una alerta personalizada (modal) sin usar etiquetas HTML en strings.
+     * Crea y muestra una alerta personalizada (modal) usando el DOM API y clases CSS.
      */
     function mostrarConfirmacion(nombre, email, mensaje, form) {
         // Contenedor principal del modal (overlay)
         const overlay = document.createElement('div');
-        Object.assign(overlay.style, {
-            position: 'fixed',
-            top: '0',
-            left: '0',
-            width: '100%',
-            height: '100%',
-            backgroundColor: 'rgba(0, 0, 0, 0.8)',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            zIndex: '99999',
-            backdropFilter: 'blur(8px)',
-            overflowY: 'auto',
-            padding: '20px'
-        });
+        overlay.classList.add('support-modal-overlay');
 
         // Caja del modal
         const modal = document.createElement('div');
-        Object.assign(modal.style, {
-            backgroundColor: '#fff',
-            padding: '30px',
-            borderRadius: '15px',
-            boxShadow: '0 10px 25px rgba(0,0,0,0.2)',
-            maxWidth: '500px',
-            width: '90%',
-            fontFamily: 'sans-serif',
-            color: '#333'
-        });
+        modal.classList.add('support-modal-content');
 
         // Título
         const titulo = document.createElement('h2');
+        titulo.classList.add('support-modal-title');
         titulo.textContent = 'Confirmación de Envío';
-        titulo.style.marginTop = '0';
-        titulo.style.color = '#1a237e'; // Color institucional azul oscuro
 
         // Contenido de los datos
-        const infoContaier = document.createElement('div');
-        infoContaier.style.margin = '20px 0';
-        infoContaier.style.lineHeight = '1.6';
+        const infoContainer = document.createElement('div');
+        infoContainer.classList.add('support-modal-info');
 
         const createDataRow = (label, value) => {
-            const p = document.createElement('p');
-            const b = document.createElement('strong');
-            b.textContent = label + ': ';
-            p.appendChild(b);
-            const span = document.createElement('span');
-            span.textContent = value;
-            p.appendChild(span);
-            return p;
+            const row = document.createElement('div');
+            row.classList.add('support-modal-row');
+
+            const labelSpan = document.createElement('span');
+            labelSpan.classList.add('support-modal-label');
+            labelSpan.textContent = label + ':';
+
+            const valueSpan = document.createElement('span');
+            valueSpan.textContent = value;
+
+            row.appendChild(labelSpan);
+            row.appendChild(valueSpan);
+            return row;
         };
 
-        infoContaier.appendChild(createDataRow('Nombre', nombre));
-        infoContaier.appendChild(createDataRow('Email', email));
-        infoContaier.appendChild(createDataRow('Mensaje', mensaje));
+        infoContainer.appendChild(createDataRow('Nombre', nombre));
+        infoContainer.appendChild(createDataRow('Email', email));
+        infoContainer.appendChild(createDataRow('Mensaje', mensaje));
+
+        // Disclaimer (Aviso de Privacidad)
+        const disclaimer = document.createElement('div');
+        disclaimer.classList.add('support-disclaimer');
+        disclaimer.textContent = 'IMPORTANTE: Al enviar este formulario, usted autoriza el tratamiento de sus datos personales únicamente para fines de soporte técnico y resolución de dudas sobre su trámite, conforme a nuestro Aviso de Privacidad.';
 
         // Contenedor de botones
         const buttonContainer = document.createElement('div');
-        Object.assign(buttonContainer.style, {
-            display: 'flex',
-            gap: '15px',
-            marginTop: '25px',
-            justifyContent: 'flex-end'
-        });
+        buttonContainer.classList.add('support-modal-actions');
 
         // Botón Enviar
         const btnEnviar = document.createElement('button');
-        btnEnviar.textContent = 'Enviar';
-        Object.assign(btnEnviar.style, {
-            padding: '10px 20px',
-            backgroundColor: '#2e7d32', // Verde éxito
-            color: '#fff',
-            border: 'none',
-            borderRadius: '5px',
-            cursor: 'pointer',
-            fontWeight: 'bold',
-            transition: 'background-color 0.3s'
-        });
-        btnEnviar.onmouseover = () => btnEnviar.style.backgroundColor = '#1b5e20';
-        btnEnviar.onmouseout = () => btnEnviar.style.backgroundColor = '#2e7d32';
+        btnEnviar.textContent = 'Confirmar y Enviar';
+        btnEnviar.classList.add('btn-modal', 'btn-modal-send');
 
-        // Botón Eliminar (Limpiar)
-        const btnEliminar = document.createElement('button');
-        btnEliminar.textContent = 'Eliminar';
-        Object.assign(btnEliminar.style, {
-            padding: '10px 20px',
-            backgroundColor: '#d32f2f', // Rojo cancelar
-            color: '#fff',
-            border: 'none',
-            borderRadius: '5px',
-            cursor: 'pointer',
-            fontWeight: 'bold',
-            transition: 'background-color 0.3s'
-        });
-        btnEliminar.onmouseover = () => btnEliminar.style.backgroundColor = '#b71c1c';
-        btnEliminar.onmouseout = () => btnEliminar.style.backgroundColor = '#d32f2f';
+        // Botón Cancelar
+        const btnCancelar = document.createElement('button');
+        btnCancelar.textContent = 'Cancelar';
+        btnCancelar.classList.add('btn-modal', 'btn-modal-delete');
 
         // Lógica de botones
-        btnEnviar.onclick = () => {
-            const solicitudes = JSON.parse(localStorage.getItem('support_requests')) || [];
-            const nuevaSolicitud = {
-                id: Date.now(),
-                nombre,
-                email,
-                mensaje,
-                fecha: new Date().toLocaleString(),
-                status: 'Pendiente'
-            };
-            solicitudes.push(nuevaSolicitud);
-            localStorage.setItem('support_requests', JSON.stringify(solicitudes));
+        btnEnviar.addEventListener('click', () => {
+            // Cambiar estado visual del botón
+            btnEnviar.disabled = true;
+            btnEnviar.textContent = 'Enviando...';
 
-            alert('¡Mensaje enviado con éxito! Un administrador revisará tu solicitud.');
-            form.reset();
-            document.body.removeChild(overlay);
-        };
+            // Simular envío guardando en localStorage
+            setTimeout(() => {
+                const solicitudes = JSON.parse(localStorage.getItem('support_requests')) || [];
+                const nuevaSolicitud = {
+                    id: Date.now(),
+                    nombre,
+                    email,
+                    mensaje,
+                    fecha: new Date().toLocaleString(),
+                    status: 'Pendiente'
+                };
+                solicitudes.push(nuevaSolicitud);
+                localStorage.setItem('support_requests', JSON.stringify(solicitudes));
 
-        btnEliminar.onclick = () => {
-            if (confirm('¿Estás seguro de que deseas eliminar los datos y limpiar el formulario?')) {
+                alert('¡Mensaje enviado con éxito! Un administrador revisará su solicitud pronto.');
                 form.reset();
                 document.body.removeChild(overlay);
-            }
-        };
+                document.body.classList.remove('modal-open');
+            }, 1000);
+        });
+
+        btnCancelar.addEventListener('click', () => {
+            document.body.removeChild(overlay);
+            document.body.classList.remove('modal-open');
+        });
 
         // Ensamblar modal
-        buttonContainer.appendChild(btnEliminar);
+        buttonContainer.appendChild(btnCancelar);
         buttonContainer.appendChild(btnEnviar);
+
         modal.appendChild(titulo);
-        modal.appendChild(infoContaier);
+        modal.appendChild(infoContainer);
+        modal.appendChild(disclaimer);
         modal.appendChild(buttonContainer);
+
         overlay.appendChild(modal);
 
         // Añadir al body
         document.body.appendChild(overlay);
+        document.body.classList.add('modal-open');
+
+        // Cerrar al hacer clic fuera del modal
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                document.body.removeChild(overlay);
+                document.body.classList.remove('modal-open');
+            }
+        });
     }
 });
-

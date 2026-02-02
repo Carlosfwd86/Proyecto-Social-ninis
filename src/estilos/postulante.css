@@ -111,14 +111,22 @@
     font-weight: bold;
 }
 
-.status-tag.process {
+.status-tag.process,
+.status-pending {
     background: #e3f2fd;
     color: #1976d2;
 }
 
-.status-tag.approved {
+.status-tag.approved,
+.status-approved {
     background: #e8f5e9;
     color: #2e7d32;
+}
+
+.status-tag.rejected,
+.status-rejected {
+    background: #fee2e2;
+    color: #b91c1c;
 }
 
 /* Grid de Becas */
@@ -228,4 +236,20 @@
     .nav-links {
         display: none;
     }
+}
+
+/* Clases de Utilidad para JS */
+.obs-text {
+    font-size: 0.85rem;
+    color: #666;
+    max-width: 250px;
+}
+
+.text-muted-italic {
+    color: #999;
+    font-style: italic;
+}
+
+.text-center {
+    text-align: center;
 }
