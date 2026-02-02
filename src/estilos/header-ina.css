@@ -110,43 +110,13 @@
     width: 60%;
 }
 
-.header-logo {
-    width: 150px;
-    height: 150px;
-    display: flex;
+/* Alineación correcta */
+.header-flex {
     align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
-    border: 5px solid rgba(5, 113, 77, 0.293);
-    border-radius: 30px;
-    padding: 10px 12px;
-    /* Aún más ajustado al logo */
-    box-shadow: 0 4px 15px rgba(6, 78, 59, 0.05);
-    margin-left: 50px;
-    transition: var(--transition);
+    position: relative;
 }
 
-.header-logo:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(6, 78, 59, 0.1);
-}
-
-.header-logo img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-
-    display: block;
-    transform: translateY(20px); /* sobresale arriba y abajo */
-    transition: transform .3s ease, scale .3s ease;
-}
-
-/* Hover suave */
-.header-logo img:hover {
-    transform: translateY(20px) scale(1.05);
-
-}
+/* Contenedor del logo */
 
 /* Navegación Principal */
 .primary-nav {
@@ -154,6 +124,30 @@
     display: flex;
     justify-content: center;
     /* Centrado según petición del usuario */
+}
+.header-logo {
+    position: relative;
+    height: 90px; /* altura real del header */
+}
+
+/* Logo que rompe el header */
+.header-logo img {
+    position: absolute;
+    top: 50%;
+    left: -20px;
+
+    height: 175px;
+    width: auto;
+
+    transform: translateY(-50%);
+    object-fit: contain;
+    display: block;
+
+    transition: transform .3s ease;
+}
+
+.header-logo img:hover {
+    transform: translateY(-50%) scale(1.05);
 }
 
 .nav-menu {
@@ -222,6 +216,9 @@
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 1000;
     border: 1px solid rgba(0, 0, 0, 0.05);
+}
+.main-header {
+    overflow: visible;
 }
 
 .has-dropdown:hover .dropdown-menu {
