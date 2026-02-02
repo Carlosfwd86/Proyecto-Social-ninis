@@ -21,8 +21,15 @@ document.addEventListener('DOMContentLoaded', () => {
             // 3. Caso especial: Administrador hardcoded
             if (usernameInput === "admin" && passwordInput === "1234") {
                 showMessage("Sesión de administrador iniciada. Redirigiendo...", "success");
+                localStorage.setItem('currentUser', JSON.stringify({ fullname: "Administrador General", role: "admin", email: "admin@sistema.com" }));
                 setTimeout(() => {
-                    window.location.href = "admin.html";
+                    const pendingRedirect = localStorage.getItem('redirectAfterLogin');
+                    if (pendingRedirect && pendingRedirect.includes('admin.html')) {
+                        localStorage.removeItem('redirectAfterLogin');
+                        window.location.href = "admin.html";
+                    } else {
+                        window.location.href = "admin.html";
+                    }
                 }, 1500);
             }
             // 3.1 Caso especial: Evaluador hardcoded
@@ -30,7 +37,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 showMessage("Sesión de Evaluador iniciada. Preparando expedientes...", "success");
                 localStorage.setItem('currentUser', JSON.stringify({ fullname: "Evaluador Académico", role: "evaluador", email: "eval@sistema.com" }));
                 setTimeout(() => {
-                    window.location.href = "evaluador.html";
+                    const pendingRedirect = localStorage.getItem('redirectAfterLogin');
+                    if (pendingRedirect && pendingRedirect.includes('evaluador.html')) {
+                        localStorage.removeItem('redirectAfterLogin');
+                        window.location.href = "evaluador.html";
+                    } else {
+                        window.location.href = "evaluador.html";
+                    }
                 }, 1500);
             }
             // 4. Verificar usuario de la base de datos
@@ -44,7 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         localStorage.removeItem('redirectAfterLogin');
                         window.location.href = pendingRedirect;
                     } else {
-                        window.location.href = "index.html";
+                        window.location.href = user.role === 'admin' ? "admin.html" :
+                            user.role === 'evaluador' ? "evaluador.html" : "postulante.html";
                     }
                 }, 1500);
             }
@@ -52,6 +66,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 showMessage("Usuario o contraseña incorrectos. Inténtalo de nuevo.", "error");
             }
         });
+    }
+
+    // --- Manejo de mensajes desde el URL ---
+    const urlParams = new URLSearchParams(window.location.search);
+    const msg = urlParams.get('msg');
+    const redirect = urlParams.get('redirect');
+
+    if (redirect) {
+        localStorage.setItem('redirectAfterLogin', redirect);
+    }
+
+    if (msg === 'session_required') {
+        showMessage("Por favor, inicia sesión para acceder a esta área.", "error");
+    } else if (msg === 'access_denied') {
+        showMessage("No tienes permisos suficientes para acceder a esa página. Inicia sesión con la cuenta adecuada.", "error");
     }
 
     /**
