@@ -1,4 +1,5 @@
 const assignmentsTable = document.getElementById('assignments-table-body');
+const supportTable = document.getElementById('support-table-body');
 const evaluationSection = document.getElementById('evaluation-details');
 const evaluationForm = document.getElementById('evaluation-form');
 const btnCerrarEval = document.getElementById('btn-cerrar-eval');
@@ -15,16 +16,25 @@ document.addEventListener('DOMContentLoaded', () => {
         const span = document.createElement('span');
         span.classList.add('status-tag');
         switch (status) {
-            case 'Aprobado': span.classList.add('status-approved'); break;
-            case 'Rechazado': span.classList.add('status-rejected'); break;
-            case 'Pendiente': span.classList.add('status-pending'); break;
-            default: span.classList.add('process');
+            case 'Aprobado':
+            case 'Resuelto':
+            case 'Atendido':
+                span.classList.add('status-approved');
+                break;
+            case 'Rechazado':
+                span.classList.add('status-rejected');
+                break;
+            case 'Pendiente':
+                span.classList.add('status-pending');
+                break;
+            default:
+                span.classList.add('process');
         }
         span.textContent = status;
         return span;
     }
 
-    // 1. Cargar solicitudes reales
+    // 1. Cargar solicitudes reales (Becas)
     function renderAssignments() {
         if (!assignmentsTable) return;
 
@@ -71,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 tdActions.appendChild(btnEval);
             } else {
                 const spanComp = document.createElement('span');
-                spanComp.classList.add('text-muted-small'); // Usaremos clase CSS
+                spanComp.classList.add('text-muted-small');
                 spanComp.textContent = 'Completado';
                 tdActions.appendChild(spanComp);
             }
@@ -87,7 +97,140 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 2. Abrir formulario de dictamen
+    // 2. Cargar solicitudes de Soporte y Ayuda
+    function renderSupportRequests() {
+        if (!supportTable) return;
+
+        const supportRequests = JSON.parse(localStorage.getItem('support_requests')) || [];
+        supportTable.innerHTML = '';
+
+        if (supportRequests.length === 0) {
+            const row = document.createElement('tr');
+            const td = document.createElement('td');
+            td.setAttribute('colspan', '6');
+            td.classList.add('text-center');
+            td.textContent = 'No hay solicitudes de soporte pendientes.';
+            row.appendChild(td);
+            supportTable.appendChild(row);
+            return;
+        }
+
+        supportRequests.forEach(req => {
+            const row = document.createElement('tr');
+
+            const tdId = document.createElement('td');
+            tdId.textContent = req.id.toString().slice(-6);
+
+            const tdName = document.createElement('td');
+            const nameDiv = document.createElement('div');
+            nameDiv.style.fontWeight = 'bold';
+            nameDiv.textContent = req.nombre;
+            const emailDiv = document.createElement('div');
+            emailDiv.style.fontSize = '0.8rem';
+            emailDiv.style.color = '#666';
+            emailDiv.textContent = req.email;
+            tdName.appendChild(nameDiv);
+            tdName.appendChild(emailDiv);
+
+            const tdMsg = document.createElement('td');
+            const asuntoDiv = document.createElement('div');
+            asuntoDiv.style.fontWeight = 'bold';
+            asuntoDiv.textContent = req.asunto || 'Consulta';
+            const msgDiv = document.createElement('div');
+            msgDiv.style.fontSize = '0.85rem';
+            msgDiv.textContent = req.mensaje.length > 50 ? req.mensaje.substring(0, 50) + '...' : req.mensaje;
+            tdMsg.appendChild(asuntoDiv);
+            tdMsg.appendChild(msgDiv);
+
+            const tdDate = document.createElement('td');
+            tdDate.textContent = req.fecha;
+
+            const tdStatus = document.createElement('td');
+            tdStatus.appendChild(createStatusTag(req.status));
+
+            const tdActions = document.createElement('td');
+            const actionsContainer = document.createElement('div');
+            actionsContainer.style.display = 'flex';
+            actionsContainer.style.gap = '5px';
+
+            if (req.status === 'Pendiente') {
+                const btnAccept = document.createElement('button');
+                btnAccept.classList.add('btn-modal-send');
+                btnAccept.style.padding = '5px 10px';
+                btnAccept.style.fontSize = '0.8rem';
+                btnAccept.style.background = '#10b981';
+                btnAccept.textContent = 'Aceptar';
+                btnAccept.onclick = () => acceptSupportRequest(req.id);
+                actionsContainer.appendChild(btnAccept);
+
+                const btnDeny = document.createElement('button');
+                btnDeny.classList.add('btn-modal-delete');
+                btnDeny.style.padding = '5px 10px';
+                btnDeny.style.fontSize = '0.8rem';
+                btnDeny.style.background = '#f44336';
+                btnDeny.style.color = 'white';
+                btnDeny.textContent = 'Denegar';
+                btnDeny.onclick = () => denySupportRequest(req.id);
+                actionsContainer.appendChild(btnDeny);
+            }
+
+            const btnDelete = document.createElement('button');
+            btnDelete.classList.add('btn-modal-delete');
+            btnDelete.style.padding = '5px 10px';
+            btnDelete.style.fontSize = '0.8rem';
+            btnDelete.textContent = 'Eliminar';
+            btnDelete.onclick = () => deleteSupportRequest(req.id);
+            actionsContainer.appendChild(btnDelete);
+
+            tdActions.appendChild(actionsContainer);
+
+            row.appendChild(tdId);
+            row.appendChild(tdName);
+            row.appendChild(tdMsg);
+            row.appendChild(tdDate);
+            row.appendChild(tdStatus);
+            row.appendChild(tdActions);
+
+            supportTable.appendChild(row);
+        });
+    }
+
+    // Acciones de soporte
+    window.acceptSupportRequest = function (id) {
+        let supportRequests = JSON.parse(localStorage.getItem('support_requests')) || [];
+        const index = supportRequests.findIndex(r => r.id === id);
+        if (index !== -1) {
+            supportRequests[index].status = 'Atendido';
+            localStorage.setItem('support_requests', JSON.stringify(supportRequests));
+            renderSupportRequests();
+            updateStats();
+        }
+    };
+
+    window.denySupportRequest = function (id) {
+        if (confirm('¿Estás seguro de que deseas denegar esta solicitud?')) {
+            let supportRequests = JSON.parse(localStorage.getItem('support_requests')) || [];
+            const index = supportRequests.findIndex(r => r.id === id);
+            if (index !== -1) {
+                supportRequests[index].status = 'Rechazado';
+                localStorage.setItem('support_requests', JSON.stringify(supportRequests));
+                renderSupportRequests();
+                updateStats();
+            }
+        }
+    };
+
+    window.deleteSupportRequest = function (id) {
+        if (confirm('¿Estás seguro de que deseas eliminar esta solicitud?')) {
+            let supportRequests = JSON.parse(localStorage.getItem('support_requests')) || [];
+            supportRequests = supportRequests.filter(r => r.id !== id);
+            localStorage.setItem('support_requests', JSON.stringify(supportRequests));
+            renderSupportRequests();
+            updateStats();
+        }
+    };
+
+    // 3. Abrir formulario de dictamen (Becas)
     window.openEvaluation = function (folio) {
         currentFolio = folio;
         const applications = JSON.parse(localStorage.getItem('scholarship_applications')) || [];
@@ -112,7 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (btnCerrarEval) btnCerrarEval.addEventListener('click', () => evaluationSection.classList.add('hidden'));
 
-    // 3. Procesar Evaluación
+    // 4. Procesar Evaluación (Becas)
     if (evaluationForm) {
         evaluationForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -138,6 +281,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 evaluationForm.reset();
                 evaluationSection.classList.add('hidden');
                 renderAssignments();
+                updateStats();
             }
         });
     }
@@ -152,14 +296,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateStats() {
         const applications = JSON.parse(localStorage.getItem('scholarship_applications')) || [];
-        const pending = applications.filter(a => a.status === 'Pendiente');
-        const soporte = JSON.parse(localStorage.getItem('support_requests')) || [];
+        const pendingApplications = applications.filter(a => a.status === 'Pendiente');
+        const supportRequests = JSON.parse(localStorage.getItem('support_requests')) || [];
+        const pendingSupport = supportRequests.filter(r => r.status === 'Pendiente');
 
-        if (statEvalAsignaciones) statEvalAsignaciones.innerText = pending.length;
-        if (statEvalSoporte) statEvalSoporte.innerText = soporte.length;
+        if (statEvalAsignaciones) statEvalAsignaciones.innerText = pendingApplications.length;
+        if (statEvalSoporte) statEvalSoporte.innerText = pendingSupport.length;
     }
 
     // Inicialización
     renderAssignments();
+    renderSupportRequests();
     updateStats();
 });
