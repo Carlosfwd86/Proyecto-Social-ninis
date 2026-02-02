@@ -3,13 +3,26 @@ const evaluationSection = document.getElementById('evaluation-details');
 const evaluationForm = document.getElementById('evaluation-form');
 const btnCerrarEval = document.getElementById('btn-cerrar-eval');
 const btnLogout = document.getElementById('btn-logout-eval');
-const score = document.getElementById('score').value;
-const status = document.getElementById('outcome').value;
-const observations = document.getElementById('observations').value;
+const statEvalAsignaciones = document.getElementById('stat-eval-asignaciones');
+const statEvalSoporte = document.getElementById('stat-eval-soporte');
 
 // Lógica para el Panel del Evaluador
 document.addEventListener('DOMContentLoaded', () => {
     let currentFolio = null;
+
+    // Helper para crear etiquetas de estado
+    function createStatusTag(status) {
+        const span = document.createElement('span');
+        span.classList.add('status-tag');
+        switch (status) {
+            case 'Aprobado': span.classList.add('status-approved'); break;
+            case 'Rechazado': span.classList.add('status-rejected'); break;
+            case 'Pendiente': span.classList.add('status-pending'); break;
+            default: span.classList.add('process');
+        }
+        span.textContent = status;
+        return span;
+    }
 
     // 1. Cargar solicitudes reales
     function renderAssignments() {
@@ -19,36 +32,59 @@ document.addEventListener('DOMContentLoaded', () => {
         assignmentsTable.innerHTML = '';
 
         if (applications.length === 0) {
-            assignmentsTable.innerHTML = '<tr><td colspan="6" class="text-center">No hay expedientes registrados en el sistema.</td></tr>';
+            const row = document.createElement('tr');
+            const td = document.createElement('td');
+            td.setAttribute('colspan', '6');
+            td.classList.add('text-center');
+            td.textContent = 'No hay expedientes registrados en el sistema.';
+            row.appendChild(td);
+            assignmentsTable.appendChild(row);
             return;
         }
 
         applications.forEach(app => {
             const row = document.createElement('tr');
-            row.innerHTML = `
-                <td><strong>${app.folio}</strong></td>
-                <td>${app.applicantName}</td>
-                <td>${app.scholarship}</td>
-                <td>${app.date}</td>
-                <td><span class="status-tag ${getStatusClass(app.status)}">${app.status}</span></td>
-                <td>
-                    ${app.status === 'Pendiente' ?
-                    `<button class="btn-eval-action" onclick="openEvaluation('${app.folio}')">Evaluar</button>` :
-                    '<span style="color: grey; font-size: 0.8rem;">Completado</span>'
-                }
-                </td>
-            `;
+
+            const tdFolio = document.createElement('td');
+            const strongFolio = document.createElement('strong');
+            strongFolio.textContent = app.folio;
+            tdFolio.appendChild(strongFolio);
+
+            const tdName = document.createElement('td');
+            tdName.textContent = app.applicantName;
+
+            const tdBeca = document.createElement('td');
+            tdBeca.textContent = app.scholarship;
+
+            const tdDate = document.createElement('td');
+            tdDate.textContent = app.date;
+
+            const tdStatus = document.createElement('td');
+            tdStatus.appendChild(createStatusTag(app.status));
+
+            const tdActions = document.createElement('td');
+            if (app.status === 'Pendiente') {
+                const btnEval = document.createElement('button');
+                btnEval.classList.add('btn-eval-action');
+                btnEval.textContent = 'Evaluar';
+                btnEval.onclick = () => openEvaluation(app.folio);
+                tdActions.appendChild(btnEval);
+            } else {
+                const spanComp = document.createElement('span');
+                spanComp.classList.add('text-muted-small'); // Usaremos clase CSS
+                spanComp.textContent = 'Completado';
+                tdActions.appendChild(spanComp);
+            }
+
+            row.appendChild(tdFolio);
+            row.appendChild(tdName);
+            row.appendChild(tdBeca);
+            row.appendChild(tdDate);
+            row.appendChild(tdStatus);
+            row.appendChild(tdActions);
+
             assignmentsTable.appendChild(row);
         });
-    }
-
-    function getStatusClass(status) {
-        switch (status) {
-            case 'Aprobado': return 'status-approved';
-            case 'Rechazado': return 'status-rejected';
-            case 'Pendiente': return 'status-pending';
-            default: return 'process';
-        }
     }
 
     // 2. Abrir formulario de dictamen
@@ -81,19 +117,23 @@ document.addEventListener('DOMContentLoaded', () => {
         evaluationForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
+            const scoreValue = document.getElementById('score').value;
+            const outcomeValue = document.getElementById('outcome').value;
+            const obsValue = document.getElementById('observations').value;
+
             let applications = JSON.parse(localStorage.getItem('scholarship_applications')) || [];
             const index = applications.findIndex(app => app.folio === currentFolio);
 
             if (index !== -1) {
-                applications[index].status = status;
+                applications[index].status = outcomeValue;
                 applications[index].evalInfo = {
-                    score: score,
-                    observations: observations,
+                    score: scoreValue,
+                    observations: obsValue,
                     evalDate: new Date().toLocaleDateString()
                 };
 
                 localStorage.setItem('scholarship_applications', JSON.stringify(applications));
-                alert(`Dictamen guardado exitosamente: El trámite ha sido ${status}.`);
+                alert(`Dictamen guardado exitosamente: El trámite ha sido ${outcomeValue}.`);
 
                 evaluationForm.reset();
                 evaluationSection.classList.add('hidden');
@@ -110,6 +150,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    function updateStats() {
+        const applications = JSON.parse(localStorage.getItem('scholarship_applications')) || [];
+        const pending = applications.filter(a => a.status === 'Pendiente');
+        const soporte = JSON.parse(localStorage.getItem('support_requests')) || [];
+
+        if (statEvalAsignaciones) statEvalAsignaciones.innerText = pending.length;
+        if (statEvalSoporte) statEvalSoporte.innerText = soporte.length;
+    }
+
     // Inicialización
     renderAssignments();
+    updateStats();
 });

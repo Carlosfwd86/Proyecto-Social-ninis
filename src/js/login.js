@@ -1,9 +1,5 @@
-
-
-
 // Lógica para la página de Inicio de Sesión
 document.addEventListener('DOMContentLoaded', () => {
-
 
     const loginForm = document.getElementById('login-form');
     const messageArea = document.getElementById('message-area');
@@ -14,12 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const usernameInput = document.getElementById('username').value;
             const passwordInput = document.getElementById('password').value;
 
-
-
             // 1. Obtener usuarios de localStorage
             const storedUsers = JSON.parse(localStorage.getItem('scholarship_users')) || [];
 
-            // 2. Intentar encontrar el usuario por username O email (flexibilidad para el usuario)
+            // 2. Intentar encontrar el usuario
             const user = storedUsers.find(u =>
                 (u.username === usernameInput || u.email === usernameInput) && u.password === passwordInput
             );
@@ -39,23 +33,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     window.location.href = "evaluador.html";
                 }, 1500);
             }
-            // 4. Verificar usuario de la base de datos (localStorage)
+            // 4. Verificar usuario de la base de datos
             else if (user) {
                 showMessage(`¡Bienvenido de nuevo, ${user.fullname}! Volviendo al inicio...`, "success");
-
-                // Guardar usuario actual en sesión (localStorage)
                 localStorage.setItem('currentUser', JSON.stringify(user));
-
-                // Verificar si hay una redirección pendiente (ej. si venía de intentar entrar a solicitud.html)
                 const pendingRedirect = localStorage.getItem('redirectAfterLogin');
 
                 setTimeout(() => {
                     if (pendingRedirect) {
-                        // Si hay redirección pendiente, la consumimos y limpiamos
                         localStorage.removeItem('redirectAfterLogin');
                         window.location.href = pendingRedirect;
                     } else {
-                        // Por defecto, ahora volvemos al inicio (index.html) como solicitaste
                         window.location.href = "index.html";
                     }
                 }, 1500);
@@ -73,19 +61,10 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function showMessage(text, type) {
         messageArea.textContent = text;
-        messageArea.className = ""; // Limpiar clases anteriores
-        messageArea.style.padding = "10px";
-        messageArea.style.marginBottom = "15px";
-        messageArea.style.borderRadius = "5px";
-
         if (type === "success") {
-            messageArea.style.color = "#155724";
-            messageArea.style.backgroundColor = "#d4edda";
-            messageArea.style.border = "1px solid #c3e6cb";
+            messageArea.className = "message-box message-success";
         } else {
-            messageArea.style.color = "#721c24";
-            messageArea.style.backgroundColor = "#f8d7da";
-            messageArea.style.border = "1px solid #f5c6cb";
+            messageArea.className = "message-box message-error";
         }
     }
 });

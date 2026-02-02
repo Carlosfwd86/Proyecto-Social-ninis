@@ -152,9 +152,39 @@
     font-weight: bold;
 }
 
-.status-badge.active {
+.status-badge.active,
+.status-active {
     background: #dcfce7;
     color: #166534;
+}
+
+.status-closed,
+.bg-red {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.bg-yellow {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.bg-green {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.bg-purple {
+    background-color: #f3e8ff;
+    color: #6b21a8;
+}
+
+.status-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
 }
 
 .btn-icon {
@@ -229,7 +259,7 @@
 /* Estadísticas Admin */
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
 }
 
@@ -267,4 +297,33 @@
     .admin-form .form-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* Clases de Utilidad para JS */
+.visible-inline {
+    display: inline-block !important;
+}
+
+.text-muted {
+    color: #64748b;
+}
+
+.text-muted-small {
+    color: grey;
+    font-size: 0.8rem;
+}
+
+.text-truncate {
+    max-width: 250px;
+}
+
+.msg-content {
+    font-size: 0.85rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.hidden-element {
+    display: none !important;
 }
