@@ -792,18 +792,18 @@ body.no-scroll {
 }
 
 .btn-solicitud {
-    background: #2563eb;
-    color: #fff;
-    padding: 12px 26px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: 0.3s;
+  background: #195b06;
+  color: #fff;
+  padding: 12px 26px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
 }
 
 .btn-solicitud:hover {
-    background: #1d4ed8;
-    transform: translateY(-2px);
+  background: #1dd88a;
+  transform: translateY(-2px);
 }
 
 /* ================================
@@ -887,33 +887,33 @@ body.no-scroll {
    BOTONES
 ================================ */
 .btn-secondary {
-    background: #0f172a;
-    color: #fff;
-    padding: 10px 22px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: .9rem;
-    transition: .3s;
+  background: #068d1c;
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: .9rem;
+  transition: .3s;
 }
 
 .btn-secondary:hover {
-    background: #1e293b;
+  background: #0e7a58;
 }
 
 .btn-primary {
-    display: inline-block;
-    margin-top: 35px;
-    background: #2563eb;
-    color: white;
-    padding: 12px 30px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: .3s;
+  display: inline-block;
+  margin-top: 35px;
+  background: #0dad43;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: .3s;
 }
 
 .btn-primary:hover {
-    background: #1d4ed8;
+  background: #cece08bf;
 }
 
 /* ================================
