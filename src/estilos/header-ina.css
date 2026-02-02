@@ -105,7 +105,7 @@
 .header-flex {
     display: flex;
     justify-content: space-between;
-    margin-top: 50px;
+    margin-top: 25px;
     align-items: center;
     width: 60%;
 }
@@ -120,7 +120,7 @@
 
 /* Navegación Principal */
 .primary-nav {
-    flex: 1;
+    flex: 6;
     display: flex;
     justify-content: center;
     /* Centrado según petición del usuario */
