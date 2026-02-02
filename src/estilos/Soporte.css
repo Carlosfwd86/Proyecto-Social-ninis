@@ -1,299 +1,150 @@
-/* CSS para la Página de Ayuda - Sistema de Gestión de Becas */
+/* ================================
+   SOPORTE - ESTILOS AISLADOS
+   ================================ */
 
-:root {
-    --primary-color: #016a04;
-    --secondary-color: #053d1dc5;
-    --accent-color: #05a818;
-    --text-color: #2d3748;
-    --light-text: #718096;
-    --white: #ffffff;
-    --border-color: #e2e8f0;
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.page-soporte {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7fafc;
+    color: #2d3748;
+    line-height: 1.6;
 }
 
-* {
-    margin: 0;
-    padding: 0;
+/* Reset solo para soporte */
+.page-soporte * {
     box-sizing: border-box;
 }
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    color: var(--text-color);
-    background-color: #f7fafc;
-}
-
-/* Main Container */
-main {
+/* Main */
+.page-soporte main {
     max-width: 1000px;
     margin: 2rem auto;
     padding: 0 1rem;
 }
 
 /* Sections */
-section {
-    background: var(--white);
+.page-soporte section {
+    background: #ffffff;
     margin-bottom: 2rem;
     padding: 2.5rem;
-    border-radius: 8px;
-    box-shadow: var(--shadow);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
-    color: var(--primary-color);
+/* Titles */
+.page-soporte h2 {
+    color: #016a04;
     margin-bottom: 1.5rem;
     padding-bottom: 0.5rem;
-    border-bottom: 3px solid var(--accent-color);
+    border-bottom: 3px solid #05a818;
 }
 
-/* Intro Section */
-.intro p {
-    font-size: 1.1rem;
-    color: var(--text-color);
+/* Intro */
+.page-soporte .intro p {
+    font-size: 1.05rem;
 }
 
-/* FAQ Section */
-.faq-item {
+/* FAQ */
+.page-soporte .faq-item {
     margin-bottom: 1.5rem;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid #e2e8f0;
     padding-bottom: 1rem;
 }
 
-.faq-item:last-child {
+.page-soporte .faq-item:last-child {
     border-bottom: none;
 }
 
-.faq-item h3 {
-    color: var(--secondary-color);
+.page-soporte .faq-item h3 {
+    color: #053d1dc5;
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
-    display: flex;
-    align-items: flex-start;
 }
 
-.faq-item h3::before {
+.page-soporte .faq-item h3::before {
     content: "Q:";
     margin-right: 10px;
     font-weight: bold;
-    color: var(--primary-color);
+    color: #016a04;
 }
 
-/* Guide Section */
-.step-list {
+/* Guide */
+.page-soporte .step-list {
     list-style: none;
+    padding: 0;
 }
 
-.step-item {
+.page-soporte .step-item {
     display: flex;
     gap: 15px;
     margin-bottom: 1.5rem;
 }
 
-.step-number {
-    background-color: var(--primary-color);
-    color: var(--white);
+.page-soporte .step-number {
+    background-color: #016a04;
+    color: #fff;
     width: 30px;
     height: 30px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
     font-weight: bold;
 }
 
-/* Rules Section */
-.rules-list {
+/* Rules */
+.page-soporte .rules-list {
     background-color: #fffaf0;
     border-left: 5px solid #05ed34;
     padding: 1rem 1.5rem;
 }
 
-.rules-list li {
+.page-soporte .rules-list li {
     margin-bottom: 0.8rem;
 }
 
-/* Contact Form */
-.contact-form {
+/* Form */
+.page-soporte .contact-form {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-.form-group {
+.page-soporte .form-group {
     display: flex;
     flex-direction: column;
 }
 
-.form-group label {
+.page-soporte .form-group label {
     margin-bottom: 5px;
     font-weight: bold;
 }
 
-.form-group input,
-.form-group textarea {
+.page-soporte .form-group input,
+.page-soporte .form-group textarea {
     padding: 10px;
-    border: 1px solid var(--border-color);
+    border: 1px solid #e2e8f0;
     border-radius: 4px;
     font-size: 1rem;
 }
 
-.form-group textarea {
-    resize: vertical;
-    min-height: 100px;
-}
-
-.submit-btn {
-    background-color: var(--primary-color);
-    color: var(--white);
+.page-soporte .submit-btn {
+    background-color: #016a04;
+    color: #fff;
     padding: 12px 24px;
     border: none;
-    border-radius: 4px;
-    font-size: 1rem;
+    border-radius: 6px;
     cursor: pointer;
-    align-self: flex-start;
-    transition: background-color 0.3s;
 }
 
-.submit-btn:hover {
-    background-color: var(--secondary-color);
+.page-soporte .submit-btn:hover {
+    background-color: #053d1dc5;
 }
 
 /* Footer */
-footer {
-    background-color: var(--primary-color);
-    color: var(--white);
+.page-soporte footer {
+    background-color: #016a04;
+    color: white;
     padding: 2rem 5%;
     text-align: center;
     margin-top: 4rem;
-}
-
-.footer-content p {
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-}
-
-/* --- MODAL DE SOPORTE PREMIUM --- */
-.support-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(8px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    animation: fadeIn 0.3s ease;
-}
-
-.support-modal-content {
-    background: var(--white);
-    padding: 2.5rem;
-    border-radius: 15px;
-    width: 90%;
-    max-width: 500px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-    transform: translateY(0);
-    animation: slideUp 0.4s ease;
-}
-
-.support-modal-title {
-    color: var(--primary-color);
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
-    text-align: center;
-}
-
-.support-modal-info {
-    margin-bottom: 1.5rem;
-    background: #f8fafc;
-    padding: 1.5rem;
-    border-radius: 10px;
-    border: 1px solid var(--border-color);
-}
-
-.support-modal-row {
-    margin-bottom: 10px;
-    font-size: 0.95rem;
-}
-
-.support-modal-label {
-    font-weight: bold;
-    color: var(--secondary-color);
-    margin-right: 5px;
-}
-
-.support-disclaimer {
-    font-size: 0.8rem;
-    color: var(--light-text);
-    margin-bottom: 2rem;
-    padding: 1rem;
-    background: #fff5f5;
-    border-left: 4px solid #f56565;
-    border-radius: 4px;
-}
-
-.support-modal-actions {
-    display: flex;
-    gap: 15px;
-    justify-content: flex-end;
-}
-
-.btn-modal {
-    padding: 10px 20px;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s;
-    border: none;
-}
-
-.btn-modal-send {
-    background: var(--primary-color);
-    color: white;
-}
-
-.btn-modal-delete {
-    background: #e2e8f0;
-    color: #4a5568;
-}
-
-.btn-modal-send:hover {
-    background: var(--secondary-color);
-    transform: translateY(-2px);
-}
-
-.btn-modal-delete:hover {
-    background: #cbd5e0;
-}
-
-body.modal-open {
-    overflow: hidden;
-}
-
-/* Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
