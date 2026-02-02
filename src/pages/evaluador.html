@@ -9,6 +9,12 @@
 
     <link rel="stylesheet" href="../estilos/main.css">
     <link rel="stylesheet" href="../estilos/evaluador.css">
+    <script src="../js/session.js"></script>
+    <script>
+        if (!checkAuth('evaluador')) {
+            document.documentElement.style.display = 'none';
+        }
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css">
@@ -70,6 +76,32 @@
                     </thead>
                     <tbody id="assignments-table-body">
 
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Nueva sección de Soporte y Ayuda -->
+        <section id="soporte-ayuda" class="eval-section mb-large">
+            <header class="section-header">
+                <h2>Solicitudes de Soporte y Ayuda</h2>
+                <p>Consultas y reportes técnicos enviados desde el formulario de contacto.</p>
+            </header>
+
+            <div class="table-container">
+                <table class="eval-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Asunto/Mensaje</th>
+                            <th>Fecha</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="support-table-body">
+                        <!-- Se llenará dinámicamente con JS -->
                     </tbody>
                 </table>
             </div>
