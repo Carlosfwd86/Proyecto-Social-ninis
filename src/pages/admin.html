@@ -7,7 +7,7 @@
     <meta name="description" content="Panel de Administración del Sistema de Gestión de Becas.">
     <title>Panel Administrador | Gestión de Becas</title>
 
-    <link rel="stylesheet" href="../estilos/main.css">
+    <link rel="stylesheet" href="../estilos/index.css">
     <link rel="stylesheet" href="../estilos/admin.css">
     <script src="../js/session.js"></script>
     <script>
@@ -44,60 +44,7 @@
 
     <div class="admin-dashboard">
 
-            <div class="admin-sidebar">
-                <nav class="admin-sidebar-nav">
-                    <ul class="admin-sidebar-list">
-                        <li>
-                            <a href="#" class="admin-sidebar-link active" data-tab="dashboard">
-                                <i class="ri-dashboard-line"></i>
-                                <span>Panel General</span>026
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="admin-sidebar-link" data-tab="convocatorias">
-                                <i class="ri-megaphone-line"></i>
-                                <span>Convocatorias</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="admin-sidebar-link" data-tab="becas">
-                                <i class="ri-scholarship-line"></i>
-                                <span>Becas</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="admin-sidebar-link" data-tab="ayudas">
-                                <i class="ri-hand-heart-line"></i>
-                                <span>Ayudas</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="admin-sidebar-link" data-tab="solicitudes">
-                                <i class="ri-file-list-3-line"></i>
-                                <span>Solicitudes</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="admin-sidebar-link" data-tab="usuarios">
-                                <i class="ri-team-line"></i>
-                                <span>Usuarios</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="admin-sidebar-link" data-tab="reportes">
-                                <i class="ri-bar-chart-2-line"></i>
-                                <span>Reportes</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="admin-sidebar-link" data-tab="configuracion">
-                                <i class="ri-settings-3-line"></i>
-                                <span>Configuración</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+            
             <div class="stat-card">
                 <h3>Solicitudes</h3>
                 <p id="stat-solicitudes">0</p>
@@ -204,9 +151,6 @@
                     <div class="admin-card">
                         <div class="admin-card-header">
                             <h3 class="admin-card-title">Convocatorias</h3>
-                            <button class="btn btn-primary" onclick="openConvocatoriaModal()">
-                                <i class="ri-add-line"></i> Nueva Convocatoria
-                            </button>
                         </div>
                         <div class="admin-table-responsive">
                             <table class="admin-table" id="convocatorias-table">
