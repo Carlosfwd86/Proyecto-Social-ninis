@@ -1,6 +1,6 @@
 /**
  * Gestión de sesión compartida para todas las páginas del portal.
- * Transforma el header según el estado del usuario.
+ * Transforma el header según el estado del usuario y centraliza el cierre de sesión.
  */
 
 // Función global para verificar permisos (puede llamarse antes de que cargue el DOM)
@@ -33,7 +33,6 @@ function checkAuth(requiredRole) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const navList = document.querySelector('.nav-list');
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
     // 1. Manejar elementos en el Header (Main Nav y Utility Links)
@@ -43,7 +42,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Buscar contenedores de navegación
         const utilityLinks = document.querySelector('.utility-links'); // Top Bar
         const navMenu = document.querySelector('.nav-menu'); // Main Nav (ul)
+
         const primaryNav = document.querySelector('.primary-nav'); // Nav container
+
 
         // --- Caso A: Utility Links (Login Link en el Top Bar) ---
         if (utilityLinks) {
@@ -68,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!document.getElementById('btn-logout-common')) {
                     const logoutA = document.createElement('a');
                     logoutA.setAttribute('href', '#');
-                    logoutA.classList.add('nav-link', 'btn-login', 'btn-logout');
+                    logoutA.classList.add('utility-link', 'logout-global');
                     logoutA.id = 'btn-logout-common';
                     logoutA.innerHTML = '<i class="fa-solid fa-right-from-bracket"></i> Salir';
                     logoutA.style.marginLeft = '15px';
@@ -85,6 +86,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const specificLogout = document.getElementById('btn-logout-eval') ||
             document.getElementById('btn-logout-panel') ||
             document.getElementById('btn-logout-admin');
+            document.getElementById('btn-logout-admin') ||
+            document.getElementById('nav-logout-li'); // Agregado por seguridad si existiera
+
         if (specificLogout) {
             specificLogout.addEventListener('click', cerrarSesion);
         }
@@ -98,6 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Ejecutar lógica
+    // Ejecutar lógica de UI
     handleSeccion();
 });

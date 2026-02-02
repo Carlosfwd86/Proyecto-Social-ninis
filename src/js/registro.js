@@ -40,13 +40,16 @@ document.addEventListener('DOMContentLoaded', () => {
             existingUsers.push(newUser);
             localStorage.setItem('scholarship_users', JSON.stringify(existingUsers));
 
-            // Simulación de éxito
-            showSuccess(`¡Registro exitoso! Bienvenido/a, ${fullname}. Redirigiendo al login...`);
+            // Auto-login: Guardar sesión actual
+            localStorage.setItem('currentUser', JSON.stringify(newUser));
 
-            // Redirigir
+            // Simulación de éxito
+            showSuccess(`¡Registro exitoso! Bienvenido/a, ${fullname}. Entrando a tu panel...`);
+
+            // Redirigir directamente al panel del postulante
             setTimeout(() => {
-                window.location.href = "login.html";
-            }, 2500);
+                window.location.href = "postulante.html";
+            }, 1500);
         });
     }
 
