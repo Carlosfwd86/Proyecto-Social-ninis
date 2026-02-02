@@ -136,18 +136,16 @@
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
-<<<<<<< HEAD
-   
-=======
+
     display: block;
-    transform: translateY(20px); /* sobresale arriba y abajo */
+    transform: translateY(20px);
+    /* sobresale arriba y abajo */
     transition: transform .3s ease, scale .3s ease;
 }
 
 /* Hover suave */
 .header-logo img:hover {
     transform: translateY(20px) scale(1.05);
->>>>>>> e7dfd33a078c32ab0b7d47051946a8c0d87fa35c
 }
 
 /* Navegación Principal */

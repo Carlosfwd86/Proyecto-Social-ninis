@@ -126,20 +126,40 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnCerrarForm) btnCerrarForm.addEventListener('click', () => applicationModule.classList.add('hidden'));
     if (btnCancelarForm) btnCancelarForm.addEventListener('click', () => applicationModule.classList.add('hidden'));
 
-    if (btnLogout) {
-        btnLogout.addEventListener('click', (e) => {
-            e.preventDefault();
-            localStorage.removeItem('currentUser');
-            window.location.href = 'index.html';
+
+
+    // Helper para convertir archivo a Base64
+    function fileToBase64(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = error => reject(error);
+            reader.readAsDataURL(file);
         });
     }
 
     // 4. Envío de Formulario
     if (applyForm) {
-        applyForm.addEventListener('submit', (e) => {
+        applyForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
             const scholarship = scholarshipSelect ? scholarshipSelect.value : (document.getElementById('beca-select')?.value || document.getElementById('ayuda-select')?.value);
+
+            // Capturar archivos
+            const docIdFile = document.getElementById('doc-id').files[0];
+            const docKardexFile = document.getElementById('doc-kardex').files[0];
+
+            let docIdBase64 = null;
+            let docKardexBase64 = null;
+
+            try {
+                if (docIdFile) docIdBase64 = await fileToBase64(docIdFile);
+                if (docKardexFile) docKardexBase64 = await fileToBase64(docKardexFile);
+            } catch (error) {
+                console.error("Error al procesar archivos:", error);
+                alert("Hubo un error al procesar los documentos. Por favor, inténtalo de nuevo.");
+                return;
+            }
 
             const applicationData = {
                 folio: 'B-' + Math.floor(Math.random() * 90000 + 10000),
@@ -155,6 +175,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 income: document.getElementById('income').value,
                 housingStatus: document.getElementById('housing').value,
                 reason: document.getElementById('reason').value,
+                documents: {
+                    id: docIdBase64,
+                    kardex: docKardexBase64
+                },
                 evalInfo: null
             };
 

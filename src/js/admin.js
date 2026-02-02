@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (onClick) btn.onclick = onClick;
         return btn;
     }
-console.log("hola");
+
 
     // --- 1. GESTIÓN DE BECAS ---
 
@@ -103,10 +103,18 @@ console.log("hola");
             if (id) {
                 const index = scholarships.findIndex(b => b.id === parseInt(id));
                 scholarships[index] = becaData;
-                alert('Convocatoria actualizada exitosamente.');
+                window.mostrarAlerta({
+                    title: '¡Actualizado!',
+                    message: 'La convocatoria ha sido actualizada exitosamente.',
+                    icon: 'fa-check-circle'
+                });
             } else {
                 scholarships.push(becaData);
-                alert('Nueva convocatoria publicada.');
+                window.mostrarAlerta({
+                    title: '¡Publicado!',
+                    message: 'La nueva convocatoria ya se encuentra disponible en el portal.',
+                    icon: 'fa-bullhorn'
+                });
             }
 
             localStorage.setItem('scholarships', JSON.stringify(scholarships));
@@ -131,12 +139,7 @@ console.log("hola");
 
             formTitle.innerText = "Editando Convocatoria";
             btnSubmit.innerText = "Guardar Cambios";
-            btnCancelEdit.classList.remove('hidden-element'); // Usar clase en lugar de .style
-            // Para mantener compatibilidad si no existe la clase, usaremos toggle o similar si se define, 
-            // pero el usuario pidió NO usar CSS en JS.
-            // Asumiremos que el CSS maneja la visibilidad si aplicamos una clase.
-            // Por ahora, para no romper funcionalidad si no hay CSS de visibilidad, 
-            // usaré una clase que el usuario pueda ver.
+            btnCancelEdit.classList.remove('hidden-element');
             btnCancelEdit.classList.add('visible-inline');
             window.scrollTo({ top: 300, behavior: 'smooth' });
         }
@@ -153,12 +156,19 @@ console.log("hola");
     }
 
     window.deleteScholarship = function (id) {
-        if (confirm('¿Eliminar esta beca permanentemente?')) {
-            let scholarships = JSON.parse(localStorage.getItem('scholarships')) || [];
-            scholarships = scholarships.filter(b => b.id !== id);
-            localStorage.setItem('scholarships', JSON.stringify(scholarships));
-            renderScholarships();
-        }
+        window.mostrarConfirmacion({
+            title: '¿Eliminar Convocatoria?',
+            message: '¿Estás seguro de que deseas eliminar esta beca permanentemente? Esta acción no se puede deshacer.',
+            type: 'danger',
+            icon: 'fa-trash-can',
+            confirmText: 'Eliminar',
+            onConfirm: () => {
+                let scholarships = JSON.parse(localStorage.getItem('scholarships')) || [];
+                scholarships = scholarships.filter(b => b.id !== id);
+                localStorage.setItem('scholarships', JSON.stringify(scholarships));
+                renderScholarships();
+            }
+        });
     };
 
     // --- 2. GESTIÓN DE EVALUADORES ---
@@ -219,25 +229,41 @@ console.log("hola");
 
             const users = JSON.parse(localStorage.getItem('scholarship_users')) || [];
             if (users.find(u => u.username === newUser.username)) {
-                alert('El nombre de usuario ya existe.');
+                window.mostrarAlerta({
+                    title: 'Error de Usuario',
+                    message: 'El nombre de usuario ya existe en el sistema.',
+                    type: 'danger',
+                    icon: 'fa-circle-xmark'
+                });
                 return;
             }
 
             users.push(newUser);
             localStorage.setItem('scholarship_users', JSON.stringify(users));
-            alert('Evaluador registrado correctamente.');
+            window.mostrarAlerta({
+                title: 'Registro Exitoso',
+                message: 'El nuevo evaluador ha sido registrado correctamente.',
+                icon: 'fa-user-check'
+            });
             evaluatorForm.reset();
             renderEvaluators();
         });
     }
 
     window.deleteEvaluator = function (username) {
-        if (confirm(`¿Eliminar al evaluador ${username}?`)) {
-            let users = JSON.parse(localStorage.getItem('scholarship_users')) || [];
-            users = users.filter(u => u.username !== username);
-            localStorage.setItem('scholarship_users', JSON.stringify(users));
-            renderEvaluators();
-        }
+        window.mostrarConfirmacion({
+            title: '¿Sueldo de Baja?',
+            message: `¿Estás seguro de que deseas dar de baja al evaluador ${username}? Sus accesos serán revocados.`,
+            type: 'danger',
+            icon: 'fa-user-minus',
+            confirmText: 'Confirmar Baja',
+            onConfirm: () => {
+                let users = JSON.parse(localStorage.getItem('scholarship_users')) || [];
+                users = users.filter(u => u.username !== username);
+                localStorage.setItem('scholarship_users', JSON.stringify(users));
+                renderEvaluators();
+            }
+        });
     };
 
     // --- 3. GESTIÓN DE SEDES ---
@@ -290,10 +316,18 @@ console.log("hola");
             if (id) {
                 const index = sedes.findIndex(s => s.id === parseInt(id));
                 sedes[index] = sedeData;
-                alert('Sede actualizada.');
+                window.mostrarAlerta({
+                    title: 'Sede Actualizada',
+                    message: 'Los cambios en la sede se han guardado correctamente.',
+                    icon: 'fa-building-circle-check'
+                });
             } else {
                 sedes.push(sedeData);
-                alert('Nueva sede registrada.');
+                window.mostrarAlerta({
+                    title: 'Sede Registrada',
+                    message: 'La nueva sede ha sido añadida exitosamente.',
+                    icon: 'fa-map-location-dot'
+                });
             }
 
             localStorage.setItem('scholarship_sedes', JSON.stringify(sedes));
@@ -326,12 +360,19 @@ console.log("hola");
     }
 
     window.deleteSede = function (id) {
-        if (confirm('¿Eliminar esta sede?')) {
-            let sedes = JSON.parse(localStorage.getItem('scholarship_sedes')) || [];
-            sedes = sedes.filter(s => s.id !== id);
-            localStorage.setItem('scholarship_sedes', JSON.stringify(sedes));
-            renderSedes();
-        }
+        window.mostrarConfirmacion({
+            title: '¿Eliminar Sede?',
+            message: '¿Estás seguro de que deseas eliminar esta sede del sistema?',
+            type: 'danger',
+            icon: 'fa-building-circle-xmark',
+            confirmText: 'Eliminar',
+            onConfirm: () => {
+                let sedes = JSON.parse(localStorage.getItem('scholarship_sedes')) || [];
+                sedes = sedes.filter(s => s.id !== id);
+                localStorage.setItem('scholarship_sedes', JSON.stringify(sedes));
+                renderSedes();
+            }
+        });
     };
 
     // --- 4. ESTADÍSTICAS ---
@@ -348,9 +389,140 @@ console.log("hola");
         if (statSoporte) statSoporte.innerText = soporte.length;
     }
 
-    // --- 5. GESTIÓN DE SOPORTE ---
+    // --- 5. GESTIÓN DE SOLICITUDES DE BECAS ---
 
-    function renderSupportRequests() {
+    let currentAppFolio = null;
+    const applicationsTableBody = document.getElementById('applications-table-body');
+    const evaluationPanelAdmin = document.getElementById('evaluation-details-admin');
+    const evaluationFormAdmin = document.getElementById('evaluation-form-admin');
+
+    function renderApplications() {
+        if (!applicationsTableBody) return;
+        const applications = JSON.parse(localStorage.getItem('scholarship_applications')) || [];
+        applicationsTableBody.innerHTML = '';
+
+        if (applications.length === 0) {
+            applicationsTableBody.innerHTML = '<tr><td colspan="6" class="text-center">No hay solicitudes registradas.</td></tr>';
+            return;
+        }
+
+        applications.forEach(app => {
+            const row = document.createElement('tr');
+            const statusClass = app.status === 'Aprobado' ? 'status-active' : (app.status === 'Rechazado' ? 'status-closed' : 'bg-yellow');
+
+            row.innerHTML = `
+                <td><strong>${app.folio}</strong></td>
+                <td>${app.applicantName}</td>
+                <td>${app.scholarship}</td>
+                <td>${app.date}</td>
+                <td><span class="status-tag ${statusClass}">${app.status}</span></td>
+                <td>
+                    <div style="display:flex; gap: 8px;">
+                        <button class="btn-icon edit" title="Evaluar/Ver" onclick="openApplicationDetails('${app.folio}')">🔍</button>
+                        <button class="btn-icon delete" title="Eliminar" onclick="deleteApplication('${app.folio}')">🗑️</button>
+                    </div>
+                </td>
+            `;
+            applicationsTableBody.appendChild(row);
+        });
+    }
+
+    window.openApplicationDetails = function (folio) {
+        currentAppFolio = folio;
+        const applications = JSON.parse(localStorage.getItem('scholarship_applications')) || [];
+        const app = applications.find(a => a.folio === folio);
+
+        if (app) {
+            document.getElementById('info-folio-admin').innerText = app.folio;
+            document.getElementById('info-nombre-admin').innerText = app.applicantName;
+            document.getElementById('info-telefono-admin').innerText = app.phone || 'N/A';
+            document.getElementById('info-institucion-admin').innerText = app.institution || 'N/A';
+            document.getElementById('info-carrera-admin').innerText = app.grade || 'N/A';
+            document.getElementById('info-promedio-admin').innerText = app.average || 'N/A';
+            document.getElementById('info-ingresos-admin').innerText = app.income ? `$${app.income}` : 'N/A';
+            document.getElementById('info-vivienda-admin').innerText = app.housingStatus || 'N/A';
+            document.getElementById('info-motivos-admin').innerText = app.reason || 'Sin exposición de motivos.';
+
+            const linkId = document.getElementById('link-doc-id-admin');
+            const linkKardex = document.getElementById('link-doc-kardex-admin');
+
+            if (app.documents && app.documents.id) {
+                linkId.href = app.documents.id;
+                linkId.classList.remove('hidden-element');
+            } else {
+                linkId.classList.add('hidden-element');
+            }
+
+            if (app.documents && app.documents.kardex) {
+                linkKardex.href = app.documents.kardex;
+                linkKardex.classList.remove('hidden-element');
+            } else {
+                linkKardex.classList.add('hidden-element');
+            }
+
+            document.getElementById('score-admin').value = app.evalInfo?.score || '';
+            document.getElementById('outcome-admin').value = app.status || 'Pendiente';
+            document.getElementById('observations-admin').value = app.evalInfo?.observations || '';
+
+            evaluationPanelAdmin.classList.remove('hidden-element');
+            evaluationPanelAdmin.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
+    if (evaluationFormAdmin) {
+        evaluationFormAdmin.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const applications = JSON.parse(localStorage.getItem('scholarship_applications')) || [];
+            const index = applications.findIndex(a => a.folio === currentAppFolio);
+
+            if (index !== -1) {
+                const outcome = document.getElementById('outcome-admin').value;
+                applications[index].status = outcome;
+                applications[index].evalInfo = {
+                    score: document.getElementById('score-admin').value,
+                    observations: document.getElementById('observations-admin').value,
+                    evalDate: new Date().toLocaleDateString(),
+                    evalBy: 'Admin'
+                };
+
+                localStorage.setItem('scholarship_applications', JSON.stringify(applications));
+                window.mostrarAlerta({
+                    title: 'Dictamen Guardado',
+                    message: `La solicitud con folio ${currentAppFolio} ha sido marcada como ${outcome}.`,
+                    icon: 'fa-clipboard-check'
+                });
+
+                evaluationPanelAdmin.classList.add('hidden-element');
+                renderApplications();
+                updateStats();
+            }
+        });
+    }
+
+    document.getElementById('btn-cerrar-eval-admin')?.addEventListener('click', () => {
+        evaluationPanelAdmin.classList.add('hidden-element');
+    });
+
+    window.deleteApplication = function (folio) {
+        window.mostrarConfirmacion({
+            title: '¿Eliminar Solicitud?',
+            message: `¿Estás seguro de que deseas eliminar permanentemente el expediente con folio ${folio}?`,
+            type: 'danger',
+            icon: 'fa-file-circle-xmark',
+            confirmText: 'Eliminar',
+            onConfirm: () => {
+                let applications = JSON.parse(localStorage.getItem('scholarship_applications')) || [];
+                applications = applications.filter(a => a.folio !== folio);
+                localStorage.setItem('scholarship_applications', JSON.stringify(applications));
+                renderApplications();
+                updateStats();
+            }
+        });
+    };
+
+    // --- 6. GESTIÓN DE SOPORTE ---
+
+    window.renderSupportRequests = function () {
         const supportTable = document.getElementById('support-table-body');
         if (!supportTable) return;
 
@@ -412,7 +584,7 @@ console.log("hola");
 
             supportTable.appendChild(row);
         });
-    }
+    };
 
     window.updateSupportStatus = function (id, newStatus) {
         let requests = JSON.parse(localStorage.getItem('support_requests')) || [];
@@ -421,31 +593,39 @@ console.log("hola");
             requests[index].status = newStatus;
             localStorage.setItem('support_requests', JSON.stringify(requests));
             renderSupportRequests();
-            alert(`Solicitud ${newStatus.toLowerCase()} correctamente.`);
+            window.mostrarAlerta({
+                title: 'Estado Actualizado',
+                message: `La solicitud de soporte ha sido ${newStatus.toLowerCase()} correctamente.`,
+                icon: newStatus === 'Aceptada' ? 'fa-circle-check' : 'fa-circle-xmark',
+                type: newStatus === 'Aceptada' ? 'primary' : 'danger'
+            });
+            updateStats();
         }
     };
 
     window.deleteSupportRequest = function (id) {
-        if (confirm('¿Eliminar este registro de soporte?')) {
-            let requests = JSON.parse(localStorage.getItem('support_requests')) || [];
-            requests = requests.filter(r => r.id !== id);
-            localStorage.setItem('support_requests', JSON.stringify(requests));
-            renderSupportRequests();
-        }
-    };
-
-    // --- LOGOUT ---
-    if (btnLogout) {
-        btnLogout.addEventListener('click', (e) => {
-            e.preventDefault();
-            localStorage.removeItem('currentUser');
-            window.location.href = 'index.html';
+        window.mostrarConfirmacion({
+            title: '¿Eliminar Registro?',
+            message: '¿Estás seguro de que deseas eliminar este registro de soporte?',
+            type: 'danger',
+            icon: 'fa-file-circle-xmark',
+            confirmText: 'Eliminar',
+            onConfirm: () => {
+                let requests = JSON.parse(localStorage.getItem('support_requests')) || [];
+                requests = requests.filter(r => r.id !== id);
+                localStorage.setItem('support_requests', JSON.stringify(requests));
+                renderSupportRequests();
+                updateStats();
+            }
         });
-    }
+    };
 
     // Inicialización Global
     renderScholarships();
     renderEvaluators();
     renderSedes();
     renderSupportRequests();
+    renderApplications();
+
+    if (btnLogout) btnLogout.addEventListener('click', (e) => window.cerrarSesion(e));
 });

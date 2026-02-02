@@ -231,6 +231,96 @@
         </section>
 
 
+        <section id="gestion-solicitudes-becas" class="admin-section mt-large">
+            <header class="section-header">
+                <h2>Gestión de Solicitudes de Becas</h2>
+                <p>Monitorea y dictamina los expedientes enviados por los alumnos.</p>
+            </header>
+
+            <div class="table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Folio</th>
+                            <th>Postulante</th>
+                            <th>Beca</th>
+                            <th>Fecha</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="applications-table-body">
+                        <!-- Generado por JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Panel de Detalles de Evaluación (Similar al Evaluador) -->
+            <div id="evaluation-details-admin" class="evaluation-panel mt-large hidden-element">
+                <div class="section-header">
+                    <h3 id="eval-title-admin">Detalles del Expediente</h3>
+                    <button class="btn-close" id="btn-cerrar-eval-admin">&times;</button>
+                </div>
+
+                <div class="eval-grid">
+                    <aside class="postulante-info-card">
+                        <h4>Datos del Alumno</h4>
+                        <ul class="info-list">
+                            <li><strong>Folio:</strong> <span id="info-folio-admin"></span></li>
+                            <li><strong>Nombre:</strong> <span id="info-nombre-admin"></span></li>
+                            <li><strong>Teléfono:</strong> <span id="info-telefono-admin"></span></li>
+                            <li><strong>Institución:</strong> <span id="info-institucion-admin"></span></li>
+                            <li><strong>Carrera/Grado:</strong> <span id="info-carrera-admin"></span></li>
+                            <li><strong>Promedio:</strong> <span id="info-promedio-admin"></span></li>
+                            <li><strong>Ingresos:</strong> <span id="info-ingresos-admin"></span></li>
+                            <li><strong>Vivienda:</strong> <span id="info-vivienda-admin"></span></li>
+                        </ul>
+
+                        <h4 style="margin-top:20px;">Documentación</h4>
+                        <div class="docs-links">
+                            <a href="#" id="link-doc-id-admin" class="link-file" target="_blank">📄 Identificación
+                                Oficial</a>
+                            <a href="#" id="link-doc-kardex-admin" class="link-file" target="_blank">📄 Historial
+                                Académico</a>
+                        </div>
+                    </aside>
+
+                    <section class="eval-form-container">
+                        <h4>Exposición de Motivos</h4>
+                        <p id="info-motivos-admin" class="motivos-p"></p>
+
+                        <div class="admin-decision-box mt-large">
+                            <h4>Dictamen Administrativo</h4>
+                            <form id="evaluation-form-admin">
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label>Calificación / Score</label>
+                                        <input type="number" id="score-admin" min="0" max="100" placeholder="0-100">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Estado Final</label>
+                                        <select id="outcome-admin" required>
+                                            <option value="Aprobado">Aprobado</option>
+                                            <option value="Rechazado">Rechazado</option>
+                                            <option value="Pendiente">Pendiente</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group full-width">
+                                        <label>Observaciones</label>
+                                        <textarea id="observations-admin" rows="3"
+                                            placeholder="Notas internas..."></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-actions-admin">
+                                    <button type="submit" class="btn-primary">Guardar Dictamen</button>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+
         <section id="gestion-sedes" class="admin-section mt-large">
             <header class="section-header">
                 <h2>Administración de Sedes</h2>

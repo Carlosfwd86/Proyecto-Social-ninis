@@ -208,26 +208,40 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     window.denySupportRequest = function (id) {
-        if (confirm('¿Estás seguro de que deseas denegar esta solicitud?')) {
-            let supportRequests = JSON.parse(localStorage.getItem('support_requests')) || [];
-            const index = supportRequests.findIndex(r => r.id === id);
-            if (index !== -1) {
-                supportRequests[index].status = 'Rechazado';
+        window.mostrarConfirmacion({
+            title: '¿Denegar Solicitud?',
+            message: '¿Estás seguro de que deseas denegar esta solicitud de ayuda?',
+            type: 'danger',
+            icon: 'fa-ban',
+            confirmText: 'Denegar',
+            onConfirm: () => {
+                let supportRequests = JSON.parse(localStorage.getItem('support_requests')) || [];
+                const index = supportRequests.findIndex(r => r.id === id);
+                if (index !== -1) {
+                    supportRequests[index].status = 'Rechazado';
+                    localStorage.setItem('support_requests', JSON.stringify(supportRequests));
+                    renderSupportRequests();
+                    updateStats();
+                }
+            }
+        });
+    };
+
+    window.deleteSupportRequest = function (id) {
+        window.mostrarConfirmacion({
+            title: '¿Eliminar Registro?',
+            message: '¿Estás seguro de que deseas eliminar permanentemente este registro?',
+            type: 'danger',
+            icon: 'fa-trash-can',
+            confirmText: 'Eliminar',
+            onConfirm: () => {
+                let supportRequests = JSON.parse(localStorage.getItem('support_requests')) || [];
+                supportRequests = supportRequests.filter(r => r.id !== id);
                 localStorage.setItem('support_requests', JSON.stringify(supportRequests));
                 renderSupportRequests();
                 updateStats();
             }
-        }
-    };
-
-    window.deleteSupportRequest = function (id) {
-        if (confirm('¿Estás seguro de que deseas eliminar esta solicitud?')) {
-            let supportRequests = JSON.parse(localStorage.getItem('support_requests')) || [];
-            supportRequests = supportRequests.filter(r => r.id !== id);
-            localStorage.setItem('support_requests', JSON.stringify(supportRequests));
-            renderSupportRequests();
-            updateStats();
-        }
+        });
     };
 
     // 3. Abrir formulario de dictamen (Becas)
@@ -247,6 +261,32 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('info-ingresos').innerText = app.income ? `$${app.income}` : 'No declarado';
             document.getElementById('info-vivienda').innerText = app.housingStatus || 'No especificada';
             document.getElementById('info-motivos').innerText = app.reason;
+
+            // Mostrar documentos si existen
+            const linkDocId = document.getElementById('link-doc-id');
+            const linkDocKardex = document.getElementById('link-doc-kardex');
+
+            if (app.documents) {
+                if (app.documents.id) {
+                    linkDocId.href = app.documents.id;
+                    linkDocId.style.display = 'inline-block';
+                } else {
+                    linkDocId.href = '#';
+                    linkDocId.style.display = 'none';
+                }
+
+                if (app.documents.kardex) {
+                    linkDocKardex.href = app.documents.kardex;
+                    linkDocKardex.style.display = 'inline-block';
+                } else {
+                    linkDocKardex.href = '#';
+                    linkDocKardex.style.display = 'none';
+                }
+            } else {
+                // Si no hay objeto de documentos, ocultar o resetear
+                linkDocId.href = '#';
+                linkDocKardex.href = '#';
+            }
 
             evaluationSection.classList.remove('hidden');
             evaluationSection.scrollIntoView({ behavior: 'smooth' });
@@ -286,13 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if (btnLogout) {
-        btnLogout.addEventListener('click', (e) => {
-            e.preventDefault();
-            localStorage.removeItem('currentUser');
-            window.location.href = 'index.html';
-        });
-    }
+
 
     function updateStats() {
         const applications = JSON.parse(localStorage.getItem('scholarship_applications')) || [];
