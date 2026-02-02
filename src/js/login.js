@@ -7,16 +7,18 @@ document.addEventListener('DOMContentLoaded', () => {
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            const usernameInput = document.getElementById('username').value;
+            const usernameInput = document.getElementById('username').value.trim().toLowerCase();
             const passwordInput = document.getElementById('password').value;
 
             // 1. Obtener usuarios de localStorage
             const storedUsers = JSON.parse(localStorage.getItem('scholarship_users')) || [];
 
-            // 2. Intentar encontrar el usuario
-            const user = storedUsers.find(u =>
-                (u.username === usernameInput || u.email === usernameInput) && u.password === passwordInput
-            );
+            // 2. Intentar encontrar el usuario con búsquedas seguras (case-insensitive y sin espacios)
+            const user = storedUsers.find(u => {
+                const storedUsername = (u.username || '').toString().toLowerCase().trim();
+                const storedEmail = (u.email || '').toString().toLowerCase().trim();
+                return (storedUsername === usernameInput || storedEmail === usernameInput) && u.password === passwordInput;
+            });
 
             // 3. Caso especial: Administrador hardcoded
             if (usernameInput === "admin" && passwordInput === "1234") {
@@ -48,18 +50,35 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             // 4. Verificar usuario de la base de datos
             else if (user) {
-                showMessage(`¡Bienvenido de nuevo, ${user.fullname}! Volviendo al inicio...`, "success");
-                localStorage.setItem('currentUser', JSON.stringify(user));
+                // Clonar y asegurar que tenga el rol (Reparar usuarios legacy)
+                const userSession = {
+                    ...user,
+                    role: (user.role || 'postulante').toString().toLowerCase().trim()
+                };
+
+                showMessage(`¡Bienvenido de nuevo, ${userSession.fullname}! Entrando...`, "success");
+                localStorage.setItem('currentUser', JSON.stringify(userSession));
+
                 const pendingRedirect = localStorage.getItem('redirectAfterLogin');
 
                 setTimeout(() => {
                     if (pendingRedirect) {
                         localStorage.removeItem('redirectAfterLogin');
-                        window.location.href = pendingRedirect;
-                    } else {
-                        window.location.href = user.role === 'admin' ? "admin.html" :
-                            user.role === 'evaluador' ? "evaluador.html" : "postulante.html";
+
+                        // SEGURIDAD: Solo redirigir si el rol tiene permiso para esa página
+                        const isRestricted = pendingRedirect.includes('admin.html') || pendingRedirect.includes('evaluador.html');
+                        const isAdmin = userSession.role === 'admin';
+                        const isEval = userSession.role === 'evaluador';
+
+                        if (!isRestricted || isAdmin || (isEval && !pendingRedirect.includes('admin.html'))) {
+                            window.location.href = pendingRedirect;
+                            return;
+                        }
                     }
+
+                    // Redirección por defecto según rol
+                    window.location.href = userSession.role === 'admin' ? "admin.html" :
+                        userSession.role === 'evaluador' ? "evaluador.html" : "postulante.html";
                 }, 1500);
             }
             else {

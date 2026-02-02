@@ -30,10 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // 3. Crear el nuevo objeto de usuario
             const newUser = {
                 fullname,
-                email,
-                username,
+                email: email.toLowerCase(),
+                username: username.toLowerCase(),
                 password,
-                role: 'postulante'
+                role: 'postulante' // Asegurar que sea literal para evitar fallos de comparación
             };
 
             // 4. Agregar y guardar
@@ -54,12 +54,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function showSuccess(message) {
+        if (!messageArea) return;
         messageArea.textContent = message;
         messageArea.className = "message-box message-success";
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function showError(message) {
+        if (!messageArea) return;
         messageArea.textContent = message;
         messageArea.className = "message-box message-error";
         window.scrollTo({ top: 0, behavior: 'smooth' });
