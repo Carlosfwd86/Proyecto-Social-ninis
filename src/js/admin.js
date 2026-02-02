@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (onClick) btn.onclick = onClick;
         return btn;
     }
+console.log("hola");
 
     // --- 1. GESTIÓN DE BECAS ---
 
