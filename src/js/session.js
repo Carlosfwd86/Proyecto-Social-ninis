@@ -2,6 +2,36 @@
  * Gestión de sesión compartida para todas las páginas del portal.
  * Transforma el header según el estado del usuario y centraliza el cierre de sesión.
  */
+
+// Función global para verificar permisos (puede llamarse antes de que cargue el DOM)
+function checkAuth(requiredRole) {
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    if (!user) {
+        window.location.href = 'login.html?redirect=' + encodeURIComponent(window.location.pathname) + '&msg=session_required';
+        return false;
+    }
+
+    // Normalizar roles (si falta, se asume postulante)
+    const userRole = (user.role || 'postulante').toLowerCase();
+    const reqRole = (requiredRole || '').toLowerCase();
+
+    // Un administrador puede entrar a cualquier área para supervisión
+    if (userRole === 'admin') return true;
+
+    // Un evaluador puede entrar a su área y al panel de postulante (vista base)
+    if (userRole === 'evaluador' && (reqRole === 'evaluador' || reqRole === 'postulante')) return true;
+
+    // Caso base: el rol coincide exactamente
+    if (userRole === reqRole) return true;
+
+    // En cualquier otro caso de desajuste, redirigir al login
+    if (reqRole && userRole !== reqRole) {
+        window.location.href = 'login.html?msg=access_denied&redirect=' + encodeURIComponent(window.location.pathname);
+        return false;
+    }
+    return true;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
@@ -12,7 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // Buscar contenedores de navegación
         const utilityLinks = document.querySelector('.utility-links'); // Top Bar
         const navMenu = document.querySelector('.nav-menu'); // Main Nav (ul)
-        const primaryNav = document.querySelector('.primary-nav'); // Nav container
 
         // --- Caso A: Utility Links (Login Link en el Top Bar) ---
         if (utilityLinks) {
@@ -53,7 +82,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Muchos ya traen su propio botón, pero vinculamos el evento si existe por ID
         const specificLogout = document.getElementById('btn-logout-eval') ||
             document.getElementById('btn-logout-panel') ||
-            document.getElementById('btn-logout-admin');
+            document.getElementById('btn-logout-admin') ||
+            document.getElementById('nav-logout-li'); // Agregado por seguridad si existiera
+
         if (specificLogout) {
             specificLogout.addEventListener('click', cerrarSesion);
         }
@@ -67,6 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Ejecutar lógica
+    // Ejecutar lógica de UI
     handleSeccion();
 });

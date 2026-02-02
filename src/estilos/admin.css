@@ -298,32 +298,3 @@
         grid-template-columns: 1fr;
     }
 }
-
-/* Clases de Utilidad para JS */
-.visible-inline {
-    display: inline-block !important;
-}
-
-.text-muted {
-    color: #64748b;
-}
-
-.text-muted-small {
-    color: grey;
-    font-size: 0.8rem;
-}
-
-.text-truncate {
-    max-width: 250px;
-}
-
-.msg-content {
-    font-size: 0.85rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.hidden-element {
-    display: none !important;
-}
