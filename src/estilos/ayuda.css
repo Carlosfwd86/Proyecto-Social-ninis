@@ -24,8 +24,6 @@ body {
     background-color: #f7fafc;
 }
 
-
-
 /* Main Container */
 main {
     max-width: 1000px;
@@ -107,7 +105,7 @@ h2 {
 
 /* Rules Section */
 .rules-list {
-    background-color: git#fffaf0;
+    background-color: #fffaf0;
     border-left: 5px solid #05ed34;
     padding: 1rem 1.5rem;
 }
@@ -174,4 +172,128 @@ footer {
 .footer-content p {
     margin-bottom: 0.5rem;
     font-size: 0.9rem;
+}
+
+/* --- MODAL DE SOPORTE PREMIUM --- */
+.support-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fadeIn 0.3s ease;
+}
+
+.support-modal-content {
+    background: var(--white);
+    padding: 2.5rem;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    transform: translateY(0);
+    animation: slideUp 0.4s ease;
+}
+
+.support-modal-title {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.support-modal-info {
+    margin-bottom: 1.5rem;
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+}
+
+.support-modal-row {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+.support-modal-label {
+    font-weight: bold;
+    color: var(--secondary-color);
+    margin-right: 5px;
+}
+
+.support-disclaimer {
+    font-size: 0.8rem;
+    color: var(--light-text);
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: #fff5f5;
+    border-left: 4px solid #f56565;
+    border-radius: 4px;
+}
+
+.support-modal-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+}
+
+.btn-modal {
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+}
+
+.btn-modal-send {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-modal-delete {
+    background: #e2e8f0;
+    color: #4a5568;
+}
+
+.btn-modal-send:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.btn-modal-delete:hover {
+    background: #cbd5e0;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
