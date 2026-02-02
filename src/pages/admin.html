@@ -42,7 +42,7 @@
                         <li>
                             <a href="#" class="admin-sidebar-link active" data-tab="dashboard">
                                 <i class="ri-dashboard-line"></i>
-                                <span>Panel General</span>
+                                <span>Panel General</span>026
                             </a>
                         </li>
                         <li>
@@ -90,24 +90,44 @@
                     </ul>
                 </nav>
             </div>
+            <div class="stat-card">
+                <h3>Solicitudes</h3>
+                <p id="stat-solicitudes">0</p>
+                <span>Recibidas</span>
+            </div>
+            <div class="stat-card">
+                <h3>Aprobaciones</h3>
+                <p id="stat-aprobados">0</p>
+                <span>Total global</span>
+            </div>
+        </section>
 
-            <div class="admin-content">
 
-                <div id="tab-dashboard" class="admin-tab-content active">
-                    <div class="admin-tab-header">
-                        <h2 class="admin-tab-title">Panel General</h2>
-                        <p class="admin-tab-subtitle">Resumen del sistema</p>
-                    </div>
+        <section id="crear-convocatoria" class="admin-section">
+            <header class="section-header">
+                <h2 id="form-title">Añadir Nueva Convocatoria</h2>
+                <p>Gestiona las becas disponibles en el portal público.</p>
+            </header>
 
-                    <div class="admin-stats-grid">
-                        <div class="admin-stat-card">
-                            <div class="admin-stat-icon bg-primary">
-                                <i class="ri-team-line"></i>
-                            </div>
-                            <div class="admin-stat-info">
-                                <h3 class="admin-stat-number" id="stat-total-usuarios">0</h3>
-                                <p class="admin-stat-label">Total Usuarios</p>
-                            </div>
+            <div class="form-card">
+                <form id="scholarship-form" class="admin-form">
+
+                    <input type="hidden" id="scholarship-id">
+
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label for="scholarship-name">Nombre de la Beca</label>
+                            <input type="text" id="scholarship-name" required placeholder="Ej: Beca Excelencia 2026">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="scholarship-category">Categoría</label>
+                            <select id="scholarship-category" required
+                                style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px;">
+                                <option value="Nacional">Nacional</option>
+                                <option value="Internacional">Internacional</option>
+                                <option value="Especial">Especial</option>
+                            </select>
                         </div>
                         <div class="admin-stat-card">
                             <div class="admin-stat-icon bg-success">
@@ -208,35 +228,27 @@
                         <h2 class="admin-tab-title">Gestión de Becas</h2>
                         <p class="admin-tab-subtitle">Administrar becas disponibles</p>
                     </div>
+                </form>
+            </div>
 
-                    <div class="admin-card">
-                        <div class="admin-card-header">
-                            <h3 class="admin-card-title">Becas</h3>
-                            <button class="btn btn-primary" onclick="openBecaModal()">
-                                <i class="ri-add-line"></i> Nueva Beca
-                            </button>
-                        </div>
-                        <div class="admin-table-responsive">
-                            <table class="admin-table" id="becas-table">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Nombre</th>
-                                        <th>Monto</th>
-                                        <th>Requisitos</th>
-                                        <th>Estado</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="becas-body">
-                                    <tr>
-                                        <td colspan="6" class="text-center">Cargando becas...</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+            <div class="table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Sede</th>
+                            <th>Ubicación</th>
+                            <th>Responsable</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sede-table-body">
+                        <!-- Generado por JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
 
                 <div id="tab-ayudas" class="admin-tab-content">
                     <div class="admin-tab-

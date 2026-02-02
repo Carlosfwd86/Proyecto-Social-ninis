@@ -13,38 +13,51 @@ document.addEventListener('DOMContentLoaded', () => {
             const link = item.querySelector('a');
             if (link) {
                 // Estandarizar link de Resultados
-                if (link.textContent.toLowerCase() === 'resultados' || link.textContent.toLowerCase() === 'solicitud') {
+                const text = link.textContent.toLowerCase();
+                if (text === 'resultados' || text === 'solicitud') {
                     link.setAttribute('href', 'solicitud.html');
                 }
 
-                // CORRECCIÓN: No creamos "Mi Panel". Solo transformamos el Login en "Salir"
+                // Transformar Login según rol
                 if (link.classList.contains('btn-login')) {
-                    // Si es un evaluador o admin, les damos un link a su panel, pero para postulantes NO.
+                    // Limpiar el item actual
+                    item.textContent = '';
+
+                    const panelLink = document.createElement('a');
+                    panelLink.classList.add('nav-link');
+
                     if (currentUser.role === 'evaluador') {
-                        item.innerHTML = `<a href="evaluador.html" class="nav-link">Panel Evaluador</a>`;
+                        panelLink.setAttribute('href', 'evaluador.html');
+                        panelLink.textContent = 'Panel Evaluador';
+                        item.appendChild(panelLink);
                     } else if (currentUser.role === 'admin') {
-                        item.innerHTML = `<a href="admin.html" class="nav-link">Panel Admin</a>`;
+                        panelLink.setAttribute('href', 'admin.html');
+                        panelLink.textContent = 'Panel Admin';
+                        item.appendChild(panelLink);
                     } else {
-                        // Para postulantes, quitamos el botón de login y solo dejamos el de salir
+                        // Para postulantes, quitamos el botón de login
                         item.remove();
                     }
 
-                    // Siempre añadimos el botón de Salir al final
+                    // Siempre añadimos el botón de Salir al final si hay sesión
                     const logoutLi = document.createElement('li');
-                    logoutLi.innerHTML = `<a href="#" class="nav-link btn-login" id="btn-logout-common" style="background-color: #ffffff; color: #1a365d !important; border-radius: 30px; font-weight: bold;">Cerrar Sesión</a>`;
+                    const logoutA = document.createElement('a');
+                    logoutA.setAttribute('href', '#');
+                    logoutA.classList.add('nav-link', 'btn-login', 'btn-logout');
+                    logoutA.id = 'btn-logout-common';
+                    logoutA.textContent = 'Cerrar Sesión';
+
+                    logoutLi.appendChild(logoutA);
                     navList.appendChild(logoutLi);
+
+                    // Lógica de Cerrar Sesión
+                    logoutA.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        localStorage.removeItem('currentUser');
+                        window.location.href = 'index.html';
+                    });
                 }
             }
         });
-
-        // Lógica de Cerrar Sesión
-        const logoutBtn = document.getElementById('btn-logout-common');
-        if (logoutBtn) {
-            logoutBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                localStorage.removeItem('currentUser');
-                window.location.href = 'index.html';
-            });
-        }
     }
 });

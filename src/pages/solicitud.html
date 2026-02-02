@@ -14,13 +14,13 @@
 
 <body>
 
-     <header class="institutional-header">
+    <header class="institutional-header">
 
 
         <div class="top-bar">
             <div class="container top-bar-content">
                 <div class="contact-info">
-                    <span class="phone-number">📞 (506) 1234-5678</span>
+                    <span class="phone-number">📞 (506) 800-80008</span>
                 </div>
                 <div class="social-media-links">
                     <a href="https://www.facebook.com" target="_blank">
@@ -60,7 +60,7 @@
                 <nav class="primary-nav" aria-label="Navegación principal">
                     <ul class="nav-menu">
                         <li class="nav-item">
-                            <a href="index.html" class="nav-link">Inicio</a>
+                            <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i></a>
                         </li>
                         <li class="nav-item has-dropdown">
                             <a href="#" class="nav-link">Información de Interés <span
@@ -72,15 +72,10 @@
                                 <li><a href="contacto.html">Contacto</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item has-dropdown">
-                            <a href="#" class="nav-link">Servicios <span class="dropdown-arrow">▼</span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="becas.html">Becas</a></li>
-                                <li><a href="ayudas.html">Ayudas</a></li>
-                            </ul>
-                        </li>
+
                         <li class="nav-item">
-                            <a href="mapasitio.html" class="nav-link">Mapa del Sitio</a>
+                            <a href="mapasitio.html" class="nav-link">SERVCIOS<span
+                                    class="dropdown-arrow">▼</span></a>
                         </li>
                     </ul>
                 </nav>
@@ -90,7 +85,7 @@
 
     <main class="container py-large">
 
-        
+
         <section id="mis-solicitudes" class="user-section" style="margin-bottom: 50px;">
             <header class="section-header"
                 style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
@@ -110,7 +105,7 @@
                         <tr>
                             <th>Folio</th>
                             <th>Beca/Ayuda
-                                
+
                             </th>
                             <th>Fecha</th>
                             <th>Estado</th>
@@ -126,7 +121,7 @@
 
         <hr class="my-large" style="border: 0; border-top: 2px dashed #eee; margin: 40px 0;">
 
-        
+
         <div class="text-center" style="margin-bottom: 30px;">
             <h2 class="section-title">Estatus Global de Solicitudes 2026</h2>
             <p class="section-subtitle">Consulta el estado oficial de las solicitudes procesadas por el comité.</p>
@@ -161,7 +156,7 @@
             </table>
         </div>
 
-        
+
         <section id="application-module" class="user-section mt-large hidden"
             style="background: #fdfdfd; border: 1px solid #eee; padding: 40px; border-radius: 15px;">
             <header class="section-header"
@@ -173,30 +168,30 @@
 
             <form id="apply-form" class="postulacion-form">
                 <!-- TIPO DE SOLICITUD -->
-            <div class="form-section-title">Tipo de Solicitud</div>
+                <div class="form-section-title">Tipo de Solicitud</div>
 
-            <div class="form-grid-2-col">
-            <div class="form-group">
-                <label class="radio-container">
-                <input type="radio" name="tipoSolicitud" value="beca" checked>
-                Solicitar Beca
-                </label>
-            </div>
+                <div class="form-grid-2-col">
+                    <div class="form-group">
+                        <label class="radio-container">
+                            <input type="radio" name="tipoSolicitud" value="beca" checked>
+                            Solicitar Beca
+                        </label>
+                    </div>
 
-            <div class="form-group">
-                <label class="radio-container">
-                <input type="radio" name="tipoSolicitud" value="ayuda">
-                Solicitar Ayuda
-                </label>
-            </div>
-            </div>
+                    <div class="form-group">
+                        <label class="radio-container">
+                            <input type="radio" name="tipoSolicitud" value="ayuda">
+                            Solicitar Ayuda
+                        </label>
+                    </div>
+                </div>
                 <div class="form-grid-post">
-                    
+
                     <div class="form-section-title">Información de la Convocatoria</div>
                     <div class="form-grid-2-col">
                         <div class="form-group">
                             <label for="scholarship-select">Seleccionar Beca</label>
-                           <select id="beca-select" name="beca">
+                            <select id="beca-select" name="beca">
                                 <option value="" disabled selected>Elige una beca...</option>
                                 <option value="academica">Beca Académica</option>
                                 <option value="socioeconomica">Beca Socioeconómica</option>
@@ -214,7 +209,7 @@
                         </div>
                     </div>
 
-                    
+
                     <div class="form-section-title">Datos Académicos Actuales</div>
                     <div class="form-grid-3-col">
                         <div class="form-group">
@@ -233,17 +228,17 @@
                         </div>
                     </div>
 
-                    
+
                     <div class="form-section-title">Información Socioeconómica</div>
                     <div class="form-grid-2-col">
                         <div class="form-group">
                             <label for="income">Ingreso Mensual Familiar</label>
                             <select id="income" name="income" required>
                                 <option value="" disabled selected>Selecciona un rango</option>
-                                <option value="bajo">Menos de $5,000</option>
-                                <option value="medio-bajo">$5,000 - $10,000</option>
-                                <option value="medio">$10,000 - $20,000</option>
-                                <option value="alto">Más de $20,000</option>
+                                <option value="bajo">Menos de ₡80,000</option>
+                                <option value="medio-bajo"> ₡80,000 - ₡250,000</option>
+                                <option value="medio">₡250,000 - ₡450,000</option>
+                                <option value="alto">Más de ₡450,000</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -265,7 +260,7 @@
                             <input type="file" id="doc-id" name="doc_id" accept=".pdf,.jpg,.png" required>
                         </div>
                         <div class="form-group">
-                            <label for="doc-kardex">Historial Académico (Kardex)</label>
+                            <label for="doc-kardex">Titulo Acádemico (Certificado de notas)</label>
                             <input type="file" id="doc-kardex" name="doc_kardex" accept=".pdf,.jpg,.png" required>
                         </div>
                     </div>
@@ -278,9 +273,10 @@
 
                     <div class="form-group full-width">
                         <label class="check-container">
+                            <hr>
                             <input type="checkbox" required>
-                            Declaro bajo protesta de decir verdad que la información y documentos proporcionados son
-                            verídicos.
+                            <p>Declaro bajo juramento que la información y documentos proporcionados son
+                                verídicos.</p>
                         </label>
                     </div>
                 </div>
@@ -297,13 +293,13 @@
     </main>
 
     <footer class="footer">
-         <div class="footer-content">
+        <div class="footer-content">
             <p>&copy; 2026 Sistema de Gestión de Becas - Todos los derechos reservados.</p>
             <p>Transparencia | Aviso de Privacidad | Términos y Condiciones</p>
         </div>
     </footer>
 
-    
+
     <script src="../js/session.js"></script>
     <script src="../js/solicitud.js"></script>
     <script src="../js/postulante.js"></script>

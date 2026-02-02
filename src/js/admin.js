@@ -1,46 +1,82 @@
-    const scholarshipForm = document.getElementById('scholarship-form');
-    const scholarshipTable = document.getElementById('scholarship-table-body');
-    const formTitle = document.getElementById('form-title');
-    const btnSubmit = document.getElementById('btn-submit-form');
-    const btnCancelEdit = document.getElementById('btn-cancel-edit');
-    const hiddenId = document.getElementById('scholarship-id');
-    const evaluatorForm = document.getElementById('evaluator-form');
-    const evaluadoresContainer = document.getElementById('evaluadores-container');
-    const sedeForm = document.getElementById('sede-form');
-    const sedeTableBody = document.getElementById('sede-table-body');
-    const hiddenSedeId = document.getElementById('sede-id');
-    const btnCancelSede = document.getElementById('btn-cancel-sede');
-    const btnSaveSede = document.getElementById('btn-save-sede');
-    const statBecas = document.getElementById('stat-becas');
-    const statSolicitudes = document.getElementById('stat-solicitudes');
-    const statAprobados = document.getElementById('stat-aprobados');
-    const btnLogout = document.getElementById('btn-logout-admin');
-    
-    
-
+const scholarshipForm = document.getElementById('scholarship-form');
+const scholarshipTable = document.getElementById('scholarship-table-body');
+const formTitle = document.getElementById('form-title');
+const btnSubmit = document.getElementById('btn-submit-form');
+const btnCancelEdit = document.getElementById('btn-cancel-edit');
+const hiddenId = document.getElementById('scholarship-id');
+const evaluatorForm = document.getElementById('evaluator-form');
+const evaluadoresContainer = document.getElementById('evaluadores-container');
+const sedeForm = document.getElementById('sede-form');
+const sedeTableBody = document.getElementById('sede-table-body');
+const hiddenSedeId = document.getElementById('sede-id');
+const btnCancelSede = document.getElementById('btn-cancel-sede');
+const btnSaveSede = document.getElementById('btn-save-sede');
+const statBecas = document.getElementById('stat-becas');
+const statSolicitudes = document.getElementById('stat-solicitudes');
+const statAprobados = document.getElementById('stat-aprobados');
+const statSoporte = document.getElementById('stat-soporte');
+const btnLogout = document.getElementById('btn-logout-admin');
 
 // Lógica Integral para el Panel de Administración
 document.addEventListener('DOMContentLoaded', () => {
- 
+
+    // Helper para crear botones de icono
+    function createIconButton(icon, className, title, onClick) {
+        const btn = document.createElement('button');
+        btn.classList.add('btn-icon', className);
+        btn.textContent = icon;
+        btn.title = title;
+        if (onClick) btn.onclick = onClick;
+        return btn;
+    }
+
     // --- 1. GESTIÓN DE BECAS ---
 
     function renderScholarships() {
         const scholarships = JSON.parse(localStorage.getItem('scholarships')) || [];
+        if (!scholarshipTable) return;
         scholarshipTable.innerHTML = '';
 
         scholarships.forEach(beca => {
             const row = document.createElement('tr');
-            row.innerHTML = `
-                <td><strong>${beca.name}</strong></td>
-                <td><span class="badge ${beca.category === 'Internacional' ? '' : (beca.category === 'Nacional' ? 'bg-green' : 'bg-purple')}">${beca.category}</span></td>
-                <td>${beca.funding}</td>
-                <td>${beca.deadline}</td>
-                <td><span class="status-tag ${beca.status === 'Abierta' ? 'status-active' : 'status-closed'}">${beca.status}</span></td>
-                <td>
-                    <button class="btn-icon edit" onclick="prepareEditScholarship(${beca.id})">✏️</button>
-                    <button class="btn-icon delete" onclick="deleteScholarship(${beca.id})">🗑️</button>
-                </td>
-            `;
+
+            const tdName = document.createElement('td');
+            const strongName = document.createElement('strong');
+            strongName.textContent = beca.name;
+            tdName.appendChild(strongName);
+
+            const tdCategory = document.createElement('td');
+            const badgeCat = document.createElement('span');
+            badgeCat.classList.add('badge');
+            if (beca.category === 'Nacional') badgeCat.classList.add('bg-green');
+            else if (beca.category !== 'Internacional') badgeCat.classList.add('bg-purple');
+            badgeCat.textContent = beca.category;
+            tdCategory.appendChild(badgeCat);
+
+            const tdFunding = document.createElement('td');
+            tdFunding.textContent = beca.funding;
+
+            const tdDeadline = document.createElement('td');
+            tdDeadline.textContent = beca.deadline;
+
+            const tdStatus = document.createElement('td');
+            const statusTag = document.createElement('span');
+            statusTag.classList.add('status-tag');
+            statusTag.classList.add(beca.status === 'Abierta' ? 'status-active' : 'status-closed');
+            statusTag.textContent = beca.status;
+            tdStatus.appendChild(statusTag);
+
+            const tdActions = document.createElement('td');
+            tdActions.appendChild(createIconButton('✏️', 'edit', 'Editar', () => prepareEditScholarship(beca.id)));
+            tdActions.appendChild(createIconButton('🗑️', 'delete', 'Eliminar', () => deleteScholarship(beca.id)));
+
+            row.appendChild(tdName);
+            row.appendChild(tdCategory);
+            row.appendChild(tdFunding);
+            row.appendChild(tdDeadline);
+            row.appendChild(tdStatus);
+            row.appendChild(tdActions);
+
             scholarshipTable.appendChild(row);
         });
         updateStats();
@@ -49,7 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (scholarshipForm) {
         scholarshipForm.addEventListener('submit', (e) => {
             e.preventDefault();
-
             const id = hiddenId.value;
             const scholarships = JSON.parse(localStorage.getItem('scholarships')) || [];
 
@@ -60,17 +95,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 funding: document.getElementById('scholarship-funding').value,
                 deadline: document.getElementById('scholarship-deadline').value,
                 status: document.getElementById('scholarship-status').value,
-                minAvg: document.getElementById('scholarship-min-avg').value, // NUEVO
+                minAvg: document.getElementById('scholarship-min-avg').value,
                 description: document.getElementById('scholarship-description').value
             };
 
             if (id) {
-                // Modo Edición
                 const index = scholarships.findIndex(b => b.id === parseInt(id));
                 scholarships[index] = becaData;
                 alert('Convocatoria actualizada exitosamente.');
             } else {
-                // Modo Creación
                 scholarships.push(becaData);
                 alert('Nueva convocatoria publicada.');
             }
@@ -92,12 +125,18 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('scholarship-funding').value = beca.funding;
             document.getElementById('scholarship-deadline').value = beca.deadline;
             document.getElementById('scholarship-status').value = beca.status;
-            document.getElementById('scholarship-min-avg').value = beca.minAvg || ""; // NUEVO
+            document.getElementById('scholarship-min-avg').value = beca.minAvg || "";
             document.getElementById('scholarship-description').value = beca.description;
 
             formTitle.innerText = "Editando Convocatoria";
             btnSubmit.innerText = "Guardar Cambios";
-            btnCancelEdit.style.display = "inline-block";
+            btnCancelEdit.classList.remove('hidden-element'); // Usar clase en lugar de .style
+            // Para mantener compatibilidad si no existe la clase, usaremos toggle o similar si se define, 
+            // pero el usuario pidió NO usar CSS en JS.
+            // Asumiremos que el CSS maneja la visibilidad si aplicamos una clase.
+            // Por ahora, para no romper funcionalidad si no hay CSS de visibilidad, 
+            // usaré una clase que el usuario pueda ver.
+            btnCancelEdit.classList.add('visible-inline');
             window.scrollTo({ top: 300, behavior: 'smooth' });
         }
     };
@@ -109,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
         hiddenId.value = "";
         formTitle.innerText = "Añadir Nueva Convocatoria";
         btnSubmit.innerText = "Publicar Beca";
-        btnCancelEdit.style.display = "none";
+        btnCancelEdit.classList.remove('visible-inline');
     }
 
     window.deleteScholarship = function (id) {
@@ -127,20 +166,41 @@ document.addEventListener('DOMContentLoaded', () => {
         const users = JSON.parse(localStorage.getItem('scholarship_users')) || [];
         const evaluators = users.filter(u => u.role === 'evaluador' || u.username === 'evaluador');
 
+        if (!evaluadoresContainer) return;
         evaluadoresContainer.innerHTML = '';
         evaluators.forEach(evaluator => {
             const card = document.createElement('article');
             card.className = 'evaluador-card';
-            card.innerHTML = `
-                <div class="eval-info">
-                    <h3>${evaluator.fullname || evaluator.username}</h3>
-                    <p>Acceso: ${evaluator.username}</p>
-                    <span class="badge-eval">Evaluador Activo</span>
-                </div>
-                <div class="eval-actions">
-                    <button class="btn-text-danger" onclick="deleteEvaluator('${evaluator.username}')">Dar de baja</button>
-                </div>
-            `;
+
+            const infoDiv = document.createElement('div');
+            infoDiv.classList.add('eval-info');
+
+            const h3 = document.createElement('h3');
+            h3.textContent = evaluator.fullname || evaluator.username;
+
+            const p = document.createElement('p');
+            p.textContent = `Acceso: ${evaluator.username}`;
+
+            const spanBadge = document.createElement('span');
+            spanBadge.classList.add('badge-eval');
+            spanBadge.textContent = 'Evaluador Activo';
+
+            infoDiv.appendChild(h3);
+            infoDiv.appendChild(p);
+            infoDiv.appendChild(spanBadge);
+
+            const actionsDiv = document.createElement('div');
+            actionsDiv.classList.add('eval-actions');
+
+            const btnDelete = document.createElement('button');
+            btnDelete.classList.add('btn-text-danger');
+            btnDelete.textContent = 'Dar de baja';
+            btnDelete.onclick = () => deleteEvaluator(evaluator.username);
+
+            actionsDiv.appendChild(btnDelete);
+
+            card.appendChild(infoDiv);
+            card.appendChild(actionsDiv);
             evaluadoresContainer.appendChild(card);
         });
     }
@@ -179,7 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // --- 3. GESTIÓN DE SEDES (NUEVO CRUD) ---
+    // --- 3. GESTIÓN DE SEDES ---
 
     function renderSedes() {
         const sedes = JSON.parse(localStorage.getItem('scholarship_sedes')) || [];
@@ -188,15 +248,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
         sedes.forEach(sede => {
             const row = document.createElement('tr');
-            row.innerHTML = `
-                <td><strong>${sede.nombre}</strong></td>
-                <td>${sede.direccion}</td>
-                <td>${sede.encargado}</td>
-                <td>
-                    <button class="btn-icon edit" onclick="prepareEditSede(${sede.id})">✏️</button>
-                    <button class="btn-icon delete" onclick="deleteSede(${sede.id})">🗑️</button>
-                </td>
-            `;
+
+            const tdSede = document.createElement('td');
+            const strongSede = document.createElement('strong');
+            strongSede.textContent = sede.nombre;
+            tdSede.appendChild(strongSede);
+
+            const tdDir = document.createElement('td');
+            tdDir.textContent = sede.direccion;
+
+            const tdEnc = document.createElement('td');
+            tdEnc.textContent = sede.encargado;
+
+            const tdActions = document.createElement('td');
+            tdActions.appendChild(createIconButton('✏️', 'edit', 'Editar', () => prepareEditSede(sede.id)));
+            tdActions.appendChild(createIconButton('🗑️', 'delete', 'Eliminar', () => deleteSede(sede.id)));
+
+            row.appendChild(tdSede);
+            row.appendChild(tdDir);
+            row.appendChild(tdEnc);
+            row.appendChild(tdActions);
+
             sedeTableBody.appendChild(row);
         });
     }
@@ -239,7 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('sede-encargado').value = sede.encargado;
 
             btnSaveSede.innerText = "Actualizar Sede";
-            btnCancelSede.style.display = "inline-block";
+            btnCancelSede.classList.add('visible-inline');
         }
     };
 
@@ -249,7 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
         sedeForm.reset();
         hiddenSedeId.value = "";
         btnSaveSede.innerText = "Guardar Sede";
-        btnCancelSede.style.display = "none";
+        btnCancelSede.classList.remove('visible-inline');
     }
 
     window.deleteSede = function (id) {
@@ -267,11 +339,99 @@ document.addEventListener('DOMContentLoaded', () => {
         const becas = JSON.parse(localStorage.getItem('scholarships')) || [];
         const solicitudes = JSON.parse(localStorage.getItem('scholarship_applications')) || [];
         const aprobados = solicitudes.filter(s => s.status === 'Aprobado');
+        const soporte = JSON.parse(localStorage.getItem('support_requests')) || [];
 
         if (statBecas) statBecas.innerText = becas.length;
         if (statSolicitudes) statSolicitudes.innerText = solicitudes.length;
         if (statAprobados) statAprobados.innerText = aprobados.length;
+        if (statSoporte) statSoporte.innerText = soporte.length;
     }
+
+    // --- 5. GESTIÓN DE SOPORTE ---
+
+    function renderSupportRequests() {
+        const supportTable = document.getElementById('support-table-body');
+        if (!supportTable) return;
+
+        const requests = JSON.parse(localStorage.getItem('support_requests')) || [];
+        supportTable.innerHTML = '';
+
+        requests.forEach(req => {
+            const row = document.createElement('tr');
+
+            const tdFecha = document.createElement('td');
+            const smallFecha = document.createElement('small');
+            smallFecha.textContent = req.fecha;
+            tdFecha.appendChild(smallFecha);
+
+            const tdUser = document.createElement('td');
+            const strongUser = document.createElement('strong');
+            strongUser.textContent = req.nombre;
+            const br = document.createElement('br');
+            const smallEmail = document.createElement('small');
+            smallEmail.classList.add('text-muted');
+            smallEmail.textContent = req.email;
+            tdUser.appendChild(strongUser);
+            tdUser.appendChild(br);
+            tdUser.appendChild(smallEmail);
+
+            const tdMsg = document.createElement('td');
+            tdMsg.classList.add('text-truncate');
+            const divMsg = document.createElement('div');
+            divMsg.classList.add('msg-content');
+            divMsg.textContent = req.mensaje;
+            tdMsg.appendChild(divMsg);
+
+            const tdStatus = document.createElement('td');
+            const statusTag = document.createElement('span');
+            statusTag.classList.add('status-tag');
+            if (req.status === 'Aceptada') statusTag.classList.add('status-active');
+            else if (req.status === 'Denegada') statusTag.classList.add('bg-red');
+            else statusTag.classList.add('bg-yellow');
+            statusTag.textContent = req.status;
+            tdStatus.appendChild(statusTag);
+
+            const tdActions = document.createElement('td');
+            if (req.status === 'Pendiente') {
+                tdActions.appendChild(createIconButton('✅', 'edit', 'Aceptar', () => updateSupportStatus(req.id, 'Aceptada')));
+                tdActions.appendChild(createIconButton('❌', 'delete', 'Denegar', () => updateSupportStatus(req.id, 'Denegada')));
+            } else {
+                const btnDel = document.createElement('button');
+                btnDel.classList.add('btn-text-danger');
+                btnDel.textContent = 'Eliminar';
+                btnDel.onclick = () => deleteSupportRequest(req.id);
+                tdActions.appendChild(btnDel);
+            }
+
+            row.appendChild(tdFecha);
+            row.appendChild(tdUser);
+            row.appendChild(tdMsg);
+            row.appendChild(tdStatus);
+            row.appendChild(tdActions);
+
+            supportTable.appendChild(row);
+        });
+    }
+
+    window.updateSupportStatus = function (id, newStatus) {
+        let requests = JSON.parse(localStorage.getItem('support_requests')) || [];
+        const index = requests.findIndex(r => r.id === id);
+        if (index !== -1) {
+            requests[index].status = newStatus;
+            localStorage.setItem('support_requests', JSON.stringify(requests));
+            renderSupportRequests();
+            alert(`Solicitud ${newStatus.toLowerCase()} correctamente.`);
+        }
+    };
+
+    window.deleteSupportRequest = function (id) {
+        if (confirm('¿Eliminar este registro de soporte?')) {
+            let requests = JSON.parse(localStorage.getItem('support_requests')) || [];
+            requests = requests.filter(r => r.id !== id);
+            localStorage.setItem('support_requests', JSON.stringify(requests));
+            renderSupportRequests();
+        }
+    };
 
     // --- LOGOUT ---
     if (btnLogout) {
@@ -285,5 +445,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Inicialización Global
     renderScholarships();
     renderEvaluators();
-    renderSedes(); // NUEVO
+    renderSedes();
+    renderSupportRequests();
 });
