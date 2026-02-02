@@ -34,251 +34,216 @@
     <main class="admin-container container py-large">
 
 
-        <section class="stats-grid mb-large">
-            <div class="stat-card">
-                <h3>Convocatorias</h3>
-                <p id="stat-becas">0</p>
-                <span>Activas</span>
+    <div class="admin-dashboard">
+
+            <div class="admin-sidebar">
+                <nav class="admin-sidebar-nav">
+                    <ul class="admin-sidebar-list">
+                        <li>
+                            <a href="#" class="admin-sidebar-link active" data-tab="dashboard">
+                                <i class="ri-dashboard-line"></i>
+                                <span>Panel General</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="admin-sidebar-link" data-tab="convocatorias">
+                                <i class="ri-megaphone-line"></i>
+                                <span>Convocatorias</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="admin-sidebar-link" data-tab="becas">
+                                <i class="ri-scholarship-line"></i>
+                                <span>Becas</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="admin-sidebar-link" data-tab="ayudas">
+                                <i class="ri-hand-heart-line"></i>
+                                <span>Ayudas</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="admin-sidebar-link" data-tab="solicitudes">
+                                <i class="ri-file-list-3-line"></i>
+                                <span>Solicitudes</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="admin-sidebar-link" data-tab="usuarios">
+                                <i class="ri-team-line"></i>
+                                <span>Usuarios</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="admin-sidebar-link" data-tab="reportes">
+                                <i class="ri-bar-chart-2-line"></i>
+                                <span>Reportes</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="admin-sidebar-link" data-tab="configuracion">
+                                <i class="ri-settings-3-line"></i>
+                                <span>Configuración</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
-            <div class="stat-card">
-                <h3>Solicitudes</h3>
-                <p id="stat-solicitudes">0</p>
-                <span>Recibidas</span>
-            </div>
-            <div class="stat-card">
-                <h3>Aprobaciones</h3>
-                <p id="stat-aprobados">0</p>
-                <span>Total global</span>
-            </div>
-        </section>
 
+            <div class="admin-content">
 
-        <section id="crear-convocatoria" class="admin-section">
-            <header class="section-header">
-                <h2 id="form-title">Añadir Nueva Convocatoria</h2>
-                <p>Gestiona las becas disponibles en el portal público.</p>
-            </header>
+                <div id="tab-dashboard" class="admin-tab-content active">
+                    <div class="admin-tab-header">
+                        <h2 class="admin-tab-title">Panel General</h2>
+                        <p class="admin-tab-subtitle">Resumen del sistema</p>
+                    </div>
 
-            <div class="form-card">
-                <form id="scholarship-form" class="admin-form">
-
-                    <input type="hidden" id="scholarship-id">
-
-                    <div class="form-grid">
-                        <div class="form-group full-width">
-                            <label for="scholarship-name">Nombre de la Beca</label>
-                            <input type="text" id="scholarship-name" required placeholder="Ej: Beca Excelencia 2026">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="scholarship-category">Categoría</label>
-                            <select id="scholarship-category" required
-                                style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px;">
-                                <option value="Nacional">Nacional</option>
-                                <option value="Internacional">Internacional</option>
-                                <option value="Especial">Especial</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="scholarship-funding">Financiamiento</label>
-                            <input type="text" id="scholarship-funding" required placeholder="Ej: 100% Matrícula">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="scholarship-deadline">Fecha de Cierre</label>
-                            <input type="date" id="scholarship-deadline" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="scholarship-status">Estado inicial</label>
-                            <select id="scholarship-status" required
-                                style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px;">
-                                <option value="Abierta">Abierta</option>
-                                <option value="Cerrada">Cerrada</option>
-                            </select>
-                        </div>
-
-
-                        <div class="form-group full-width"
-                            style="margin-top: 15px; border-top: 1px solid #eee; padding-top: 15px;">
-                            <label style="font-weight: bold; color: var(--primary-color);">Configuración de Requisitos
-                                para el Postulante</label>
-                            <p style="font-size: 0.8rem; color: #666; margin-bottom: 10px;">Indica los criterios que el
-                                alumno deberá cumplir y los documentos que deberá cargar.</p>
-
-                            <div
-                                style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; background: #f8fafc; padding: 15px; border-radius: 8px;">
-                                <div class="req-cat">
-                                    <h5
-                                        style="margin-bottom: 8px; border-bottom: 1px solid #e2e8f0; font-size: 0.9rem;">
-                                        Académicos</h5>
-                                    <label style="display: block; font-size: 0.85rem; margin-bottom: 5px;">
-                                        Promedio Mínimo: <input type="number" id="scholarship-min-avg" step="0.1"
-                                            min="0" max="10" value="8.0" style="width: 50px;">
-                                    </label>
-                                    <label style="display: block; font-size: 0.85rem;"><input type="checkbox" checked>
-                                        Carrera / Grado Obligatorio</label>
-                                </div>
-                                <div class="req-cat">
-                                    <h5
-                                        style="margin-bottom: 8px; border-bottom: 1px solid #e2e8f0; font-size: 0.9rem;">
-                                        Socioeconómicos</h5>
-                                    <label style="display: block; font-size: 0.85rem;"><input type="checkbox" checked>
-                                        Ingreso Mensual Familiar</label>
-                                    <label style="display: block; font-size: 0.85rem;"><input type="checkbox" checked>
-                                        Situación de Vivienda</label>
-                                </div>
-                                <div class="req-cat" style="grid-column: span 2; margin-top: 5px;">
-                                    <h5
-                                        style="margin-bottom: 8px; border-bottom: 1px solid #e2e8f0; font-size: 0.9rem;">
-                                        Expediente Digital Requerido</h5>
-                                    <div style="display: flex; gap: 20px;">
-                                        <label style="font-size: 0.85rem;"><input type="checkbox" checked>
-                                            Identificación Oficial</label>
-                                        <label style="font-size: 0.85rem;"><input type="checkbox" checked> Historial
-                                            Académico (Kardex)</label>
-                                        <label style="font-size: 0.85rem;"><input type="checkbox"> Comprobante de
-                                            Domicilio</label>
-                                    </div>
-                                </div>
+                    <div class="admin-stats-grid">
+                        <div class="admin-stat-card">
+                            <div class="admin-stat-icon bg-primary">
+                                <i class="ri-team-line"></i>
+                            </div>
+                            <div class="admin-stat-info">
+                                <h3 class="admin-stat-number" id="stat-total-usuarios">0</h3>
+                                <p class="admin-stat-label">Total Usuarios</p>
                             </div>
                         </div>
-
-                        <div class="form-group full-width">
-                            <label for="scholarship-description">Descripción de Beneficios y Objetivos</label>
-                            <textarea id="scholarship-description" rows="3" required
-                                placeholder="Describe detalladamente los beneficios de esta beca..."></textarea>
+                        <div class="admin-stat-card">
+                            <div class="admin-stat-icon bg-success">
+                                <i class="ri-scholarship-line"></i>
+                            </div>
+                            <div class="admin-stat-info">
+                                <h3 class="admin-stat-number" id="stat-total-becas">0</h3>
+                                <p class="admin-stat-label">Total Becas</p>
+                            </div>
+                        </div>
+                        <div class="admin-stat-card">
+                            <div class="admin-stat-icon bg-warning">
+                                <i class="ri-file-list-3-line"></i>
+                            </div>
+                            <div class="admin-stat-info">
+                                <h3 class="admin-stat-number" id="stat-total-solicitudes">0</h3>
+                                <p class="admin-stat-label">Solicitudes Activas</p>
+                            </div>
+                        </div>
+                        <div class="admin-stat-card">
+                            <div class="admin-stat-icon bg-info">
+                                <i class="ri-bar-chart-2-line"></i>
+                            </div>
+                            <div class="admin-stat-info">
+                                <h3 class="admin-stat-number" id="stat-total-convocatorias">0</h3>
+                                <p class="admin-stat-label">Convocatorias</p>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="form-actions-admin">
-                        <button type="submit" class="btn-primary" id="btn-submit-form">Publicar Beca</button>
-                        <button type="button" class="btn-reset" id="btn-cancel-edit" style="display: none;">Cancelar
-                            Edición</button>
-                    </div>
-                </form>
-            </div>
-
-        </section>
-
-
-        <section id="lista-convocatorias" class="admin-section mt-large">
-            <header class="section-header">
-                <h2>Convocatorias en el Sistema</h2>
-            </header>
-
-            <div class="table-container">
-                <table class="admin-table">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Tipo</th>
-                            <th>Monto</th>
-                            <th>Cierre</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody id="scholarship-table-body">
-                        <!-- Generado por JS -->
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-
-        <section id="gestion-evaluadores" class="admin-section mt-large">
-            <header class="section-header">
-                <h2>Gestión de Cuentas de Evaluador</h2>
-            </header>
-
-            <div class="form-card mb-large" style="background: #f1f5f9; padding: 20px; border-radius: 8px;">
-                <h4 style="margin-bottom: 10px;">Registrar Nuevo Evaluador</h4>
-                <form id="evaluator-form" style="display: flex; gap: 10px; align-items: flex-end;">
-                    <div style="flex: 1;">
-                        <label style="display: block; font-size: 0.8rem;">Nombre Completo</label>
-                        <input type="text" id="eval-name" required style="width: 100%; padding: 8px;">
-                    </div>
-                    <div style="flex: 1;">
-                        <label style="display: block; font-size: 0.8rem;">Username</label>
-                        <input type="text" id="eval-user" required style="width: 100%; padding: 8px;">
-                    </div>
-                    <div style="flex: 1;">
-                        <label style="display: block; font-size: 0.8rem;">Contraseña</label>
-                        <input type="password" id="eval-pass" required style="width: 100%; padding: 8px;">
-                    </div>
-                    <button type="submit" class="btn-primary" style="padding: 8px 15px;">Registrar</button>
-                </form>
-            </div>
-
-            <div class="evaluadores-grid" id="evaluadores-container">
-
-            </div>
-        </section>
-
-
-        <section id="gestion-sedes" class="admin-section mt-large">
-            <header class="section-header">
-                <h2>Administración de Sedes</h2>
-                <p>Configura las oficinas y puntos de atención.</p>
-            </header>
-
-            <div class="form-card mb-large" style="background: #e2e8f0; padding: 25px; border-radius: 12px;">
-                <h4 style="margin-bottom: 20px;">Registrar / Editar Sede</h4>
-                <form id="sede-form">
-                    <input type="hidden" id="sede-id">
-                    <div class="form-grid" style="grid-template-columns: 1fr 1fr 1fr;">
-                        <div class="form-group">
-                            <label>Nombre de la Sede</label>
-                            <input type="text" id="sede-nombre" required placeholder="Ej: Unidad Central"
-                                style="width: 100%; padding: 10px;">
+                    <div class="admin-card">
+                        <div class="admin-card-header">
+                            <h3 class="admin-card-title">Últimas Solicitudes</h3>
+                            <button class="btn btn-sm btn-outline-primary" onclick="loadSolicitudes()">
+                                <i class="ri-refresh-line"></i> Actualizar
+                            </button>
                         </div>
-                        <div class="form-group">
-                            <label>Dirección</label>
-                            <input type="text" id="sede-direccion" required placeholder="Calle, Número, Ciudad"
-                                style="width: 100%; padding: 10px;">
-                        </div>
-                        <div class="form-group">
-                            <label>Encargado</label>
-                            <input type="text" id="sede-encargado" required placeholder="Nombre del responsable"
-                                style="width: 100%; padding: 10px;">
+                        <div class="admin-table-responsive">
+                            <table class="admin-table" id="latest-solicitudes-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Estudiante</th>
+                                        <th>Tipo</th>
+                                        <th>Monto</th>
+                                        <th>Estado</th>
+                                        <th>Fecha</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="latest-solicitudes-body">
+                                    <tr>
+                                        <td colspan="6" class="text-center">Cargando solicitudes...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                    <div class="form-actions-admin" style="margin-top: 20px;">
-                        <button type="submit" class="btn-primary" id="btn-save-sede">Guardar Sede</button>
-                        <button type="button" class="btn-reset" id="btn-cancel-sede"
-                            style="display: none;">Cancelar</button>
+                </div>
+
+                <div id="tab-convocatorias" class="admin-tab-content">
+                    <div class="admin-tab-header">
+                        <h2 class="admin-tab-title">Gestión de Convocatorias</h2>
+                        <p class="admin-tab-subtitle">Administrar convocatorias de becas</p>
                     </div>
-                </form>
-            </div>
 
-            <div class="table-container">
-                <table class="admin-table">
-                    <thead>
-                        <tr>
-                            <th>Sede</th>
-                            <th>Ubicación</th>
-                            <th>Responsable</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody id="sede-table-body">
-                        <!-- Generado por JS -->
-                    </tbody>
-                </table>
-            </div>
-        </section>
+                    <div class="admin-card">
+                        <div class="admin-card-header">
+                            <h3 class="admin-card-title">Convocatorias</h3>
+                            <button class="btn btn-primary" onclick="openConvocatoriaModal()">
+                                <i class="ri-add-line"></i> Nueva Convocatoria
+                            </button>
+                        </div>
+                        <div class="admin-table-responsive">
+                            <table class="admin-table" id="convocatorias-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Título</th>
+                                        <th>Tipo</th>
+                                        <th>Estado</th>
+                                        <th>Fecha Inicio</th>
+                                        <th>Fecha Fin</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="convocatorias-body">
+                                    <tr>
+                                        <td colspan="7" class="text-center">Cargando convocatorias...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
 
-    </main>
+                <div id="tab-becas" class="admin-tab-content">
+                    <div class="admin-tab-header">
+                        <h2 class="admin-tab-title">Gestión de Becas</h2>
+                        <p class="admin-tab-subtitle">Administrar becas disponibles</p>
+                    </div>
 
-    <footer class="admin-footer text-center">
-        <div class="container">
-            <p>&copy; 2026 Admin Panel - Sistema de Gestión de Becas</p>
+                    <div class="admin-card">
+                        <div class="admin-card-header">
+                            <h3 class="admin-card-title">Becas</h3>
+                            <button class="btn btn-primary" onclick="openBecaModal()">
+                                <i class="ri-add-line"></i> Nueva Beca
+                            </button>
+                        </div>
+                        <div class="admin-table-responsive">
+                            <table class="admin-table" id="becas-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nombre</th>
+                                        <th>Monto</th>
+                                        <th>Requisitos</th>
+                                        <th>Estado</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="becas-body">
+                                    <tr>
+                                        <td colspan="6" class="text-center">Cargando becas...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-ayudas" class="admin-tab-content">
+                    <div class="admin-tab-
         </div>
     </footer>
 
-    <script src="../js/admin.js"></script>
+
 </body>
 
 </html>
