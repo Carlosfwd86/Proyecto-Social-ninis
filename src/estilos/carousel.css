@@ -48,7 +48,7 @@
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
-    color: rgba(132, 136, 111, 0.544);
+    color: rgb(0, 0, 0);
     z-index: 210;
     background: rgba(0, 0, 0, 0.3);
     /* Más sutil */
@@ -58,21 +58,18 @@
     max-width: 800px;
     width: 90%;
     border: 1px solid rgba(4, 1, 1, 0.2);
-    box-shadow: 0 80px 40px rgba(205, 188, 127, 0.2);
 }
 
 .carousel-caption h2 {
     font-size: 3rem;
     margin-bottom: 15px;
-    font-weight: 700;
-    text-shadow: 0 2px 4px rgba(224, 212, 212, 0.3);
+    font-weight: 700;  
 }
 
 .carousel-caption p {
     font-size: 1.2rem;
     margin: 0 0 25px 0;
-    opacity: 0.95;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    opacity: 0.95; 
 }
 
 .carousel-btn {
@@ -85,7 +82,6 @@
     font-weight: 600;
     font-size: 1rem;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     text-transform: uppercase;
     letter-spacing: 1px;
     border: 2px solid transparent;
@@ -94,8 +90,7 @@
 .carousel-btn:hover {
     background: white;
     color: var(--primary-color);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);  
 }
 
 /* Controles del Carrusel */

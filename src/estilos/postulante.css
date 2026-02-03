@@ -2,9 +2,10 @@
    VARIABLES GLOBALES
 ========================= */
 :root {
-    --primary-color: #0ea57a;
-    --secondary-color: #065f46;
-    --bg-light: #f5f7f6;
+    --primary-color: #016a04;
+    --secondary-color: #053d1d;
+    --accent-color: #10b981;
+    --bg-light: #f0fdf4;
     --bg-white: #ffffff;
     --text-dark: #1f2937;
     --text-muted: #6b7280;
@@ -49,36 +50,40 @@ body.postulante-body {
    HEADER
 ========================= */
 .postulante-header {
-    background: var(--bg-white);
-    border-bottom: 1px solid var(--border-color);
-    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    background: linear-gradient(135deg, #016a04, #053d1d);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .header-flex {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 0;
+    min-height: 75px;
+    padding: 10px 0;
 }
 
 .logo-area {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
 }
 
 .logo-area img {
-    height: 55px;
+    height: 48px;
     width: auto;
 }
 
 .badge-user {
-    background: var(--primary-color);
+    background: rgba(255, 255, 255, 0.15);
     color: #fff;
-    padding: 4px 12px;
+    padding: 6px 14px;
     border-radius: 20px;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 600;
+    letter-spacing: 0.3px;
 }
 
 /* =========================
@@ -94,14 +99,20 @@ body.postulante-body {
 
 .nav-link {
     text-decoration: none;
-    color: var(--text-muted);
+    color: #ffffff;
     font-weight: 500;
-    transition: var(--transition);
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: background 0.25s ease, transform 0.2s ease;
 }
 
-.nav-link:hover,
+.nav-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
 .nav-link.active {
-    color: var(--primary-color);
+    background: rgba(255, 255, 255, 0.28);
 }
 
 /* =========================
@@ -111,7 +122,7 @@ body.postulante-body {
     background: var(--bg-white);
     border-radius: var(--radius);
     padding: 30px;
-    box-shadow: 0 4px 25px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
 }
 
 .section-header {

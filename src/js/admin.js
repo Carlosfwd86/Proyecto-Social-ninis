@@ -1,11 +1,11 @@
-const scholarshipForm = document.getElementById('scholarship-form');
-const scholarshipTable = document.getElementById('scholarship-table-body');
+const scholarshipForm = document.getElementById('form-beca');
+const scholarshipTable = document.getElementById('tabla-becas');
 const formTitle = document.getElementById('form-title');
 const btnSubmit = document.getElementById('btn-submit-form');
 const btnCancelEdit = document.getElementById('btn-cancel-edit');
 const hiddenId = document.getElementById('scholarship-id');
-const evaluatorForm = document.getElementById('evaluator-form');
-const evaluadoresContainer = document.getElementById('evaluadores-container');
+const evaluatorForm = document.getElementById('form-evaluador');
+const evaluadoresContainer = document.getElementById('tabla-evaluadores');
 const sedeForm = document.getElementById('sede-form');
 const sedeTableBody = document.getElementById('sede-table-body');
 const hiddenSedeId = document.getElementById('sede-id');
@@ -90,13 +90,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const becaData = {
                 id: id ? parseInt(id) : Date.now(),
-                name: document.getElementById('scholarship-name').value,
-                category: document.getElementById('scholarship-category').value,
-                funding: document.getElementById('scholarship-funding').value,
-                deadline: document.getElementById('scholarship-deadline').value,
-                status: document.getElementById('scholarship-status').value,
-                minAvg: document.getElementById('scholarship-min-avg').value,
-                description: document.getElementById('scholarship-description').value
+                name: document.getElementById('nombre-beca').value,
+                category: document.getElementById('tipo-beca').value,
+                funding: document.getElementById('monto-beca').value,
+                deadline: document.getElementById('fecha-cierre').value,
+                status: 'Abierta', // Default or derived from date
+                minAvg: document.getElementById('promedio-minimo').value,
+                description: document.getElementById('descripcion-beca').value
             };
 
             if (id) {
@@ -120,13 +120,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (beca) {
             hiddenId.value = beca.id;
-            document.getElementById('scholarship-name').value = beca.name;
-            document.getElementById('scholarship-category').value = beca.category;
-            document.getElementById('scholarship-funding').value = beca.funding;
-            document.getElementById('scholarship-deadline').value = beca.deadline;
-            document.getElementById('scholarship-status').value = beca.status;
-            document.getElementById('scholarship-min-avg').value = beca.minAvg || "";
-            document.getElementById('scholarship-description').value = beca.description;
+            document.getElementById('nombre-beca').value = beca.name;
+            document.getElementById('descripcion-beca').value = beca.description;
+            document.getElementById('tipo-beca').value = beca.category;
+            document.getElementById('monto-beca').value = beca.funding;
+            // document.getElementById('duracion-beca').value = beca.duration; // Field exists in HTML
+            document.getElementById('fecha-cierre').value = beca.deadline;
+            document.getElementById('promedio-minimo').value = beca.minAvg || "";
 
             formTitle.innerText = "Editando Convocatoria";
             btnSubmit.innerText = "Guardar Cambios";
@@ -164,70 +164,111 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderEvaluators() {
         const users = JSON.parse(localStorage.getItem('scholarship_users')) || [];
-        const evaluators = users.filter(u => u.role === 'evaluador' || u.username === 'evaluador');
+        const evaluators = users.filter(u => u.role === 'evaluador' || u.role === 'coordinador');
 
         if (!evaluadoresContainer) return;
         evaluadoresContainer.innerHTML = '';
+
+        if (evaluators.length === 0) {
+            const emptyRow = document.createElement('tr');
+            emptyRow.innerHTML = '<td colspan="4" style="text-align: center; color: #6b7280;">No hay evaluadores registrados</td>';
+            evaluadoresContainer.appendChild(emptyRow);
+            return;
+        }
+
         evaluators.forEach(evaluator => {
-            const card = document.createElement('article');
-            card.className = 'evaluador-card';
+            const row = document.createElement('tr');
 
-            const infoDiv = document.createElement('div');
-            infoDiv.classList.add('eval-info');
+            const tdName = document.createElement('td');
+            tdName.textContent = evaluator.fullname || evaluator.username;
 
-            const h3 = document.createElement('h3');
-            h3.textContent = evaluator.fullname || evaluator.username;
+            const tdEmail = document.createElement('td');
+            tdEmail.textContent = evaluator.email || '-';
 
-            const p = document.createElement('p');
-            p.textContent = `Acceso: ${evaluator.username}`;
+            const tdRole = document.createElement('td');
+            const badgeRole = document.createElement('span');
+            badgeRole.classList.add('status-tag', 'status-active');
+            badgeRole.textContent = evaluator.role === 'coordinador' ? 'Coordinador' : 'Evaluador';
+            tdRole.appendChild(badgeRole);
 
-            const spanBadge = document.createElement('span');
-            spanBadge.classList.add('badge-eval');
-            spanBadge.textContent = 'Evaluador Activo';
+            const tdActions = document.createElement('td');
+            tdActions.appendChild(createIconButton('✏️', 'edit', 'Editar', () => prepareEditEvaluator(evaluator.username)));
+            tdActions.appendChild(createIconButton('🗑️', 'delete', 'Eliminar', () => deleteEvaluator(evaluator.username)));
 
-            infoDiv.appendChild(h3);
-            infoDiv.appendChild(p);
-            infoDiv.appendChild(spanBadge);
+            row.appendChild(tdName);
+            row.appendChild(tdEmail);
+            row.appendChild(tdRole);
+            row.appendChild(tdActions);
 
-            const actionsDiv = document.createElement('div');
-            actionsDiv.classList.add('eval-actions');
-
-            const btnDelete = document.createElement('button');
-            btnDelete.classList.add('btn-text-danger');
-            btnDelete.textContent = 'Dar de baja';
-            btnDelete.onclick = () => deleteEvaluator(evaluator.username);
-
-            actionsDiv.appendChild(btnDelete);
-
-            card.appendChild(infoDiv);
-            card.appendChild(actionsDiv);
-            evaluadoresContainer.appendChild(card);
+            evaluadoresContainer.appendChild(row);
         });
     }
+
+    let editingEvaluatorUser = null;
 
     if (evaluatorForm) {
         evaluatorForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const newUser = {
-                fullname: document.getElementById('eval-name').value,
-                username: document.getElementById('eval-user').value,
-                password: document.getElementById('eval-pass').value,
-                role: 'evaluador',
-                email: `${document.getElementById('eval-user').value}@sistema.com`
-            };
+            const fullname = document.getElementById('nombre-evaluador').value;
+            const email = document.getElementById('email-evaluador').value;
+            const role = document.getElementById('rol-evaluador').value;
 
-            const users = JSON.parse(localStorage.getItem('scholarship_users')) || [];
-            if (users.find(u => u.username === newUser.username)) {
-                alert('El nombre de usuario ya existe.');
-                return;
+            // Simple user generation strategy or use exist
+            const username = editingEvaluatorUser || email.split('@')[0];
+
+            let users = JSON.parse(localStorage.getItem('scholarship_users')) || [];
+
+            if (editingEvaluatorUser) {
+                // Update existing
+                const index = users.findIndex(u => u.username === editingEvaluatorUser);
+                if (index !== -1) {
+                    users[index] = { ...users[index], fullname, email, role };
+                    alert('Usuario actualizado correctamente.');
+                }
+            } else {
+                // Create New
+                if (users.find(u => u.username === username)) {
+                    alert('El usuario ya existe (basado en el correo).');
+                    return;
+                }
+                const newUser = {
+                    fullname,
+                    username,
+                    password: 'password123', // Default password
+                    role,
+                    email
+                };
+                users.push(newUser);
+                alert('Evaluador registrado correctamente. Contraseña temporal: password123');
             }
 
-            users.push(newUser);
             localStorage.setItem('scholarship_users', JSON.stringify(users));
-            alert('Evaluador registrado correctamente.');
-            evaluatorForm.reset();
             renderEvaluators();
+
+            // Reset form
+            evaluatorForm.reset();
+            editingEvaluatorUser = null;
+            document.querySelector('#form-evaluador legend').textContent = 'Crear / Editar Evaluador';
+            const btn = evaluatorForm.querySelector('button[type="submit"]');
+            if (btn) btn.textContent = 'Guardar Evaluador';
         });
+    }
+
+    window.prepareEditEvaluator = function (username) {
+        const users = JSON.parse(localStorage.getItem('scholarship_users')) || [];
+        const user = users.find(u => u.username === username);
+        if (user) {
+            editingEvaluatorUser = username;
+            document.getElementById('nombre-evaluador').value = user.fullname || '';
+            document.getElementById('email-evaluador').value = user.email || '';
+            document.getElementById('rol-evaluador').value = user.role || 'evaluador';
+
+            document.querySelector('#form-evaluador legend').textContent = 'Editando a: ' + user.fullname;
+            const btn = evaluatorForm.querySelector('button[type="submit"]');
+            if (btn) btn.textContent = 'Actualizar Usuario';
+
+            evaluatorForm.scrollIntoView({ behavior: 'smooth' });
+        }
     }
 
     window.deleteEvaluator = function (username) {

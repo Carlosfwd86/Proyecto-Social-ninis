@@ -1,65 +1,93 @@
-/* Estilos para el Panel de Administración */
-.admin-body {
-    background-color: #b9bdb9;
+/* =====================================================
+   Estilos para el Panel de Administración
+   ===================================================== */
+
+:root {
+    --primary-color: #016a04;
+    --secondary-color: #053d1d;
+    --accent-color: #10b981;
+    --bg-color: #f0fdf4;
+    --text-color: #1f2937;
+    --muted-text: #6b7280;
 }
 
+.page-admin {
+    background-color: var(--bg-color);
+}
+
+/* =====================
+   Header / Navegación
+   ===================== */
+
 .admin-header {
-    background-color: var(--primary-color);
-    color: rgb(192, 61, 111);
-    padding: 10px 0;
-    /* Aseguramos un padding constante */
+    background: linear-gradient(135deg, #016a04, #053d1d);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .admin-nav-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    min-height: 75px;
 }
 
 .admin-logo {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 14px;
 }
 
 .admin-logo img {
-    max-height: 100px;
-    width: 100%;
-    display: block;
+    height: 48px;
+    width: auto;
 }
 
 .badge-role {
-    background-color: var(--secondary-color);
-    color: var(--primary-color);
-    padding: 2px 10px;
-    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 20px;
     font-size: 0.75rem;
-    font-weight: bold;
+    font-weight: 600;
+    letter-spacing: 0.3px;
     text-transform: uppercase;
 }
 
 .admin-nav-list {
     display: flex;
     list-style: none;
-    gap: 20px;
+    gap: 16px;
+    margin: 0;
+    padding: 0;
 }
 
 .admin-nav-link {
-    color: #94a3b8;
+    color: #ffffff;
     text-decoration: none;
-    font-size: 0.95rem;
-    transition: color 0.3s;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: background 0.25s ease, transform 0.2s ease;
 }
 
-.admin-nav-link:hover,
+.admin-nav-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
 .admin-nav-link.active {
-    color: white;
+    background: rgba(255, 255, 255, 0.28);
 }
 
 .logout {
-    border: 1px solid #78083e;
-    padding: 5px 15px;
-    border-radius: 5px;
+    background: rgba(239, 68, 68, 0.25);
+}
+
+.logout:hover {
+    background: rgba(239, 68, 68, 0.45);
 }
 
 /* Secciones y Cards */
@@ -122,27 +150,57 @@
     cursor: pointer;
 }
 
-/* Tablas */
+/* Tablas - Estilo Evaluador */
 .table-container {
     overflow-x: auto;
+    background: white;
+    border-radius: var(--radius-md, 10px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
+table,
 .admin-table {
     width: 100%;
     border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+table thead,
+.admin-table thead {
+    background: #dcfce7;
+}
+
+table th,
+table td,
+.admin-table th,
+.admin-table td {
+    padding: 14px 16px;
     text-align: left;
 }
 
+table th,
 .admin-table th {
-    background: #f1f5f9;
-    padding: 12px;
-    color: #475569;
     font-weight: 600;
+    color: #1f2937;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
 }
 
-.admin-table td {
-    padding: 12px;
-    border-bottom: 1px solid #f1f5f9;
+table tbody tr,
+.admin-table tbody tr {
+    border-bottom: 1px solid #e5e7eb;
+    transition: background 0.15s ease;
+}
+
+table tbody tr:hover,
+.admin-table tbody tr:hover {
+    background: #f0fdf4;
+}
+
+table tbody tr:last-child,
+.admin-table tbody tr:last-child {
+    border-bottom: none;
 }
 
 .status-badge {
@@ -297,4 +355,57 @@
     .admin-form .form-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* Checkbox Group Styles */
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    margin: 15px 0;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    padding: 10px 15px;
+    background: white;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+    transition: all 0.2s ease;
+}
+
+.checkbox-label:hover {
+    border-color: var(--primary-color);
+    background: #f0fdf4;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--primary-color);
+    cursor: pointer;
+}
+
+.checkbox-label span {
+    font-size: 0.95rem;
+    color: var(--text-color);
+}
+
+.checkbox-label input[type="checkbox"]:checked+span {
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.form-hint {
+    font-size: 0.85rem;
+    color: var(--muted-text);
+    margin: 10px 0;
+    font-style: italic;
 }

@@ -1,0 +1,102 @@
+/* Estilos para Historias de Éxito */
+/* Hereda variables de index.css */
+
+main.container {
+   max-width: 900px;
+   margin-top: 50px;
+}
+
+h2 {
+   text-align: center;
+   font-size: 2.5rem;
+   color: var(--primary-color);
+   margin-bottom: 50px;
+}
+
+/* Layout de historias */
+article.story-card {
+   background: white;
+   border-radius: var(--radius-lg);
+   overflow: hidden;
+   box-shadow: var(--shadow-soft);
+   margin-bottom: 50px;
+   display: flex;
+   flex-direction: column;
+   /* Mobile first */
+   transition: var(--transition);
+}
+
+@media (min-width: 768px) {
+   article.story-card {
+      flex-direction: row;
+      align-items: center;
+   }
+
+   article.story-card:nth-child(even) {
+      flex-direction: row-reverse;
+   }
+}
+
+article.story-card:hover {
+   box-shadow: var(--shadow-premium);
+   transform: translateY(-5px);
+}
+
+.story-img {
+   width: 100%;
+   height: 300px;
+   object-fit: cover;
+}
+
+@media (min-width: 768px) {
+   .story-img {
+      width: 40%;
+      height: 100%;
+      min-height: 350px;
+   }
+}
+
+.story-content {
+   padding: 40px;
+   width: 100%;
+}
+
+@media (min-width: 768px) {
+   .story-content {
+      width: 60%;
+   }
+}
+
+.story-content h3 {
+   font-size: 1.8rem;
+   margin-bottom: 10px;
+   color: var(--secondary-color);
+}
+
+.story-meta {
+   font-size: 0.9rem;
+   color: #9ca3af;
+   margin-bottom: 20px;
+   display: block;
+   text-transform: uppercase;
+   letter-spacing: 1px;
+   font-weight: 600;
+}
+
+.story-content p {
+   font-size: 1.05rem;
+   line-height: 1.7;
+   color: var(--text-light);
+   margin-bottom: 20px;
+}
+
+.story-quote {
+   font-style: italic;
+   color: var(--primary-color);
+   border-left: 3px solid var(--accent-green);
+   padding-left: 15px;
+   background: #f0fdfa;
+   /* Verde muy claro */
+   padding: 15px;
+   border-radius: 0 8px 8px 0;
+}

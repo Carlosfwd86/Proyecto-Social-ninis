@@ -19,7 +19,7 @@
     </script>
 </head>
 
-<body class="admin-body">
+<body class="page-admin">
 
 
     <header class="admin-header">
@@ -39,171 +39,236 @@
         </div>
     </header>
 
-    <main class="admin-container container py-large">
+    <main class="page-admin">
+        <section class="admin-panel py-large">
+            <div class="container">
+                <h2 class="section-title">Panel de Administración de Becas</h2>
+                <p>Desde este panel puedes crear, editar y eliminar convocatorias, definir requisitos y criterios de
+                    evaluación, gestionar evaluadores y consultar reportes globales.</p>
 
+                <!-- SECCIÓN 1: Gestión de Becas -->
+                <section class="admin-becas mt-large">
+                    <h3>Gestión de Convocatorias de Becas</h3>
 
-    <div class="admin-dashboard">
+                    <!-- Formulario Crear / Editar Beca -->
+                    <form id="form-beca" class="beca-form">
+                        <fieldset>
+                            <legend>Crear / Editar Beca</legend>
 
-            
-            <div class="stat-card">
-                <h3>Solicitudes</h3>
-                <p id="stat-solicitudes">0</p>
-                <span>Recibidas</span>
-            </div>
-            <div class="stat-card">
-                <h3>Aprobaciones</h3>
-                <p id="stat-aprobados">0</p>
-                <span>Total global</span>
-            </div>
-        </section>
+                            <label for="nombre-beca">Nombre de la Beca</label>
+                            <input type="text" id="nombre-beca" name="nombre-beca"
+                                placeholder="Ej. Beca Excelencia Académica 2026" required>
 
+                            <label for="descripcion-beca">Descripción</label>
+                            <textarea id="descripcion-beca" name="descripcion-beca" rows="3"
+                                placeholder="Descripción de la beca, objetivos y beneficios" required></textarea>
 
-        <section id="crear-convocatoria" class="admin-section">
-            <header class="section-header">
-                <h2 id="form-title">Añadir Nueva Convocatoria</h2>
-                <p>Gestiona las becas disponibles en el portal público.</p>
-            </header>
-
-            <div class="form-card">
-                <form id="scholarship-form" class="admin-form">
-
-                    <input type="hidden" id="scholarship-id">
-
-                    <div class="form-grid">
-                        <div class="form-group full-width">
-                            <label for="scholarship-name">Nombre de la Beca</label>
-                            <input type="text" id="scholarship-name" required placeholder="Ej: Beca Excelencia 2026">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="scholarship-category">Categoría</label>
-                            <select id="scholarship-category" required
-                                style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px;">
-                                <option value="Nacional">Nacional</option>
-                                <option value="Internacional">Internacional</option>
-                                <option value="Especial">Especial</option>
+                            <label for="tipo-beca">Tipo de Beca</label>
+                            <select id="tipo-beca" name="tipo-beca" required>
+                                <option value="">Selecciona un tipo</option>
+                                <option value="academica">Académica</option>
+                                <option value="cultural">Cultural</option>
+                                <option value="deportiva">Deportiva</option>
+                                <option value="tecnica">Técnica</option>
+                                <option value="nacional">Nacional</option>
+                                <option value="internacional">Internacional</option>
                             </select>
+
+                            <label for="monto-beca">Monto / Cobertura</label>
+                            <input type="text" id="monto-beca" name="monto-beca"
+                                placeholder="Ej. Beca completa, 50% matrícula, materiales" required>
+
+                            <label for="duracion-beca">Duración</label>
+                            <input type="text" id="duracion-beca" name="duracion-beca"
+                                placeholder="Ej. 1 semestre, 1 año, toda la carrera" required>
+
+                            <label for="fecha-apertura">Fecha de Apertura</label>
+                            <input type="date" id="fecha-apertura" name="fecha-apertura" required>
+
+                            <label for="fecha-cierre">Fecha de Cierre</label>
+                            <input type="date" id="fecha-cierre" name="fecha-cierre" required>
+
+                            <label for="numero-becas">Número de Becas Disponibles</label>
+                            <input type="number" id="numero-becas" name="numero-becas" min="1" required>
+                        </fieldset>
+
+                        <!-- Requisitos Académicos y Socioeconómicos -->
+                        <fieldset>
+                            <legend>Requisitos y Criterios de Evaluación</legend>
+
+                            <h4>Requisitos Académicos</h4>
+                            <label for="promedio-minimo">Promedio Mínimo</label>
+                            <input type="text" id="promedio-minimo" name="promedio-minimo" placeholder="Ej. 8.0/10"
+                                required>
+
+                            <label for="nivel-academico">Nivel Académico Requerido</label>
+                            <select id="nivel-academico" name="nivel-academico" required>
+                                <option value="">Selecciona un nivel</option>
+                                <option value="secundaria">Secundaria Completa</option>
+                                <option value="tecnico">Técnico</option>
+                                <option value="universitario">Universitario</option>
+                            </select>
+
+                            <h4>Documentos Requeridos para el Postulante</h4>
+                            <p class="form-hint">Marca los documentos que el postulante deberá presentar:</p>
+
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="req-certificado-estudios" name="req-certificado-estudios"
+                                        checked>
+                                    <span>Certificado de Estudios</span>
+                                </label>
+
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="req-comprobante-ingresos" name="req-comprobante-ingresos"
+                                        checked>
+                                    <span>Comprobante de Ingresos Familiares</span>
+                                </label>
+
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="req-declaracion-jurada" name="req-declaracion-jurada"
+                                        checked>
+                                    <span>Declaración Jurada de Situación Socioeconómica</span>
+                                </label>
+
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="req-identificacion" name="req-identificacion" checked>
+                                    <span>Identificación Oficial</span>
+                                </label>
+
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="req-constancia-residencia"
+                                        name="req-constancia-residencia">
+                                    <span>Constancia de Residencia</span>
+                                </label>
+                            </div>
+
+                            <h4>Requisitos Socioeconómicos</h4>
+                            <label for="num-miembros-hogar">Número Máximo de Miembros del Hogar</label>
+                            <input type="number" id="num-miembros-hogar" name="num-miembros-hogar" min="1"
+                                placeholder="Opcional">
+
+                            <label for="condicion-vulnerabilidad">Condición de Vulnerabilidad</label>
+                            <input type="text" id="condicion-vulnerabilidad" name="condicion-vulnerabilidad"
+                                placeholder="Opcional: discapacidad, familia monoparental, pobreza extrema">
+                        </fieldset>
+
+                        <div class="form-actions mt-medium">
+                            <button type="submit" class="btn-primary">Guardar Beca</button>
+                            <button type="reset" class="btn-secondary">Limpiar Formulario</button>
                         </div>
-                        <div class="admin-stat-card">
-                            <div class="admin-stat-icon bg-success">
-                                <i class="ri-scholarship-line"></i>
-                            </div>
-                            <div class="admin-stat-info">
-                                <h3 class="admin-stat-number" id="stat-total-becas">0</h3>
-                                <p class="admin-stat-label">Total Becas</p>
-                            </div>
+                    </form>
+
+                    <!-- Tabla de Convocatorias Existentes -->
+                    <div class="existing-becas mt-large">
+                        <h4>Convocatorias Actuales</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Tipo</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla-becas">
+                                <!-- Aquí se listarán las becas creadas desde localstorage / JSON -->
+                                <tr>
+                                    <td>Beca Excelencia 2026</td>
+                                    <td>Académica</td>
+                                    <td>Activa</td>
+                                    <td>
+                                        <button class="btn-edit">Editar</button>
+                                        <button class="btn-delete">Eliminar</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- SECCIÓN 2: Gestión de Evaluadores -->
+                <section class="admin-evaluadores mt-large">
+                    <h3>Gestión de Usuarios Evaluadores</h3>
+                    <form id="form-evaluador" class="evaluador-form">
+                        <fieldset>
+                            <legend>Crear / Editar Evaluador</legend>
+
+                            <label for="nombre-evaluador">Nombre Completo</label>
+                            <input type="text" id="nombre-evaluador" name="nombre-evaluador" required>
+
+                            <label for="email-evaluador">Correo Electrónico</label>
+                            <input type="email" id="email-evaluador" name="email-evaluador" required>
+
+                            <label for="rol-evaluador">Rol</label>
+                            <select id="rol-evaluador" name="rol-evaluador" required>
+                                <option value="">Selecciona un rol</option>
+                                <option value="evaluador">Evaluador</option>
+                                <option value="coordinador">Coordinador</option>
+                            </select>
+                        </fieldset>
+
+                        <div class="form-actions mt-medium">
+                            <button type="submit" class="btn-primary">Guardar Evaluador</button>
+                            <button type="reset" class="btn-secondary">Limpiar Formulario</button>
                         </div>
-                        <div class="admin-stat-card">
-                            <div class="admin-stat-icon bg-warning">
-                                <i class="ri-file-list-3-line"></i>
-                            </div>
-                            <div class="admin-stat-info">
-                                <h3 class="admin-stat-number" id="stat-total-solicitudes">0</h3>
-                                <p class="admin-stat-label">Solicitudes Activas</p>
-                            </div>
+                    </form>
+
+                    <div class="existing-evaluadores mt-large">
+                        <h4>Evaluadores Registrados</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Correo</th>
+                                    <th>Rol</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla-evaluadores">
+                                <tr>
+                                    <td>Juan Pérez</td>
+                                    <td>juan.perez@insa.org</td>
+                                    <td>Evaluador</td>
+                                    <td>
+                                        <button class="btn-edit">Editar</button>
+                                        <button class="btn-delete">Eliminar</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- SECCIÓN 3: Reportes Globales -->
+                <section class="admin-reportes mt-large">
+                    <h3>Reportes Globales</h3>
+                    <p>Consulta el estado de todas las becas, evaluaciones y postulaciones en tiempo real.</p>
+                    <div class="reportes-cards grid-3">
+                        <div class="report-card">
+                            <h4>Total Becas</h4>
+                            <p id="total-becas">10</p>
                         </div>
-                        <div class="admin-stat-card">
-                            <div class="admin-stat-icon bg-info">
-                                <i class="ri-bar-chart-2-line"></i>
-                            </div>
-                            <div class="admin-stat-info">
-                                <h3 class="admin-stat-number" id="stat-total-convocatorias">0</h3>
-                                <p class="admin-stat-label">Convocatorias</p>
-                            </div>
+                        <div class="report-card">
+                            <h4>Becas Activas</h4>
+                            <p id="becas-activas">7</p>
+                        </div>
+                        <div class="report-card">
+                            <h4>Becas Cerradas</h4>
+                            <p id="becas-cerradas">3</p>
                         </div>
                     </div>
-
-                    <div class="admin-card">
-                        <div class="admin-card-header">
-                            <h3 class="admin-card-title">Últimas Solicitudes</h3>
-                            <button class="btn btn-sm btn-outline-primary" onclick="loadSolicitudes()">
-                                <i class="ri-refresh-line"></i> Actualizar
-                            </button>
-                        </div>
-                        <div class="admin-table-responsive">
-                            <table class="admin-table" id="latest-solicitudes-table">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Estudiante</th>
-                                        <th>Tipo</th>
-                                        <th>Monto</th>
-                                        <th>Estado</th>
-                                        <th>Fecha</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="latest-solicitudes-body">
-                                    <tr>
-                                        <td colspan="6" class="text-center">Cargando solicitudes...</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="tab-convocatorias" class="admin-tab-content">
-                    <div class="admin-tab-header">
-                        <h2 class="admin-tab-title">Gestión de Convocatorias</h2>
-                        <p class="admin-tab-subtitle">Administrar convocatorias de becas</p>
-                    </div>
-
-                    <div class="admin-card">
-                        <div class="admin-card-header">
-                            <h3 class="admin-card-title">Convocatorias</h3>
-                        </div>
-                        <div class="admin-table-responsive">
-                            <table class="admin-table" id="convocatorias-table">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Título</th>
-                                        <th>Tipo</th>
-                                        <th>Estado</th>
-                                        <th>Fecha Inicio</th>
-                                        <th>Fecha Fin</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="convocatorias-body">
-                                    <tr>
-                                        <td colspan="7" class="text-center">Cargando convocatorias...</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="tab-becas" class="admin-tab-content">
-                    <div class="admin-tab-header">
-                        <h2 class="admin-tab-title">Gestión de Becas</h2>
-                        <p class="admin-tab-subtitle">Administrar becas disponibles</p>
-                    </div>
-                </form>
-            </div>
-
-            <div class="table-container">
-                <table class="admin-table">
-                    <thead>
-                        <tr>
-                            <th>Sede</th>
-                            <th>Ubicación</th>
-                            <th>Responsable</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody id="sede-table-body">
-                        <!-- Generado por JS -->
-                    </tbody>
-                </table>
+                </section>
             </div>
         </section>
+
+
 
     </main>
-
-                <div id="tab-ayudas" class="admin-tab-content">
-                    <div class="admin-tab-
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Sistema de Gestión de Becas - Todos los derechos reservados.</p>
+            <p>Transparencia | Aviso de Privacidad | Términos y Condiciones</p>
         </div>
     </footer>
 

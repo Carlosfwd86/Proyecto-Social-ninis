@@ -1,16 +1,22 @@
 /* =====================================================
    Rediseño del Panel Evaluador
-   Mantiene iconos (Font Awesome / Remixicon)
-   y paleta basada en variables existentes
    ===================================================== */
 
 :root {
-  /* Se respetan las variables ya definidas en tus otros CSS */
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 16px;
   --shadow-soft: 0 6px 18px rgba(0, 0, 0, 0.08);
   --shadow-hover: 0 10px 30px rgba(0, 0, 0, 0.12);
+
+  /* Paleta institucional verde */
+  --primary-color: #016a04;
+  --secondary-color: #053d1d;
+  --accent-color: #10b981;
+  --bg-color: #f0fdf4;
+  --text-color: #1f2937;
+  --muted-text: #6b7280;
+  --table-head-bg: #dcfce7;
 }
 
 /* =====================
@@ -69,8 +75,8 @@
 }
 
 .badge-role-eval {
-  background: rgba(255, 255, 255, 0.15);
-  color: #fff;
+  background: rgba(255, 255, 255, 0.18);
+  color: #ecfeff;
   font-size: 0.75rem;
   padding: 4px 10px;
   border-radius: 999px;
@@ -84,7 +90,7 @@
 }
 
 .eval-nav-link {
-  color: #fff;
+  color: #ecfeff;
   text-decoration: none;
   font-weight: 500;
   padding: 8px 14px;
@@ -93,12 +99,12 @@
 }
 
 .eval-nav-link:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.18);
   transform: translateY(-1px);
 }
 
 .eval-nav-link.active {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.28);
 }
 
 .logout-eval {
@@ -120,7 +126,7 @@
 }
 
 .stat-card {
-  background: #fff;
+  background: #f0fdfa;
   border-radius: var(--radius-lg);
   padding: 24px;
   box-shadow: var(--shadow-soft);
@@ -155,7 +161,7 @@
    ===================== */
 
 .eval-section {
-  background: #fff;
+  background: #f8fffb;
   border-radius: var(--radius-lg);
   padding: 28px;
   box-shadow: var(--shadow-soft);
@@ -213,7 +219,7 @@
 }
 
 .eval-table tbody tr:hover {
-  background: #f8fafc;
+  background: #e6fffa;
 }
 
 /* =====================
@@ -227,10 +233,10 @@
 }
 
 .postulante-info-card {
-  background: #f9fafb;
+  background: #ecfeff;
   border-radius: var(--radius-lg);
   padding: 24px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #a7f3d0;
 }
 
 .postulante-info-card h3 {
@@ -238,4 +244,83 @@
   font-size: 1.1rem;
 }
 
-.info-list {
+/* =========================
+   HEADER EVALUADOR
+   ========================= */
+
+.eval-header {
+  background: linear-gradient(135deg, #016a04, #053d1d);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.eval-nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 75px;
+}
+
+/* Logo */
+
+.eval-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.eval-logo img {
+  height: 48px;
+}
+
+/* Badge */
+
+.badge-role-eval {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* Nav */
+
+.eval-nav-list {
+  list-style: none;
+  display: flex;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+}
+
+.eval-nav-link {
+  color: #ffffff;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.eval-nav-link:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.eval-nav-link.active {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+/* Logout */
+
+.logout-eval {
+  background: rgba(239, 68, 68, 0.25);
+}
+
+.logout-eval:hover {
+  background: rgba(239, 68, 68, 0.45);
+}

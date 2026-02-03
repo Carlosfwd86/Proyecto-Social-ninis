@@ -1,0 +1,129 @@
+/* Estilos para Junta Directiva */
+/* Utiliza variables de index.css */
+
+main.container {
+   max-width: 1200px;
+   margin-top: 40px;
+   margin-bottom: 60px;
+   padding-top: 20px;
+}
+
+/* Intro (Título + Párrafo) */
+.directiva-intro {
+   width: 100%;
+   margin-bottom: 50px;
+   text-align: center;
+}
+
+#consejo-directivo {
+   text-align: center;
+   margin-bottom: 20px;
+   font-size: 2.2rem;
+   color: var(--primary-color);
+}
+
+.directiva-intro>p {
+   text-align: center;
+   max-width: 800px;
+   margin: 0 auto 30px;
+   color: var(--text-light);
+   line-height: 1.7;
+}
+
+/* Grid de Miembros: Dos columnas */
+.directiva-grid {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 40px;
+   align-items: start;
+}
+
+.directiva-col {
+   display: flex;
+   flex-direction: column;
+   gap: 40px;
+}
+
+/* Cards de miembros - Reforzando solidez */
+article {
+   background: #ffffff !important;
+   /* Asegurar fondo sólido */
+   border-radius: var(--radius-lg);
+   overflow: hidden;
+   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+   /* Sombra más fuerte para evitar "transparencia" */
+   transition: var(--transition);
+   border: 1px solid rgba(0, 0, 0, 0.08);
+   display: flex;
+   flex-direction: column;
+   opacity: 1 !important;
+   /* Asegurar opacidad total */
+}
+
+article:hover {
+   transform: translateY(-8px);
+   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+   border-color: var(--primary-color);
+}
+
+article img {
+   width: 100%;
+   height: 250px;
+   object-fit: cover;
+   object-position: center top;
+   border-bottom: 4px solid var(--secondary-color);
+   background-color: #f3f4f6;
+}
+
+article h3 {
+   font-size: 1.3rem;
+   margin: 20px 20px 8px;
+   color: var(--primary-color);
+   font-weight: 700;
+}
+
+article p {
+   text-align: left;
+   margin: 0 20px 15px;
+   font-size: 0.95rem;
+   color: var(--text-dark);
+   font-weight: 500;
+}
+
+/* Estilo para las citas */
+article blockquote {
+   background-color: #f8fafc;
+   padding: 20px;
+   margin: auto 20px 20px;
+   border-radius: 12px;
+   font-style: italic;
+   color: #334155;
+   font-size: 0.9rem;
+   position: relative;
+   border-left: 4px solid var(--accent-color);
+}
+
+article blockquote::before {
+   content: '"';
+   font-size: 3rem;
+   color: rgba(16, 185, 129, 0.15);
+   position: absolute;
+   top: -10px;
+   left: 10px;
+   font-family: serif;
+}
+
+@media (max-width: 900px) {
+   .directiva-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+   }
+
+   #consejo-directivo {
+      font-size: 1.8rem;
+   }
+
+   article img {
+      height: 200px;
+   }
+}
