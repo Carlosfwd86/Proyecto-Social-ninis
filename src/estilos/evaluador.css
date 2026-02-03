@@ -9,13 +9,14 @@
   --shadow-soft: 0 6px 18px rgba(0, 0, 0, 0.08);
   --shadow-hover: 0 10px 30px rgba(0, 0, 0, 0.12);
 
-  /* Paleta admin */
-  --primary-color: #0f766e;
-  --secondary-color: #115e59;
-  --bg-color: #ecfeff;
-  --text-color: #083344;
-  --muted-text: #0f766e;
-  --table-head-bg: #cffafe;
+  /* Paleta institucional verde */
+  --primary-color: #016a04;
+  --secondary-color: #053d1d;
+  --accent-color: #10b981;
+  --bg-color: #f0fdf4;
+  --text-color: #1f2937;
+  --muted-text: #6b7280;
+  --table-head-bg: #dcfce7;
 }
 
 /* =====================
@@ -242,6 +243,7 @@
   margin-bottom: 16px;
   font-size: 1.1rem;
 }
+
 /* =========================
    HEADER EVALUADOR
    ========================= */

@@ -4,8 +4,8 @@ const formTitle = document.getElementById('form-title');
 const btnSubmit = document.getElementById('btn-submit-form');
 const btnCancelEdit = document.getElementById('btn-cancel-edit');
 const hiddenId = document.getElementById('scholarship-id');
-const evaluatorForm = document.getElementById('evaluator-form');
-const evaluadoresContainer = document.getElementById('evaluadores-container');
+const evaluatorForm = document.getElementById('form-evaluador');
+const evaluadoresContainer = document.getElementById('tabla-evaluadores');
 const sedeForm = document.getElementById('sede-form');
 const sedeTableBody = document.getElementById('sede-table-body');
 const hiddenSedeId = document.getElementById('sede-id');
@@ -164,52 +164,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderEvaluators() {
         const users = JSON.parse(localStorage.getItem('scholarship_users')) || [];
-        const evaluators = users.filter(u => u.role === 'evaluador' || u.username === 'evaluador');
+        const evaluators = users.filter(u => u.role === 'evaluador' || u.role === 'coordinador');
 
         if (!evaluadoresContainer) return;
         evaluadoresContainer.innerHTML = '';
+
+        if (evaluators.length === 0) {
+            const emptyRow = document.createElement('tr');
+            emptyRow.innerHTML = '<td colspan="4" style="text-align: center; color: #6b7280;">No hay evaluadores registrados</td>';
+            evaluadoresContainer.appendChild(emptyRow);
+            return;
+        }
+
         evaluators.forEach(evaluator => {
-            const card = document.createElement('article');
-            card.className = 'evaluador-card';
+            const row = document.createElement('tr');
 
-            const infoDiv = document.createElement('div');
-            infoDiv.classList.add('eval-info');
+            const tdName = document.createElement('td');
+            tdName.textContent = evaluator.fullname || evaluator.username;
 
-            const h3 = document.createElement('h3');
-            h3.textContent = evaluator.fullname || evaluator.username;
+            const tdEmail = document.createElement('td');
+            tdEmail.textContent = evaluator.email || '-';
 
-            const p = document.createElement('p');
-            p.textContent = `Acceso: ${evaluator.username}`;
+            const tdRole = document.createElement('td');
+            const badgeRole = document.createElement('span');
+            badgeRole.classList.add('status-tag', 'status-active');
+            badgeRole.textContent = evaluator.role === 'coordinador' ? 'Coordinador' : 'Evaluador';
+            tdRole.appendChild(badgeRole);
 
-            const spanBadge = document.createElement('span');
-            spanBadge.classList.add('badge-eval');
-            spanBadge.textContent = 'Evaluador Activo';
+            const tdActions = document.createElement('td');
+            tdActions.appendChild(createIconButton('✏️', 'edit', 'Editar', () => prepareEditEvaluator(evaluator.username)));
+            tdActions.appendChild(createIconButton('🗑️', 'delete', 'Eliminar', () => deleteEvaluator(evaluator.username)));
 
-            infoDiv.appendChild(h3);
-            infoDiv.appendChild(p);
-            infoDiv.appendChild(spanBadge);
+            row.appendChild(tdName);
+            row.appendChild(tdEmail);
+            row.appendChild(tdRole);
+            row.appendChild(tdActions);
 
-            const actionsDiv = document.createElement('div');
-            actionsDiv.classList.add('eval-actions');
-
-            const btnEdit = document.createElement('button');
-            btnEdit.classList.add('btn-text-primary'); // CSS class needed or standard
-            btnEdit.style.color = 'blue';
-            btnEdit.style.marginRight = '10px';
-            btnEdit.textContent = 'Editar';
-            btnEdit.onclick = () => prepareEditEvaluator(evaluator.username);
-
-            const btnDelete = document.createElement('button');
-            btnDelete.classList.add('btn-text-danger');
-            btnDelete.textContent = 'Dar de baja';
-            btnDelete.onclick = () => deleteEvaluator(evaluator.username);
-
-            actionsDiv.appendChild(btnEdit);
-            actionsDiv.appendChild(btnDelete);
-
-            card.appendChild(infoDiv);
-            card.appendChild(actionsDiv);
-            evaluadoresContainer.appendChild(card);
+            evaluadoresContainer.appendChild(row);
         });
     }
 

@@ -4,58 +4,66 @@
 main.container {
    max-width: 1200px;
    margin-top: 40px;
-   /* Reduced top margin to avoid pushing header too far or overlap */
    margin-bottom: 60px;
    padding-top: 20px;
-   /* Safe padding */
 }
 
-/* Header Sections must be block level above grid */
-#consejo-directivo {
-   grid-column: 1 / -1;
-   /* Span full width if inside grid */
+/* Intro (Título + Párrafo) */
+.directiva-intro {
+   width: 100%;
+   margin-bottom: 50px;
    text-align: center;
-   margin-bottom: 10px;
-   font-size: 2.5rem;
+}
+
+#consejo-directivo {
+   text-align: center;
+   margin-bottom: 20px;
+   font-size: 2.2rem;
    color: var(--primary-color);
 }
 
-main>p {
+.directiva-intro>p {
    text-align: center;
    max-width: 800px;
-   margin: 0 auto 40px auto;
+   margin: 0 auto 30px;
    color: var(--text-light);
-   grid-column: 1 / -1;
-   /* Span full width */
+   line-height: 1.7;
 }
 
-/* Grid de miembros */
-section[aria-labelledby="consejo-directivo"] {
+/* Grid de Miembros: Dos columnas */
+.directiva-grid {
    display: grid;
-   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-   /* Better sizing */
+   grid-template-columns: 1fr 1fr;
    gap: 40px;
-   /* Increased gap */
    align-items: start;
-   /* Fix vertical stretching */
 }
 
-/* Cards de miembros */
-article {
-   background: white;
-   border-radius: var(--radius-lg);
-   overflow: hidden;
-   box-shadow: var(--shadow-soft);
-   transition: var(--transition);
-   border: 1px solid rgba(0, 0, 0, 0.05);
+.directiva-col {
    display: flex;
    flex-direction: column;
+   gap: 40px;
+}
+
+/* Cards de miembros - Reforzando solidez */
+article {
+   background: #ffffff !important;
+   /* Asegurar fondo sólido */
+   border-radius: var(--radius-lg);
+   overflow: hidden;
+   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+   /* Sombra más fuerte para evitar "transparencia" */
+   transition: var(--transition);
+   border: 1px solid rgba(0, 0, 0, 0.08);
+   display: flex;
+   flex-direction: column;
+   opacity: 1 !important;
+   /* Asegurar opacidad total */
 }
 
 article:hover {
-   transform: translateY(-10px);
-   box-shadow: var(--shadow-premium);
-   border-color: rgba(16, 185, 129, 0.3);
+   transform: translateY(-8px);
+   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+   border-color: var(--primary-color);
 }
 
 article img {
@@ -64,51 +72,58 @@ article img {
    object-fit: cover;
    object-position: center top;
    border-bottom: 4px solid var(--secondary-color);
-   background-color: #e5e7eb;
-   /* Fallback si no hay imagen */
+   background-color: #f3f4f6;
 }
 
 article h3 {
-   font-size: 1.4rem;
-   margin: 20px 20px 5px;
+   font-size: 1.3rem;
+   margin: 20px 20px 8px;
    color: var(--primary-color);
+   font-weight: 700;
 }
 
 article p {
    text-align: left;
    margin: 0 20px 15px;
    font-size: 0.95rem;
-   color: var(--text-light);
+   color: var(--text-dark);
    font-weight: 500;
 }
 
 /* Estilo para las citas */
 article blockquote {
-   background-color: #f9fafb;
+   background-color: #f8fafc;
    padding: 20px;
    margin: auto 20px 20px;
    border-radius: 12px;
    font-style: italic;
-   color: #4b5563;
-   font-size: 0.95rem;
+   color: #334155;
+   font-size: 0.9rem;
    position: relative;
-   border-left: 3px solid var(--accent-purple);
+   border-left: 4px solid var(--accent-color);
 }
 
 article blockquote::before {
    content: '"';
    font-size: 3rem;
-   color: rgba(139, 92, 246, 0.2);
+   color: rgba(16, 185, 129, 0.15);
    position: absolute;
    top: -10px;
    left: 10px;
    font-family: serif;
 }
 
-/* Manejo de imágenes faltantes (placeholders visuales via CSS si la img falla, aunque el HTML tiene src) */
-
-@media (max-width: 768px) {
-   section[aria-labelledby="consejo-directivo"] {
+@media (max-width: 900px) {
+   .directiva-grid {
       grid-template-columns: 1fr;
+      gap: 30px;
+   }
+
+   #consejo-directivo {
+      font-size: 1.8rem;
+   }
+
+   article img {
+      height: 200px;
    }
 }

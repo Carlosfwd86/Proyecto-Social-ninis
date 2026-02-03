@@ -101,10 +101,6 @@
                             <input type="text" id="promedio-minimo" name="promedio-minimo" placeholder="Ej. 8.0/10"
                                 required>
 
-                            <label for="certificado-estudios">Certificado de Estudios</label>
-                            <input type="file" id="certificado-estudios" name="certificado-estudios"
-                                accept=".pdf,.jpg,.png" required>
-
                             <label for="nivel-academico">Nivel Académico Requerido</label>
                             <select id="nivel-academico" name="nivel-academico" required>
                                 <option value="">Selecciona un nivel</option>
@@ -113,17 +109,44 @@
                                 <option value="universitario">Universitario</option>
                             </select>
 
+                            <h4>Documentos Requeridos para el Postulante</h4>
+                            <p class="form-hint">Marca los documentos que el postulante deberá presentar:</p>
+
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="req-certificado-estudios" name="req-certificado-estudios"
+                                        checked>
+                                    <span>Certificado de Estudios</span>
+                                </label>
+
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="req-comprobante-ingresos" name="req-comprobante-ingresos"
+                                        checked>
+                                    <span>Comprobante de Ingresos Familiares</span>
+                                </label>
+
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="req-declaracion-jurada" name="req-declaracion-jurada"
+                                        checked>
+                                    <span>Declaración Jurada de Situación Socioeconómica</span>
+                                </label>
+
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="req-identificacion" name="req-identificacion" checked>
+                                    <span>Identificación Oficial</span>
+                                </label>
+
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="req-constancia-residencia"
+                                        name="req-constancia-residencia">
+                                    <span>Constancia de Residencia</span>
+                                </label>
+                            </div>
+
                             <h4>Requisitos Socioeconómicos</h4>
-                            <label for="comprobante-ingresos">Comprobante de Ingresos Familiares</label>
-                            <input type="file" id="comprobante-ingresos" name="comprobante-ingresos"
-                                accept=".pdf,.jpg,.png" required>
-
-                            <label for="declaracion-jurada">Declaración Jurada de Situación Socioeconómica</label>
-                            <input type="file" id="declaracion-jurada" name="declaracion-jurada" accept=".pdf,.jpg,.png"
-                                required>
-
-                            <label for="num-miembros-hogar">Número de Miembros del Hogar</label>
-                            <input type="number" id="num-miembros-hogar" name="num-miembros-hogar" min="1" required>
+                            <label for="num-miembros-hogar">Número Máximo de Miembros del Hogar</label>
+                            <input type="number" id="num-miembros-hogar" name="num-miembros-hogar" min="1"
+                                placeholder="Opcional">
 
                             <label for="condicion-vulnerabilidad">Condición de Vulnerabilidad</label>
                             <input type="text" id="condicion-vulnerabilidad" name="condicion-vulnerabilidad"

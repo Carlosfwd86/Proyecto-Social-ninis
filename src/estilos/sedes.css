@@ -21,70 +21,111 @@ main.container {
     color: var(--text-light);
 }
 
-/* Lista de Sedes (Sencilla) */
+/* Grid de Sedes */
 .sedes-grid {
-    display: block;
-    /* Removed grid behavior */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
 }
 
 .sede-card {
-    background: transparent;
-    padding: 20px 0;
-    border-bottom: 1px solid #eee;
-    margin-bottom: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-start;
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
+    transition: var(--transition);
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.sede-card:last-child {
-    border-bottom: none;
+.sede-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-premium);
 }
 
-.sede-card h3 {
-    font-size: 1.3rem;
-    color: var(--primary-color);
-    margin-bottom: 10px;
+.sede-img-wrapper {
+    position: relative;
+    height: 180px;
+    overflow: hidden;
+}
+
+.sede-img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sede-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: var(--primary-color);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
 .sede-info {
+    padding: 20px;
+}
+
+.sede-info h3 {
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.sede-details {
     list-style: none;
-    width: 100%;
+    padding: 0;
+    margin: 0 0 20px 0;
 }
 
-@media (min-width: 768px) {
-    .sede-info {
-        width: 60%;
-    }
-}
-
-.sede-info li {
-    margin-bottom: 8px;
+.sede-details li {
     display: flex;
-    gap: 10px;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
     color: var(--text-dark);
+    font-size: 0.9rem;
 }
 
-.sede-info li i {
-    color: var(--secondary-color);
-}
-
-.map-container {
-    width: 100%;
-    height: 150px;
-    background: #f3f4f6;
-    margin-top: 15px;
+.icono-box {
+    width: 30px;
+    height: 30px;
+    background: var(--secondary-color);
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #999;
+    flex-shrink: 0;
 }
 
-@media (min-width: 768px) {
-    .map-container {
-        width: 35%;
-        margin-top: 0;
+.icono-box i {
+    color: white;
+    font-size: 0.8rem;
+}
+
+.map-btn {
+    width: 100%;
+    padding: 12px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.map-btn:hover {
+    background: var(--secondary-color);
+}
+
+@media (max-width: 768px) {
+    .sedes-grid {
+        grid-template-columns: 1fr;
     }
 }

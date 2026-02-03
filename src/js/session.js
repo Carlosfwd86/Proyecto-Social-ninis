@@ -115,4 +115,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Ejecutar lógica de UI
     handleSeccion();
+
+    // Compact Sticky Header: Se activa al pasar el área de la top-bar
+    const header = document.querySelector('.institutional-header');
+    if (header) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    }
 });
