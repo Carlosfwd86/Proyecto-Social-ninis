@@ -97,7 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // Muchos ya traen su propio botón, pero vinculamos el evento si existe por ID
         const specificLogout = document.getElementById('btn-logout-eval') ||
             document.getElementById('btn-logout-panel') ||
-            document.getElementById('btn-logout-admin');
             document.getElementById('btn-logout-admin') ||
             document.getElementById('nav-logout-li'); // Agregado por seguridad si existiera
 

@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnLogout = document.getElementById('btn-logout-panel');
 
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    let editingFolio = null; // Variable to track if we are editing
 
     if (!currentUser) return;
 
@@ -102,7 +103,17 @@ document.addEventListener('DOMContentLoaded', () => {
             btnEdit.classList.add('btn-icon', 'edit');
             btnEdit.title = 'Editar Solicitud';
             btnEdit.textContent = '✏️';
+            btnEdit.onclick = () => editApplication(app.folio);
+
+            const btnDelete = document.createElement('button');
+            btnDelete.classList.add('btn-icon', 'delete');
+            btnDelete.title = 'Eliminar Solicitud';
+            btnDelete.textContent = '🗑️';
+            btnDelete.style.marginLeft = '8px';
+            btnDelete.onclick = () => confirmDeleteApplication(app.folio);
+
             tdActions.appendChild(btnEdit);
+            tdActions.appendChild(btnDelete);
 
             row.appendChild(tdFolio);
             row.appendChild(tdScho);
@@ -158,7 +169,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 evalInfo: null
             };
 
-            mostrarConfirmacionPostulacion(applicationData, applyForm);
+            if (editingFolio) {
+                // Update existing
+                const apps = JSON.parse(localStorage.getItem('scholarship_applications')) || [];
+                const index = apps.findIndex(a => a.folio === editingFolio);
+                if (index !== -1) {
+                    apps[index] = { ...apps[index], ...applicationData, folio: editingFolio, status: 'Pendiente' }; // Keep folio, reset status
+                    localStorage.setItem('scholarship_applications', JSON.stringify(apps));
+                    alert('Solicitud actualizada correctamente');
+                    resetEditingState();
+                    applicationModule.classList.add('hidden');
+                    renderApplications();
+                }
+            } else {
+                // Create new
+                mostrarConfirmacionPostulacion(applicationData, applyForm);
+            }
         });
     }
 
@@ -336,6 +362,64 @@ document.addEventListener('DOMContentLoaded', () => {
             supportTable.appendChild(row);
         });
     }
+
+    // 6. Eliminar Solicitud
+    window.confirmDeleteApplication = function (folio) {
+        if (confirm('¿Estás seguro de que deseas eliminar esta solicitud? Esta acción no se puede deshacer.')) {
+            deleteApplication(folio);
+        }
+    }
+
+    function deleteApplication(folio) {
+        let allApplications = JSON.parse(localStorage.getItem('scholarship_applications')) || [];
+        const initialLength = allApplications.length;
+        allApplications = allApplications.filter(app => app.folio !== folio);
+
+        if (allApplications.length < initialLength) {
+            localStorage.setItem('scholarship_applications', JSON.stringify(allApplications));
+            renderApplications();
+            // Opcional: Mostrar mensaje de éxito
+            // alert('Solicitud eliminada correctamente.');
+        }
+    }
+
+    // 7. Editar Solicitud
+    window.editApplication = function (folio) {
+        const apps = JSON.parse(localStorage.getItem('scholarship_applications')) || [];
+        const app = apps.find(a => a.folio === folio);
+        if (!app) return;
+
+        editingFolio = folio; // Set editing state
+
+        // Populate form
+        applicationModule.classList.remove('hidden');
+        applicationModule.scrollIntoView({ behavior: 'smooth' });
+
+        // Handle Select population (wait if empty or just set value)
+        if (scholarshipSelect) scholarshipSelect.value = app.scholarship;
+        if (document.getElementById('phone')) document.getElementById('phone').value = app.phone;
+        if (document.getElementById('average')) document.getElementById('average').value = app.average;
+        if (document.getElementById('institution')) document.getElementById('institution').value = app.institution;
+        if (document.getElementById('career')) document.getElementById('career').value = app.grade;
+        if (document.getElementById('income')) document.getElementById('income').value = app.income;
+        if (document.getElementById('housing')) document.getElementById('housing').value = app.housingStatus;
+        if (document.getElementById('reason')) document.getElementById('reason').value = app.reason;
+
+        // Change button text
+        const submitBtn = applyForm.querySelector('button[type="submit"]');
+        if (submitBtn) submitBtn.textContent = 'Actualizar Solicitud';
+    }
+
+    // Reset Editing State on Close/Cancel
+    function resetEditingState() {
+        editingFolio = null;
+        applyForm.reset();
+        const submitBtn = applyForm.querySelector('button[type="submit"]');
+        if (submitBtn) submitBtn.textContent = 'Enviar Solicitud Completa';
+    }
+
+    if (btnCerrarForm) btnCerrarForm.addEventListener('click', () => { applicationModule.classList.add('hidden'); resetEditingState(); });
+    if (btnCancelarForm) btnCancelarForm.addEventListener('click', () => { applicationModule.classList.add('hidden'); resetEditingState(); });
 
     // Inicialización
     loadScholarships();

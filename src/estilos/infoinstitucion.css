@@ -1,0 +1,140 @@
+/* Estilos para Información Institucional */
+/* Utiliza variables de index.css */
+
+main.container {
+   max-width: 1000px;
+   /* Ancho de lectura optimizado */
+   background: #fff;
+   padding: 40px 60px;
+   margin-top: 80px;
+   /* Increased from 40px to clear header */
+   margin-bottom: 40px;
+   border-radius: var(--radius-lg);
+   box-shadow: var(--shadow-soft);
+   position: relative;
+   overflow: hidden;
+}
+
+/* Efecto decorativo sutil */
+main.container::before {
+   content: '';
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 6px;
+   background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+}
+
+
+/* Scoped styles for Info Institucion */
+
+main.container h2 {
+   font-size: 2.2rem;
+   color: var(--primary-color);
+   margin-bottom: 30px;
+   position: relative;
+   padding-bottom: 15px;
+}
+
+main.container h2::after {
+   content: '';
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   width: 80px;
+   height: 4px;
+   background-color: var(--secondary-color);
+   border-radius: 2px;
+}
+
+main.container h3 {
+   font-size: 1.5rem;
+   color: var(--primary-color);
+   margin-top: 40px;
+   margin-bottom: 20px;
+   font-weight: 600;
+}
+
+main.container p {
+   font-size: 1.1rem;
+   line-height: 1.8;
+   color: var(--text-light);
+   margin-bottom: 25px;
+   text-align: justify;
+}
+
+/* Estilos para Misión y Visión (Simplificado) */
+main.container section[aria-labelledby="mision-insa"],
+main.container section[aria-labelledby="vision-insa"] {
+   background-color: transparent;
+   padding: 0;
+   border: none;
+   margin-bottom: 40px;
+   box-shadow: none;
+}
+
+main.container section[aria-labelledby="mision-insa"]:hover,
+main.container section[aria-labelledby="vision-insa"]:hover {
+   transform: none;
+   /* Removed hover effect */
+   box-shadow: none;
+}
+
+main.container section h3 {
+   border-bottom: 2px solid var(--secondary-color);
+   display: inline-block;
+   padding-bottom: 5px;
+   margin-bottom: 15px;
+   margin-top: 0;
+}
+
+main.container section p {
+   font-style: normal;
+   font-size: 1.1rem;
+   color: var(--text-dark);
+   margin-bottom: 0;
+}
+
+/* Lista de Valores (Scoped) */
+main.container ul {
+   list-style: none;
+   display: block;
+   padding-left: 20px;
+}
+
+main.container li {
+   background: transparent;
+   padding: 10px 0;
+   border: none;
+   box-shadow: none;
+   margin-bottom: 10px;
+   transition: none;
+}
+
+main.container li:hover {
+   border-color: transparent;
+   transform: none;
+   box-shadow: none;
+}
+
+main.container li strong {
+   display: inline;
+   color: var(--primary-color);
+   font-size: 1.1rem;
+   margin-right: 5px;
+}
+
+/* Iconos para viñetas simples */
+main.container li::before {
+   content: '•';
+   color: var(--secondary-color);
+   font-weight: bold;
+   display: inline-block;
+   width: 1em;
+   margin-left: -1em;
+}
+
+main.container li strong::before {
+   content: none;
+}

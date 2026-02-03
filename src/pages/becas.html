@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información Institucional | Sistema de Gestión de Becas</title>
+    <link rel="stylesheet" href="../estilos/index.css">
+    <link rel="stylesheet" href="../estilos/header-ina.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css">
+    <link rel="stylesheet" href="../estilos/becas.css">
+</head>
+
+<body>
+
+    <header class="institutional-header">
+        <div class="top-bar">
+            <div class="container top-bar-content">
+                <div class="contact-info">
+                    <span class="phone-number"><i class="ri-phone-fill"></i> (506) 800-80008</span>
+                </div>
+                <div class="social-media-links">
+                    <a href="https://www.facebook.com" target="_blank">
+                        <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"
+                            class="social-icon">
+                    </a>
+                    <a href="https://www.youtube.com" target="_blank">
+                        <img src="https://cdn-icons-png.flaticon.com/512/733/733590.png" alt="YouTube"
+                            class="social-icon">
+                    </a>
+                    <a href="https://www.instagram.com" target="_blank">
+                        <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram"
+                            class="social-icon">
+                    </a>
+                    <a href="https://www.tiktok.com" target="_blank">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TikTok"
+                            class="social-icon">
+                    </a>
+                </div>
+                <div class="utility-links">
+                    <a href="#" class="utility-link">Accesibilidad</a>
+                    <a href="login.html" class="utility-link login-link">Iniciar Sesión</a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="main-header">
+            <div class="container header-flex">
+
+                <div class="header-logo">
+                    <a href="#">
+                        <img src="../assets/img/logo_png_act.png" alt="Sistema de Gestión de Becas">
+                    </a>
+                </div>
+
+                <nav class="primary-nav" aria-label="Navegación principal">
+                    <ul class="nav-menu">
+                        <li class="nav-item">
+                            <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i></a>
+                        </li>
+                        <li class="nav-item has-dropdown">
+                            <a href="#" class="nav-link">Información de Interés <span
+                                    class="dropdown-arrow">▼</span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="index.html#convocatorias">Convocatorias Abiertas</a></li>
+                                <li><a href="Soporte.html">Preguntas Frecuentes</a></li>
+                                <li><a href="sedes.html">Sedes de Atención</a></li>
+                                <li><a href="contacto.html">Contacto</a></li>
+                                <li><a href="directiva.html">Directiva</a></li>
+                                <li><a href="financiamento.html">Financiamento</a></li>
+                                <li><a href="infoinstitucion.html">Información de la Institución</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="infobecas.html" class="nav-link">SERVICIOS</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO / Introducción -->
+        <section class="hero">
+            <div class="container">
+                <h1>Becas Disponibles</h1>
+                <p>Explora todas las becas activas y encuentra la que mejor se adapte a tu perfil.</p>
+            </div>
+        </section>
+
+        <!-- FILTROS POR CATEGORÍA -->
+        <section class="filters py-medium">
+            <div class="container">
+                <h2>Filtrar por categoría</h2>
+                <ul class="filter-list">
+                    <li><button data-filter="todos" class="active">Todos</button></li>
+                    <li><button data-filter="academica">Académica</button></li>
+                    <li><button data-filter="tecnica">Técnica</button></li>
+                    <li><button data-filter="deportiva">Deportiva</button></li>
+                    <li><button data-filter="cultural">Cultural</button></li>
+                    <li><button data-filter="social">Social</button></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- CONTENEDOR DE BECAS -->
+        <section class="scholarships py-large">
+            <div class="container grid-3" id="becas-container">
+
+                <!-- CARD EJEMPLO 1 -->
+                <article class="beca-card" data-category="academica">
+                    <img src="https://via.placeholder.com/400x250?text=Beca+Académica" alt="Beca Académica">
+                    <div class="beca-info">
+                        <h3>Beca Académica 2026</h3>
+                        <p><strong>Tipo:</strong> Académica</p>
+                        <p><strong>Fecha límite:</strong> 30 de Abril 2026</p>
+                        <button class="btn-details">Más detalles</button>
+                    </div>
+                    <div class="beca-more-details" style="display: none;">
+                        <p><strong>Descripción:</strong> Esta beca está destinada a estudiantes destacados que necesiten
+                            apoyo financiero para continuar sus estudios universitarios.</p>
+                        <p><strong>Requisitos:</strong> Historial académico actualizado, carta de motivos, comprobante
+                            de ingresos.</p>
+                        <p><strong>Beneficios:</strong> Cobertura total de matrícula y apoyo mensual para materiales de
+                            estudio.</p>
+                        <a href="postulante.html" class="btn-primary">Postular ahora</a>
+                    </div>
+                </article>
+
+                <!-- CARD EJEMPLO 2 -->
+                <article class="beca-card" data-category="deportiva">
+                    <img src="https://via.placeholder.com/400x250?text=Beca+Deportiva" alt="Beca Deportiva">
+                    <div class="beca-info">
+                        <h3>Beca Deportiva 2026</h3>
+                        <p><strong>Tipo:</strong> Deportiva</p>
+                        <p><strong>Fecha límite:</strong> 15 de Mayo 2026</p>
+                        <button class="btn-details">Más detalles</button>
+                    </div>
+                    <div class="beca-more-details" style="display: none;">
+                        <p><strong>Descripción:</strong> Beca destinada a jóvenes atletas con excelente desempeño y
+                            compromiso deportivo.</p>
+                        <p><strong>Requisitos:</strong> Certificado de participación deportiva, carta de motivación.</p>
+                        <p><strong>Beneficios:</strong> Apoyo financiero y material deportivo durante la formación.</p>
+                        <a href="postulante.html" class="btn-primary">Postular ahora</a>
+                    </div>
+                </article>
+
+                <!-- CARD EJEMPLO 3 -->
+                <article class="beca-card" data-category="tecnica">
+                    <img src="https://via.placeholder.com/400x250?text=Beca+Técnica" alt="Beca Técnica">
+                    <div class="beca-info">
+                        <h3>Beca Técnica 2026</h3>
+                        <p><strong>Tipo:</strong> Técnica</p>
+                        <p><strong>Fecha límite:</strong> 10 de Junio 2026</p>
+                        <button class="btn-details">Más detalles</button>
+                    </div>
+                    <div class="beca-more-details" style="display: none;">
+                        <p><strong>Descripción:</strong> Beca para estudiantes de carreras técnicas que demuestren
+                            talento y necesidad económica.</p>
+                        <p><strong>Requisitos:</strong> Comprobante de estudios técnicos, historial académico, carta de
+                            motivos.</p>
+                        <p><strong>Beneficios:</strong> Pago de matrícula y apoyo para materiales técnicos.</p>
+                        <a href="postulante.html" class="btn-primary">Postular ahora</a>
+                    </div>
+                </article>
+
+                <!-- Podes agregar más cards aquí siguiendo la misma estructura -->
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Sistema de Gestión de Becas - Todos los derechos reservados.</p>
+            <p>Transparencia | Aviso de Privacidad | Términos y Condiciones</p>
+        </div>
+    </footer>
+    <script src="../js/session.js"></script>
+    <script src="../js/becas.js"></script>
+</body>
+
+</html>

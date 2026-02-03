@@ -1,0 +1,114 @@
+/* Estilos para Junta Directiva */
+/* Utiliza variables de index.css */
+
+main.container {
+   max-width: 1200px;
+   margin-top: 40px;
+   /* Reduced top margin to avoid pushing header too far or overlap */
+   margin-bottom: 60px;
+   padding-top: 20px;
+   /* Safe padding */
+}
+
+/* Header Sections must be block level above grid */
+#consejo-directivo {
+   grid-column: 1 / -1;
+   /* Span full width if inside grid */
+   text-align: center;
+   margin-bottom: 10px;
+   font-size: 2.5rem;
+   color: var(--primary-color);
+}
+
+main>p {
+   text-align: center;
+   max-width: 800px;
+   margin: 0 auto 40px auto;
+   color: var(--text-light);
+   grid-column: 1 / -1;
+   /* Span full width */
+}
+
+/* Grid de miembros */
+section[aria-labelledby="consejo-directivo"] {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+   /* Better sizing */
+   gap: 40px;
+   /* Increased gap */
+   align-items: start;
+   /* Fix vertical stretching */
+}
+
+/* Cards de miembros */
+article {
+   background: white;
+   border-radius: var(--radius-lg);
+   overflow: hidden;
+   box-shadow: var(--shadow-soft);
+   transition: var(--transition);
+   border: 1px solid rgba(0, 0, 0, 0.05);
+   display: flex;
+   flex-direction: column;
+}
+
+article:hover {
+   transform: translateY(-10px);
+   box-shadow: var(--shadow-premium);
+   border-color: rgba(16, 185, 129, 0.3);
+}
+
+article img {
+   width: 100%;
+   height: 250px;
+   object-fit: cover;
+   object-position: center top;
+   border-bottom: 4px solid var(--secondary-color);
+   background-color: #e5e7eb;
+   /* Fallback si no hay imagen */
+}
+
+article h3 {
+   font-size: 1.4rem;
+   margin: 20px 20px 5px;
+   color: var(--primary-color);
+}
+
+article p {
+   text-align: left;
+   margin: 0 20px 15px;
+   font-size: 0.95rem;
+   color: var(--text-light);
+   font-weight: 500;
+}
+
+/* Estilo para las citas */
+article blockquote {
+   background-color: #f9fafb;
+   padding: 20px;
+   margin: auto 20px 20px;
+   border-radius: 12px;
+   font-style: italic;
+   color: #4b5563;
+   font-size: 0.95rem;
+   position: relative;
+   border-left: 3px solid var(--accent-purple);
+}
+
+article blockquote::before {
+   content: '"';
+   font-size: 3rem;
+   color: rgba(139, 92, 246, 0.2);
+   position: absolute;
+   top: -10px;
+   left: 10px;
+   font-family: serif;
+}
+
+/* Manejo de imágenes faltantes (placeholders visuales via CSS si la img falla, aunque el HTML tiene src) */
+
+@media (max-width: 768px) {
+   section[aria-labelledby="consejo-directivo"] {
+      grid-template-columns: 1fr;
+   }
+}

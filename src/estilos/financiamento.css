@@ -1,0 +1,136 @@
+/* Estilos para Financiamiento */
+/* Utiliza variables de index.css */
+
+main.container {
+   max-width: 900px;
+   margin-top: 80px;
+   /* Increased to avoid header overlap */
+   margin-bottom: 80px;
+}
+
+/* Títulos principales */
+.section-title {
+   font-size: 2.8rem;
+   margin-bottom: 10px;
+   color: var(--primary-color);
+}
+
+main>p.text-center {
+   font-size: 1.2rem;
+   color: var(--text-light);
+   margin-bottom: 60px;
+}
+
+main.container section {
+   background: white;
+   border-radius: var(--radius-lg);
+   padding: 50px;
+   box-shadow: var(--shadow-premium);
+   position: relative;
+   overflow: hidden;
+}
+
+/* Decoración lateral */
+main.container section::before {
+   content: '';
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 6px;
+   height: 100%;
+   background: var(--secondary-color);
+}
+
+main.container h2 {
+   font-size: 2rem;
+   color: var(--primary-color);
+   margin-bottom: 25px;
+   display: flex;
+   align-items: center;
+   gap: 15px;
+}
+
+main.container h2::after {
+   content: '';
+   flex-grow: 1;
+   height: 1px;
+   background: #e5e7eb;
+}
+
+main.container section p {
+   font-size: 1.1rem;
+   line-height: 1.8;
+   color: var(--text-dark);
+   margin-bottom: 30px;
+   text-align: justify;
+}
+
+/* Lista Modernizada */
+main.container ul {
+   list-style: none;
+   padding: 0;
+   margin-top: 40px;
+}
+
+main.container li {
+   margin-bottom: 30px;
+   position: relative;
+   padding-left: 0;
+}
+
+main.container li strong {
+   display: block;
+   color: var(--primary-color);
+   font-size: 1.2rem;
+   margin-bottom: 8px;
+   display: flex;
+   align-items: center;
+}
+
+main.container li strong::before {
+   content: '\f4c0';
+   /* Icono moneda font awesome */
+   font-family: 'Font Awesome 6 Free';
+   font-weight: 900;
+   margin-right: 12px;
+   color: white;
+   background: var(--secondary-color);
+   width: 32px;
+   height: 32px;
+   border-radius: 50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 0.8rem;
+}
+
+main.container li:nth-child(2) strong::before {
+   content: '\f4b6';
+   /* Hand holding dollar */
+   background: var(--accent-purple);
+}
+
+main.container li:nth-child(3) strong::before {
+   content: '\f0a1';
+   /* Bullhorn */
+   background: #f59e0b;
+}
+
+main.container li:nth-child(4) strong::before {
+   content: '\f080';
+   /* Chart bar */
+   background: #3b82f6;
+}
+
+main.container li span,
+main.container li {
+   font-size: 1.05rem;
+   color: #4b5563;
+   line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+   main.container section {
+      padding: 30px;
+   }
+}

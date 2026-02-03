@@ -47,7 +47,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 2. Renderizar Becas dinámicamente
     function renderIndexCards() {
-        const scholarships = JSON.parse(localStorage.getItem('scholarships')) || [];
+        // Get all and reverse to show newest first, then take top 3
+        const allScholarships = JSON.parse(localStorage.getItem('scholarships')) || [];
+        const scholarships = allScholarships.slice(-3).reverse();
+
         if (!cardsGrid) return;
         cardsGrid.innerHTML = '';
 

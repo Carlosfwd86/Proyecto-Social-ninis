@@ -4,22 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Centro de Ayuda - Sistema de Gestión de Becas</title>
-    <meta name="description"
-        content="Guía y soporte para el proceso de postulación y gestión de becas institucionales.">
-    <link rel="stylesheet" href="../estilos/Soporte.css">
+    <title>Información Institucional | Sistema de Gestión de Becas</title>
     <link rel="stylesheet" href="../estilos/index.css">
     <link rel="stylesheet" href="../estilos/header-ina.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css">
+    <link rel="stylesheet" href="../estilos/historias.css">
 </head>
 
 <body>
 
     <header class="institutional-header">
-
-
         <div class="top-bar">
             <div class="container top-bar-content">
                 <div class="contact-info">
@@ -70,7 +66,7 @@
                                     class="dropdown-arrow">▼</span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="index.html#convocatorias">Convocatorias Abiertas</a></li>
-                                <li><a href="ayuda.html">Preguntas Frecuentes</a></li>
+                                <li><a href="Soporte.html">Preguntas Frecuentes</a></li>
                                 <li><a href="sedes.html">Sedes de Atención</a></li>
                                 <li><a href="contacto.html">Contacto</a></li>
                                 <li><a href="directiva.html">Directiva</a></li>
@@ -89,49 +85,80 @@
     </header>
 
     <main>
-        <section class="intro">
-  <h2>Bienvenido al Centro de Ayuda</h2>
-  <p>Esta sección está diseñada para responder tus dudas más frecuentes sobre el proceso de postulación a las becas del Centro de Ayuda. Aquí encontrarás información clara y rápida para orientarte en tus postulaciones.</p>
-</section>
+        <section class="hero">
+            <div class="container">
+                <h1>Historias que inspiran</h1>
+                <p>Descubre cómo nuestras becas han transformado la vida de cientos de estudiantes y cómo tú también
+                    puedes lograrlo.</p>
+            </div>
+        </section>
 
-<section id="faq">
-  <h2>Preguntas Frecuentes (FAQ)</h2>
+        <section class="filters py-medium">
+            <div class="container">
+                <h2>Filtrar por categoría</h2>
+                <ul class="filter-list">
+                    <li><button data-filter="todos" class="active">Todos</button></li>
+                    <li><button data-filter="academica">Académica</button></li>
+                    <li><button data-filter="cultural">Cultural</button></li>
+                    <li><button data-filter="deportiva">Deportiva</button></li>
+                    <li><button data-filter="social">Social</button></li>
+                </ul>
+            </div>
+        </section>
 
-  <div class="faq-item">
-    <h3>¿Cómo puedo registrarme en el sistema?</h3>
-    <p>Haz clic en "Acceso" en el menú superior y selecciona "Crear cuenta". Necesitarás un correo electrónico y tus datos personales básicos.</p>
-  </div>
+        <section class="stories py-large">
+            <div class="container grid-3">
 
-  <div class="faq-item">
-    <h3>¿Qué documentos necesito para postular a una beca?</h3>
-    <p>Generalmente se requiere comprobante de ingresos, historial académico actualizado y carta de motivos. Verifica los requisitos específicos en la convocatoria vigente.</p>
-  </div>
+                <article class="story-item" data-category="academica">
+                    <img src="https://via.placeholder.com/400x250?text=Estudiante+1" alt="Estudiante 1 sonriendo">
+                    <div class="story-content">
+                        <h3>María López</h3>
+                        <p>"Gracias a la beca de INSA pude continuar mis estudios y cumplir mi sueño de graduarme con
+                            honores. Nunca pensé que esto sería posible."</p>
+                    </div>
+                </article>
 
-  <div class="faq-item">
-    <h3>¿Puedo editar mi solicitud después de enviarla?</h3>
-    <p>No, una vez enviada la solicitud no se permiten cambios. Revisa cuidadosamente toda la información antes de finalizar el proceso.</p>
-  </div>
+                <article class="story-item" data-category="cultural">
+                    <img src="https://via.placeholder.com/400x250?text=Estudiante+2"
+                        alt="Estudiante 2 en actividad cultural">
+                    <div class="story-content">
+                        <h3>Carlos Méndez</h3>
+                        <p>"Participar en actividades culturales gracias a la beca me permitió desarrollar habilidades
+                            que ahora uso en mi carrera profesional."</p>
+                    </div>
+                </article>
 
-  <div class="faq-item">
-    <h3>¿Cómo se evalúan las solicitudes?</h3>
-    <p>Las solicitudes son analizadas por un comité que revisa criterios académicos y socioeconómicos, de acuerdo con la convocatoria de la beca.</p>
-  </div>
+                <article class="story-item" data-category="deportiva">
+                    <img src="https://via.placeholder.com/400x250?text=Estudiante+3"
+                        alt="Estudiante 3 practicando deporte">
+                    <div class="story-content">
+                        <h3>Lucía Fernández</h3>
+                        <p>"La beca no solo me apoyó económicamente, sino que también me permitió representar a mi
+                            escuela en competencias deportivas."</p>
+                    </div>
+                </article>
 
-  <div class="faq-item">
-    <h3>¿Cuándo se publican los resultados?</h3>
-    <p>Los resultados se publican en la sección de “Resultados” de la convocatoria, aproximadamente 30 días después del cierre del periodo de postulación.</p>
-  </div>
-</section>
+                <article class="story-item" data-category="social">
+                    <img src="https://via.placeholder.com/400x250?text=Estudiante+4" alt="Estudiante 4 voluntariado">
+                    <div class="story-content">
+                        <h3>José Ramírez</h3>
+                        <p>"Gracias a la beca pude realizar voluntariado y apoyar a mi comunidad, algo que siempre quise
+                            hacer y que cambió mi perspectiva."</p>
+                    </div>
+                </article>
 
-<section class="rules">
-  <h2>Reglas Importantes</h2>
-  <ul class="rules-list">
-    <li>Solo se permite una postulación por estudiante por periodo.</li>
-    <li>Los documentos deben ser legibles y estar en formato PDF.</li>
-    <li>La falsificación de documentos resultará en la cancelación definitiva de la solicitud.</li>
-  </ul>
-</section>
+            </div>
+        </section>
+
+        <section class="cta py-large bg-light">
+            <div class="container">
+                <h2>¿Quieres ser parte de estas historias?</h2>
+                <p>Postula ahora y da el primer paso para transformar tu futuro con nuestras becas.</p>
+                <a href="postulante.html" class="btn-primary">Postular ahora</a>
+            </div>
+        </section>
     </main>
+
 
 
     <footer>
@@ -140,10 +167,8 @@
             <p>Transparencia | Aviso de Privacidad | Términos y Condiciones</p>
         </div>
     </footer>
-
-
     <script src="../js/session.js"></script>
-    <script src="../js/Soporte.js"></script>
+    <script src="../js/historias.js"></script>
 </body>
 
 </html>
